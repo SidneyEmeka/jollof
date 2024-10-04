@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Stylings {
   //Colors
   static Color yellow = const Color(0xFFFEC706);
-  static Color bgColor = const Color(0xFFF6F6F6);
+  static Color bgColor =Colors.white;
 
 //textStyles
   static TextStyle titles = const TextStyle(

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/onboarding/awaitverification.dart';
+import 'package:jollof/onboarding/setavatar.dart';
 import 'package:jollof/utils/stylings.dart';
 import 'package:pinput/pinput.dart';
 
-import 'confirmregpin.dart';
-
-class Regpin extends StatefulWidget {
-  const Regpin({super.key});
+class ConfirmRegpin extends StatefulWidget {
+  const ConfirmRegpin({super.key});
 
   @override
-  State<Regpin> createState() => _RegpinState();
+  State<ConfirmRegpin> createState() => _ConfirmRegpinState();
 }
 
-class _RegpinState extends State<Regpin> {
+class _ConfirmRegpinState extends State<ConfirmRegpin> {
   String pass = "";
 
   @override
@@ -21,7 +21,7 @@ class _RegpinState extends State<Regpin> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon:const Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,),
+          icon:const Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,),
           onPressed: () {Get.back();},),
       ),
       body: Container(
@@ -40,18 +40,18 @@ class _RegpinState extends State<Regpin> {
                 border: Border.all(color: Colors.lightBlueAccent,width: 1),
               ),
               child: Container(
-                padding: const EdgeInsets.all(25),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Stylings.yellow,width: 4),
-                ),
+                  padding: const EdgeInsets.all(25),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Stylings.yellow,width: 4),
+                  ),
                   child: Icon(Icons.lock_outline,color: Stylings.yellow,size: Get.width*0.15,)),
             ),
             const SizedBox(height: 20),
             Text("Welcome To Jollof",style: Stylings.titles),
             const SizedBox(height: 10),
-            Text("Please create your pin",style: Stylings.subTitles.copyWith(color: Colors.grey),),
-           const Expanded(child: SizedBox()),
+            Text("Re-type your pin",style: Stylings.subTitles.copyWith(color: Colors.grey),),
+            const Expanded(child: SizedBox()),
             SizedBox(
               width: Get.width*0.32,
               child: Pinput(
@@ -75,7 +75,7 @@ class _RegpinState extends State<Regpin> {
                 cursor: const SizedBox(),
                 obscuringWidget: Icon(Icons.circle,color: Stylings.yellow,size: 20,),
                 onCompleted: (pin){
-                  Get.off(()=>const ConfirmRegpin());
+                  Get.off(()=>const Setavatar());
                 },
               ),
             )

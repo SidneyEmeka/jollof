@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/onboarding/awaitverification.dart';
 import 'package:jollof/onboarding/regpin.dart';
 import 'package:jollof/utils/stylings.dart';
 
@@ -91,7 +92,7 @@ class Regemail extends StatelessWidget {
               const Expanded(flex:2,child: SizedBox()),
               GestureDetector(
                 onTap: (){
-                  Get.to(()=>const Regpin());
+                  Get.to(()=>const Awaitverification());
                 },
                 child: Container(
                   height: Get.height*0.055,
