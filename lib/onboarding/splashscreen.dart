@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/onboarding/enter.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -18,9 +19,18 @@ class _SplashscreenState extends State<Splashscreen> with TickerProviderStateMix
     _animationController = AnimationController(vsync: this,
     duration: const Duration(milliseconds: 800),);
     _animation = Tween<double>(begin: 1.0,end: 2.5).animate(_animationController);
-
     _animationController.forward();
+    Future.delayed(const Duration(seconds: 3),(){
+      Get.off(()=>const Enterapp());
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animation;
+    _animationController;
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
