@@ -8,7 +8,7 @@ class Stylings {
 //textStyles
   static TextStyle titles = const TextStyle(
     fontFamily: 'Inter',
-      fontSize: 15,
+      fontSize: 13,
       fontWeight: FontWeight.w600,
       color: Colors.black
   );

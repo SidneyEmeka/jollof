@@ -25,7 +25,7 @@ class _ConfirmRegpinState extends State<ConfirmRegpin> {
           onPressed: () {Get.back();},),
       ),
       body: Container(
-        height: Get.height*0.6,
+        height: Get.height,
         width: Get.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -78,7 +78,8 @@ class _ConfirmRegpinState extends State<ConfirmRegpin> {
                   Get.off(()=>const Setavatar());
                 },
               ),
-            )
+            ),
+            const Expanded(flex:2,child: SizedBox()),
           ],
         ),
       ),

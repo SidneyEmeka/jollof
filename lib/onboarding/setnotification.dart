@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/questionaire/questions.dart';
 
 import '../utils/reusables/bnavmorph.dart';
 import '../utils/stylings.dart';
@@ -96,7 +97,7 @@ class Setnotification extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             GestureDetector(onTap:(){
-              Get.to(()=>const Setnotification());
+              Get.to(()=>const Questions());
             },child: Text("Skip for now",style: Stylings.titles.copyWith(fontSize: 13),)),
             const Expanded(child: SizedBox()),
           ],
