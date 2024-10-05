@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../utils/stylings.dart';
+import 'forgotpass.dart';
 
 class Signinmethod extends StatelessWidget {
   const Signinmethod({super.key});
@@ -42,15 +43,15 @@ class Signinmethod extends StatelessWidget {
                   Text("EN",style: Stylings.titles.copyWith(fontSize: 12),)
                 ],
               ),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               Row(
                 children: [
                   Text("Welcome back",style: Stylings.titles,),
-                  SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   Icon(FluentIcons.hand_wave_20_filled,color: Stylings.yellow,size: 20,)
                 ],
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               //textfields
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +95,7 @@ class Signinmethod extends StatelessWidget {
 
 
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   TextFormField(
                     style: Stylings.subTitles.copyWith(fontSize: 11),
                     // controller: _emailController,
@@ -136,12 +137,15 @@ class Signinmethod extends StatelessWidget {
 
                 ],
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               Align(
                 alignment: Alignment.centerRight,
-                child: Text("Forgot your password?",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
+                child: GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Forgotpass());
+                    },child: Text("Forgot your password?",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),)),
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               GestureDetector(
                 onTap: (){
                   Get.to(());
@@ -157,7 +161,7 @@ class Signinmethod extends StatelessWidget {
                   child: Text("Log in",style: Stylings.titles.copyWith(fontSize: 12),),
                 ),
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               Align(
                 alignment: Alignment.center,
                 child: RichText(
@@ -168,7 +172,7 @@ class Signinmethod extends StatelessWidget {
                         Get.to(()=>const Signinmethod());
                       },text: "Register",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.grey.shade400)),
                     ])),),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               Row(
                 children: [
                  Expanded(child: Container(height: 1,width: Get.width*0.4,color: Colors.black12,)),
@@ -179,7 +183,7 @@ class Signinmethod extends StatelessWidget {
                   Expanded(child: Container(height: 1,width: Get.width*0.4,color: Colors.black12,)),
                 ],
               ),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               GestureDetector(
                 onTap: (){
                   Get.to(());
@@ -197,13 +201,13 @@ class Signinmethod extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height:Get.height*0.02,width:Get.height*0.02,child: Image.asset("assets/images/fb.png"),),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Text("Sign in with Facebook",style: Stylings.titles.copyWith(fontSize: 12),),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               GestureDetector(
                 onTap: (){
                   Get.to(());
@@ -221,13 +225,13 @@ class Signinmethod extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height:Get.height*0.02,width:Get.height*0.02,child: Image.asset("assets/images/gg.png"),),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Text("Sign in with Facebook",style: Stylings.titles.copyWith(fontSize: 12),),
                     ],
                   ),
                 ),
               ),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(children: [
@@ -236,7 +240,7 @@ class Signinmethod extends StatelessWidget {
                     TextSpan(text: "and ",style: Stylings.subTitles),
                     TextSpan(text: "Terms and Conditions",style: Stylings.subTitles.copyWith(color: Stylings.yellow)),
                   ])),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
             ],
           ),
         ),
