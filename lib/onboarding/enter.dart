@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/onboarding/regemail.dart';
+import 'package:jollof/onboarding/signinmethod.dart';
 
 import '../utils/stylings.dart';
 
@@ -58,7 +60,9 @@ class Enterapp extends StatelessWidget {
               textAlign: TextAlign.end,
                 text: TextSpan(children: [
               TextSpan(text: "Already have an account ? ",style: Stylings.subTitles),
-              TextSpan(text: "Log in",style: Stylings.titles.copyWith(fontSize: 12)),
+              TextSpan(recognizer: TapGestureRecognizer()..onTap=(){
+                Get.to(()=>const Signinmethod());
+              },text: "Log in",style: Stylings.titles.copyWith(fontSize: 12)),
             ])),
             const Expanded(flex:1,child: SizedBox()),
           ],
