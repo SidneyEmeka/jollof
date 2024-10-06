@@ -96,4 +96,7 @@ class Jollofx extends GetxController{
 
   var addMoneyCurrency  = "USDT".obs;
 
+
+  var savePaymentMethod = true.obs;
+
 }

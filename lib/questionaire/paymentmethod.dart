@@ -1,7 +1,9 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../server/getxserver.dart';
 import '../utils/stylings.dart';
 
 class Paymentmethod extends StatelessWidget {
@@ -33,10 +35,208 @@ class Paymentmethod extends StatelessWidget {
         ],
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
-      body: Container(
+      body: Obx(()=>Container(
         width: Get.width,
         height: Get.height,
-      ),
+        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Select how you would fund your wallet",style: Stylings.titles,),
+            Expanded(child: SizedBox()),
+            Text("Experience the future of crypto investing with Jollof by funding your wallet and activating our AI-Managed Portfolio feature. Our advanced algorithms ensure smart decision-making, risk management, and 24/7 monitoring, allowing you to effortlessly optimise your crypto portfolio for maximum returns.",
+              style: Stylings.subTitles,),
+            Expanded(child: SizedBox()),
+            //methods
+            Container(
+              width: Get.width,
+              height: Get.height*0.52,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey.shade100)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  //apple
+                  Container(
+                    width: Get.width,
+                    height: Get.height*0.1,
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                        )
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.apple_sharp,size: 20,color: Colors.black,),
+                        const SizedBox(width: 15),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Apple pay",style: Stylings.titles.copyWith(fontSize: 12),),
+                            const SizedBox(height: 5),
+                            Text("Pay with Apple pay",style: Stylings.titles.copyWith(fontSize: 10,
+                                color: Colors.grey.shade400),),
+                          ],
+                        ),
+                        const Expanded(flex:2,child: SizedBox()),
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                      ],
+                    ),
+                  ),
+                  //paypal
+                  Container(
+                    width: Get.width,
+                    height: Get.height*0.1,
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                        )
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.paypal_outlined,size: 20,color: Colors.blueAccent,),
+                        const SizedBox(width: 15),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("PayPal",style: Stylings.titles.copyWith(fontSize: 12),),
+                            const SizedBox(height: 5),
+                            Text("Pay with PayPal",style: Stylings.titles.copyWith(fontSize: 10,
+                                color: Colors.grey.shade400),),
+                          ],
+                        ),
+                        const Expanded(flex:2,child: SizedBox()),
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                      ],
+                    ),
+                  ),
+                  //bank
+                  Container(
+                    width: Get.width,
+                    height: Get.height*0.1,
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                        )
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.apartment_rounded,size: 20,color: Colors.black,),
+                        const SizedBox(width: 15),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Pay with Bank Transfer",style: Stylings.titles.copyWith(fontSize: 12),),
+                            const SizedBox(height: 5),
+                            Text("Funds will arrive within an hour",style: Stylings.titles.copyWith(fontSize: 10,
+                                color: Colors.grey.shade400),),
+                          ],
+                        ),
+                        const Expanded(flex:2,child: SizedBox()),
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                      ],
+                    ),
+                  ),
+                  //Card
+                  Container(
+                    width: Get.width,
+                    height: Get.height*0.1,
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                        )
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.credit_card_outlined,size: 20,color: Colors.black,),
+                        const SizedBox(width: 15),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Debit Card",style: Stylings.titles.copyWith(fontSize: 12),),
+                            const SizedBox(height: 5),
+                            Text("Pay with your debit card",style: Stylings.titles.copyWith(fontSize: 10,
+                                color: Colors.grey.shade400),),
+                          ],
+                        ),
+                        const Expanded(flex:2,child: SizedBox()),
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                      ],
+                    ),
+                  ),
+                  //apple
+                  Container(
+                    width: Get.width,
+                    height: Get.height*0.1,
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.currency_bitcoin,size: 20,color: Stylings.yellow,),
+                        const SizedBox(width: 15),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Deposit crypto",style: Stylings.titles.copyWith(fontSize: 12),),
+                            const SizedBox(height: 5),
+                            Text("Fund wallet with fiat or crypto currency",style: Stylings.titles.copyWith(fontSize: 10,
+                                color: Colors.grey.shade400),),
+                          ],
+                        ),
+                        const Expanded(flex:2,child: SizedBox()),
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(child: SizedBox()),
+            //toggle
+            SwitchListTile(
+                value: Get.find<Jollofx>().savePaymentMethod.value, 
+                onChanged: (v){Get.find<Jollofx>().savePaymentMethod.value = v;},
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(7),
+              side: BorderSide(color: Colors.grey.shade100)
+            ),
+              activeTrackColor: Colors.green,
+              trackOutlineColor: WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
+                return Colors.transparent; // Use the default color.
+              }),
+              inactiveTrackColor: Colors.grey.shade300,
+              inactiveThumbColor: Colors.white,
+              thumbColor: WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
+                return Colors.white; // Use the default color.
+              }),
+              title: Text("Default this for future deposit",style: Stylings.subTitles,),
+           )
+          ],
+        ),
+      ),)
     );
   }
 }
