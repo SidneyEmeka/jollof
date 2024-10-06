@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/questionaire/paymentmethod.dart';
 import 'package:jollof/server/getxserver.dart';
 
 import '../utils/stylings.dart';
@@ -60,130 +61,131 @@ class Addmoney extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(FluentIcons.wallet_credit_card_16_regular,size: 20,color: Colors.blueAccent,),
-                        const SizedBox(width: 10),
-                        Text(Get.find<Jollofx>().addMoneyCurrency.value,style: Stylings.titles.copyWith(fontSize: 12),),
-                        const Expanded(flex:2,child: SizedBox()),
-                        GestureDetector(
-                            onTap: (){
-                              showModalBottomSheet(context: context,
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.grey.shade200,
-                                  enableDrag: true,
-                                  builder: (_){
-                                    return Container(
-                                      width: Get.width,
-                                      height: Get.height*0.3,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(20)
+                    child: GestureDetector(
+                      onTap: (){
+                        showModalBottomSheet(context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.grey.shade200,
+                            enableDrag: true,
+                            builder: (_){
+                              return Container(
+                                width: Get.width,
+                                height: Get.height*0.3,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20)
+                                ),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children:[
+                                      Container(
+                                        width: Get.width,
+                                        height: Get.height*0.07,
+                                        decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                                            color: Colors.white
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text("Choose currency",style: Stylings.titles.copyWith(fontSize: 11),),
                                       ),
-                                      child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children:[
-                                            Container(
-                                              width: Get.width,
-                                              height: Get.height*0.07,
-                                              decoration: const BoxDecoration(
-                                                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                                                  color: Colors.white
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: Text("Choose currency",style: Stylings.titles.copyWith(fontSize: 11),),
-                                            ),
-                                            const Expanded(child: SizedBox()),
+                                      const Expanded(child: SizedBox()),
 
-                                            Container(
-                                              margin: const EdgeInsets.symmetric(horizontal: 15),
-                                              width: Get.width,
-                                              height: Get.height*0.12,
-                                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  color: Colors.white
-                                              ),
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: GestureDetector(
-                                                      onTap: (){
-                                                        Get.find<Jollofx>().addMoneyCurrency.value = "USDT";
-                                                      },
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children: [
-                                                          SizedBox(
-                                                            width: 15,
-                                                            height: 15,
-                                                            child: Image.asset("assets/images/usdt.png",fit: BoxFit.contain,),
-                                                          ),
-                                                          const SizedBox(width: 10),
-                                                          Text("USDT",style: Stylings.titles.copyWith(fontSize: 12),),
-                                                          const Expanded(flex:2,child: SizedBox()),
-                                                          Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
-                                                         ],
-                                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(horizontal: 15),
+                                        width: Get.width,
+                                        height: Get.height*0.12,
+                                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.white
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  Get.find<Jollofx>().addMoneyCurrency.value = "USDT";
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 15,
+                                                      height: 15,
+                                                      child: Image.asset("assets/images/usdt.png",fit: BoxFit.contain,),
                                                     ),
-                                                  ),
-                                                  Expanded(child: Divider(color: Colors.grey.shade100,thickness: 1,)),
-                                                  Expanded(
-                                                    child: GestureDetector(
-                                                      onTap: (){
-                                                        Get.find<Jollofx>().addMoneyCurrency.value = "Naira";
-                                                      },
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children: [
-                                                          SizedBox(
-                                                            width: 15,
-                                                            height: 15,
-                                                            child: Image.asset("assets/images/naira.png",fit: BoxFit.contain,),
-                                                          ),
-                                                          const SizedBox(width: 10),
-                                                          Text("Naira",style: Stylings.titles.copyWith(fontSize: 12),),
-                                                          const Expanded(flex:2,child: SizedBox()),
-                                                          Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="Naira"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-
-                                            const Expanded(child: SizedBox()),
-                                            GestureDetector(
-                                              onTap: (){
-                                                Get.back();
-                                              },
-                                              child: Container(
-                                                margin: const EdgeInsets.symmetric(horizontal: 15),
-                                                height: Get.height*0.055,
-                                                width: Get.width,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(7),
-                                                    color: Colors.white
+                                                    const SizedBox(width: 10),
+                                                    Text("USDT",style: Stylings.titles.copyWith(fontSize: 12),),
+                                                    const Expanded(flex:2,child: SizedBox()),
+                                                    Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
+                                                  ],
                                                 ),
-                                                child: Text("Cancel",style: Stylings.titles.copyWith(fontSize: 12),),
                                               ),
                                             ),
-                                            const Expanded(flex:2,child: SizedBox()),
-                                          ]
+                                            Expanded(child: Divider(color: Colors.grey.shade100,thickness: 1,)),
+                                            Expanded(
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  Get.find<Jollofx>().addMoneyCurrency.value = "Naira";
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 15,
+                                                      height: 15,
+                                                      child: Image.asset("assets/images/naira.png",fit: BoxFit.contain,),
+                                                    ),
+                                                    const SizedBox(width: 10),
+                                                    Text("Naira",style: Stylings.titles.copyWith(fontSize: 12),),
+                                                    const Expanded(flex:2,child: SizedBox()),
+                                                    Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="Naira"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    );
-                                  });
-                            },
-                            child: const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 10,))
-                      ],
+
+                                      const Expanded(child: SizedBox()),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                                          height: Get.height*0.055,
+                                          width: Get.width,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(7),
+                                              color: Colors.white
+                                          ),
+                                          child: Text("Cancel",style: Stylings.titles.copyWith(fontSize: 12),),
+                                        ),
+                                      ),
+                                      const Expanded(flex:2,child: SizedBox()),
+                                    ]
+                                ),
+                              );
+                            });
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(FluentIcons.wallet_credit_card_16_regular,size: 20,color: Colors.blueAccent,),
+                          const SizedBox(width: 10),
+                          Text(Get.find<Jollofx>().addMoneyCurrency.value,style: Stylings.titles.copyWith(fontSize: 12),),
+                          const Expanded(flex:2,child: SizedBox()),
+                          const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(child: Divider(color: Colors.grey.shade100,thickness: 1,)),
@@ -197,12 +199,13 @@ class Addmoney extends StatelessWidget {
                         Expanded(child: TextField(
                           onChanged: (value){ },
                           textAlign: TextAlign.end,
-                          style: Stylings.titles.copyWith(fontSize: 12),
+                          style: Stylings.titles,
                           cursorColor: Colors.grey.shade300,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               hintText: Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?"\$0.00":"₦0.00",
                               hintStyle: Stylings.titles.copyWith(fontSize: 15,color: Colors.grey.shade400),
+                              suffix: Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Text("USDT",style: Stylings.subTitles,):Text("Naira",style: Stylings.subTitles,),
                               border: InputBorder.none
                           ),
                         ))
@@ -215,7 +218,7 @@ class Addmoney extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                //  Get.to(()=>const Regemail());
+                Get.to(()=>const Paymentmethod());
               },
               child: Container(
                 height: Get.height*0.055,
