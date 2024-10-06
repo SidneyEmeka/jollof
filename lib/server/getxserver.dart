@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../questionaire/explainer.dart';
+import '../questionaire/welcome.dart';
 
 class Jollofx extends GetxController{
   static List<String> avatars = [
@@ -83,7 +84,7 @@ class Jollofx extends GetxController{
       explainer++;
     }
     else if(explainer>=4){
-      //Get.to(()=>const Explainer());
+      Get.to(()=>const Welcome());
       explainer = explainer-3;
     }
   }
