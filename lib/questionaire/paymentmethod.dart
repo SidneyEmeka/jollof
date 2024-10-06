@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/questionaire/paymentpreview.dart';
 
 import '../server/getxserver.dart';
 import '../utils/stylings.dart';
@@ -12,6 +13,7 @@ class Paymentmethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -38,16 +40,16 @@ class Paymentmethod extends StatelessWidget {
       body: Obx(()=>Container(
         width: Get.width,
         height: Get.height,
-        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Select how you would fund your wallet",style: Stylings.titles,),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Text("Experience the future of crypto investing with Jollof by funding your wallet and activating our AI-Managed Portfolio feature. Our advanced algorithms ensure smart decision-making, risk management, and 24/7 monitoring, allowing you to effortlessly optimise your crypto portfolio for maximum returns.",
               style: Stylings.subTitles,),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             //methods
             Container(
               width: Get.width,
@@ -65,7 +67,7 @@ class Paymentmethod extends StatelessWidget {
                   Container(
                     width: Get.width,
                     height: Get.height*0.1,
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
@@ -124,41 +126,46 @@ class Paymentmethod extends StatelessWidget {
                     ),
                   ),
                   //bank
-                  Container(
-                    width: Get.width,
-                    height: Get.height*0.1,
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
-                        )
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.apartment_rounded,size: 20,color: Colors.black,),
-                        const SizedBox(width: 15),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Pay with Bank Transfer",style: Stylings.titles.copyWith(fontSize: 12),),
-                            const SizedBox(height: 5),
-                            Text("Funds will arrive within an hour",style: Stylings.titles.copyWith(fontSize: 10,
-                                color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
+                  GestureDetector(
+                    onTap: (){
+                   Get.to(()=>const Paymentpreview());
+                    },
+                    child: Container(
+                      width: Get.width,
+                      height: Get.height*0.1,
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                          )
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.apartment_rounded,size: 20,color: Colors.black,),
+                          const SizedBox(width: 15),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Pay with Bank Transfer",style: Stylings.titles.copyWith(fontSize: 12),),
+                              const SizedBox(height: 5),
+                              Text("Funds will arrive within an hour",style: Stylings.titles.copyWith(fontSize: 10,
+                                  color: Colors.grey.shade400),),
+                            ],
+                          ),
+                          const Expanded(flex:2,child: SizedBox()),
+                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                   //Card
                   Container(
                     width: Get.width,
                     height: Get.height*0.1,
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
@@ -189,7 +196,7 @@ class Paymentmethod extends StatelessWidget {
                   Container(
                     width: Get.width,
                     height: Get.height*0.1,
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,7 +221,7 @@ class Paymentmethod extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             //toggle
             SwitchListTile(
                 value: Get.find<Jollofx>().savePaymentMethod.value, 

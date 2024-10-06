@@ -13,6 +13,7 @@ class Addmoney extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -197,7 +198,10 @@ class Addmoney extends StatelessWidget {
                         Text("You are depositing",style: Stylings.titles.copyWith(fontSize: 11,color: Colors.grey.shade400),),
                         // SizedBox(height: 5,),
                         Expanded(child: TextField(
-                          onChanged: (value){ },
+                          onChanged: (value){
+                            double val = double.parse(value);
+                            Get.find<Jollofx>().addMoneyAmount.value = val;
+                          },
                           textAlign: TextAlign.end,
                           style: Stylings.titles,
                           cursorColor: Colors.grey.shade300,
