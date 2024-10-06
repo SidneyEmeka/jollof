@@ -28,7 +28,6 @@ class Jollofx extends GetxController{
   var portfolio  = "".obs;
 
 
-
   var questionNum = 1.obs;
   nextPage(){
     if(questionNum<6){
@@ -93,5 +92,8 @@ class Jollofx extends GetxController{
       explainer = explainer-3;
     }
   }
+
+
+  var addMoneyCurrency  = "USDT".obs;
 
 }

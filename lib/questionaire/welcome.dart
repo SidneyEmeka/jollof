@@ -1,8 +1,10 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../utils/stylings.dart';
+import 'addmoney.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -47,6 +49,7 @@ class Welcome extends StatelessWidget {
             const SizedBox(height: 15,),
             Text("What do you want to do with Jollof",style: Stylings.subTitles,),
             const Expanded(child: SizedBox()),
+
             Container(
               width: Get.width,
               height: Get.height*0.3,
@@ -76,7 +79,7 @@ class Welcome extends StatelessWidget {
                           ],
                         ),
                         const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 17,)
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
                       ],
                     ),
                   ),
@@ -86,7 +89,7 @@ class Welcome extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Icon(Icons.work_outline_outlined,size: 20,color: Colors.black,),
+                        const Icon(Icons.wallet_travel,size: 20,color: Colors.black,),
                        const SizedBox(width: 10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -98,35 +101,41 @@ class Welcome extends StatelessWidget {
                           ],
                         ),
                         const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 17,)
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
                       ],
                     ),
                   ),
                   Expanded(child: Divider(color: Colors.grey.shade100,thickness: 1,)),
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.wallet_outlined,size: 20,color: Colors.black,),
-                        const SizedBox(width: 10),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Fund my wallet",style: Stylings.titles.copyWith(fontSize: 11),),
-                            // SizedBox(height: 5,),
-                            Text("Add some money into your wallet",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 17,)
-                      ],
+                    child: GestureDetector(
+                      onTap: (){
+                        Get.to(()=>const Addmoney());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.credit_card_outlined,size: 20,color: Colors.black,),
+                          const SizedBox(width: 10),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Fund my wallet",style: Stylings.titles.copyWith(fontSize: 11),),
+                              // SizedBox(height: 5,),
+                              Text("Add some money into your wallet",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
+                            ],
+                          ),
+                          const Expanded(flex:2,child: SizedBox()),
+                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
+
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
