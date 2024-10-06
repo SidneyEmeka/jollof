@@ -22,6 +22,11 @@ class Jollofx extends GetxController{
     "assets/images/15.png",
     "assets/images/16.png",
   ];
+  var avatarIndex = 0.obs;
+
+
+  var portfolio  = "".obs;
+
 
 
   var questionNum = 1.obs;
@@ -40,10 +45,10 @@ class Jollofx extends GetxController{
   calcPercent(var val){
     if(val==1){percentage=10.obs;circular=0.10.obs;}
     else if(val==2){percentage=percentage+20;circular=0.30.obs;}
-    else if(val==3){percentage=percentage+25;circular=0.55.obs;}
-    else if(val==4){percentage=percentage+10;circular=0.65.obs;}
-    else if(val==5){percentage=percentage+15;circular=0.80.obs;}
-    else if(val==6){percentage=percentage+20;circular=1.0.obs;}
+    else if(val==3){percentage=percentage+20;circular=0.50.obs;}
+    else if(val==4){percentage=percentage+20;circular=0.70.obs;}
+    else if(val==5){percentage=percentage+15;circular=0.85.obs;}
+    else if(val==6){percentage=percentage+15;circular=1.0.obs;}
   }
 
   var answer1 = "".obs;

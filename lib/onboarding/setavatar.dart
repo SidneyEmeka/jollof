@@ -22,7 +22,7 @@ class Setavatar extends StatelessWidget {
             bottom: BorderSide(color: Colors.grey.shade200)
         ),
       ),
-      body: Container(
+      body: Obx(()=>Container(
         height: Get.height,
         width: Get.width,
         padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 30),
@@ -36,22 +36,30 @@ class Setavatar extends StatelessWidget {
             Wrap(
               direction: Axis.horizontal,
               alignment: WrapAlignment.center,
-              spacing: Get.width*0.08,
+              spacing: Get.width*0.05,
               runSpacing: Get.width*0.08,
               children: [
                 ...Jollofx.avatars.map((av){
-                  return Container(
-                    width: Get.width*0.17,
-                    height: Get.width*0.17,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(image: AssetImage(av),fit: BoxFit.cover)
+                  final index = Jollofx.avatars.indexOf(av);
+                  return GestureDetector(
+                    onTap: (){
+                      Get.find<Jollofx>().avatarIndex.value = index;
+                    },
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      width: Get.width*0.18,
+                      height: Get.width*0.18,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border:  Get.find<Jollofx>().avatarIndex.value==index?Border.all(color: Stylings.yellow,width: 3):Border.all(color: Colors.black26),
+                          image: DecorationImage(image: AssetImage(av),fit: BoxFit.contain)
+                      ),
                     ),
                   );
                 })
               ],
             ),
-            const Expanded(child: SizedBox()),
+            const Expanded(flex:2,child: SizedBox()),
             GestureDetector(
               onTap: (){
                 Get.to(());
@@ -67,14 +75,14 @@ class Setavatar extends StatelessWidget {
                 child: Text("Continue",style: Stylings.titles.copyWith(fontSize: 12),),
               ),
             ),
-           const SizedBox(height: 20),
+            const SizedBox(height: 20),
             GestureDetector(onTap:(){
               Get.to(()=>const Setnotification());
             },child: Text("Skip for now",style: Stylings.titles.copyWith(fontSize: 13),)),
             const Expanded(child: SizedBox()),
           ],
         ),
-      ),
+      ),)
     );
   }
 }

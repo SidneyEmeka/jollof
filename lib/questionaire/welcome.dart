@@ -65,18 +65,18 @@ class Welcome extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Icon(Icons.list_alt_outlined,size: 20,color: Colors.black,),
-                        const Expanded(flex:1,child: SizedBox()),
+                        const SizedBox(width: 10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Build my portfolio",style: Stylings.titles.copyWith(fontSize: 11),),
                            // SizedBox(height: 5,),
-                            Text("Let Ai trade for you while you sleep",style: Stylings.subTitles.copyWith(color: Colors.grey.shade300),),
+                            Text("Let Ai trade for you while you sleep",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
                           ],
                         ),
                         const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 20,)
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 17,)
                       ],
                     ),
                   ),
@@ -87,18 +87,18 @@ class Welcome extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Icon(Icons.work_outline_outlined,size: 20,color: Colors.black,),
-                        const Expanded(flex:1,child: SizedBox()),
+                       const SizedBox(width: 10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Invest in mutual fund",style: Stylings.titles.copyWith(fontSize: 11),),
                             // SizedBox(height: 5,),
-                            Text("Earn upto 55% fixed return",style: Stylings.subTitles.copyWith(color: Colors.grey.shade300),),
+                            Text("Earn upto 55% fixed return",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
                           ],
                         ),
                         const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 20,)
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 17,)
                       ],
                     ),
                   ),
@@ -109,18 +109,18 @@ class Welcome extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Icon(Icons.wallet_outlined,size: 20,color: Colors.black,),
-                        const Expanded(flex:1,child: SizedBox()),
+                        const SizedBox(width: 10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Fund my wallet",style: Stylings.titles.copyWith(fontSize: 11),),
                             // SizedBox(height: 5,),
-                            Text("Add some money into your wallet",style: Stylings.subTitles.copyWith(color: Colors.grey.shade300),),
+                            Text("Add some money into your wallet",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
                           ],
                         ),
                         const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 20,)
+                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade300,size: 17,)
                       ],
                     ),
                   ),
