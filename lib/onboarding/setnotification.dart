@@ -17,7 +17,7 @@ class Setnotification extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon: const Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,)),
+        }, icon: const Icon(Icons.arrow_back_ios,size: 15,color: Colors.black,)),
         title: Text("Set your avatar",style: Stylings.titles,),
         centerTitle: true,
         shape: Border(

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../questionaire/explainer.dart';
+
 class Jollofx extends GetxController{
   static List<String> avatars = [
     "assets/images/1.png",
@@ -20,12 +22,14 @@ class Jollofx extends GetxController{
     "assets/images/16.png",
   ];
 
+
   var questionNum = 1.obs;
   nextPage(){
     if(questionNum<6){
       questionNum++;
     }
     else if(questionNum>=6){
+      Get.to(()=>const Explainer());
       questionNum = questionNum-5;
     }
   }
@@ -46,7 +50,7 @@ class Jollofx extends GetxController{
     "I'm seeking higher returns and am willing to accept higher risks.",
     "I value a balance between returns and stability.",
     "I prioritize capital preservation and am risk-averse."];
- var answer2 = "".obs;
+  var answer2 = "".obs;
   var question2 = [
     "I'm comfortable with some ups and downs.",
     "I prefer stability and am willing to accept minimal fluctuations.",
@@ -71,5 +75,17 @@ class Jollofx extends GetxController{
     "I am open to making adjustments based on market conditions.",
     "I prefer a steady course and may make minimal changes.",
     "I tend to avoid making hasty decisions and would stay the course."];
+
+
+  var explainer = 1.obs;
+  nextExplainer(){
+    if(explainer<4){
+      explainer++;
+    }
+    else if(explainer>=4){
+      //Get.to(()=>const Explainer());
+      explainer = explainer-3;
+    }
+  }
 
 }

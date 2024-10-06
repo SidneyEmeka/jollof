@@ -135,6 +135,7 @@ class _NewpassState extends State<Newpass> {
                 ],
               ),
               const SizedBox(height: 30,),
+              //bottom
               GestureDetector(
                 onTap: () {
                   showModalBottomSheet(

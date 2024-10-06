@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/questionaire/explainer.dart';
 import 'package:jollof/server/getxserver.dart';
 import 'package:jollof/utils/reusables/radiolist.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -25,7 +26,7 @@ class _QuestionsState extends State<Questions> {
             },
             icon: const Icon(
               Icons.arrow_back_ios,
-              size: 20,
+              size: 15,
               color: Colors.black,
             )),
         title: Text(
@@ -36,9 +37,14 @@ class _QuestionsState extends State<Questions> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
-            child: Text(
-              "Skip",
-              style: Stylings.titles.copyWith(color: Stylings.yellow),
+            child: GestureDetector(
+              onTap: (){
+                Get.to(()=>const Explainer());
+              },
+              child: Text(
+                "Skip",
+                style: Stylings.titles.copyWith(color: Stylings.yellow),
+              ),
             ),
           )
         ],

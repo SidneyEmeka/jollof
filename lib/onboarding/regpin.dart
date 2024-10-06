@@ -21,10 +21,10 @@ class _RegpinState extends State<Regpin> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon:const Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,),
+            icon:const Icon(Icons.arrow_back_ios,size: 15,color: Colors.black,),
           onPressed: () {Get.back();},),
       ),
-      body: Container(
+      body: SizedBox(
         height: Get.height,
         width: Get.width,
         child: Column(

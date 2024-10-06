@@ -19,7 +19,7 @@ class Forgotpass extends StatelessWidget {
             },
             icon: const Icon(
               Icons.arrow_back_ios,
-              size: 20,
+              size: 15,
               color: Colors.black,
             )),
         title: Text(
