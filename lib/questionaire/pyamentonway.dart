@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/questionaire/transactiontrack.dart';
 
-import '../homes/homescreen.dart';
+import '../homes/Invest/buyplan.dart';
 import '../utils/stylings.dart';
 import 'jollofbankdetails.dart';
 
@@ -48,7 +48,7 @@ class Paymentonway extends StatelessWidget {
             const SizedBox(height: 15,),
             GestureDetector(
               onTap: () {
-                Get.to(()=>const Homescreen());
+                Get.to(()=>const Buyplan());
               },
               child: Container(
                 height: Get.height*0.055,

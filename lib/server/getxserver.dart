@@ -100,4 +100,18 @@ class Jollofx extends GetxController{
 
   var savePaymentMethod = true.obs;
 
+
+  var plans = [
+    {"title":"Standard plan",
+    "amount":"299",
+    "desc": "Earn 10% profit for 3 months, 25% for 6 months or 55% profit for 12 months. Trades only Bitcoin and Etherum"},
+    {"title":"Premium plan",
+      "amount":"499",
+      "desc": "Earn 15% profit for 3 months, 35% for 6 months or 65% profit for 12 months. Trades only Bitcoin and Etherum"},
+    {"title":"VIP plan",
+      "amount":"700",
+      "desc": "Earn 20% profit for 3 months, 40% for 6 months or 70% profit for 12 months. Trades only Bitcoin and Etherum"},
+  ];
+  var currentPlanPage = 0.obs;
+
 }
