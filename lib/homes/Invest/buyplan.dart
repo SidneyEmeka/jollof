@@ -68,7 +68,7 @@ class Buyplan extends StatelessWidget {
                       dotHeight: 6
                   ),
                 ),
-                const Expanded(flex:2,child: SizedBox()),
+                const Expanded(flex:3,child: SizedBox()),
                 //header
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -450,7 +450,7 @@ class Buyplan extends StatelessWidget {
                 ),
 
 
-                const Expanded(flex:2,child: SizedBox()),
+                const Expanded(flex:3,child: SizedBox()),
                 //buy
                 GestureDetector(
                   onTap: (){
@@ -468,7 +468,7 @@ class Buyplan extends StatelessWidget {
                     child: Text("Start with \$${Get.find<Jollofx>().plans[Get.find<Jollofx>().currentPlanPage.value]["amount"]}",style: Stylings.titles.copyWith(fontSize: 12),),
                   ),
                 ),
-                const Expanded(flex:2,child: SizedBox()),
+                const Expanded(flex:1,child: SizedBox()),
               ],
             ),
         ),
