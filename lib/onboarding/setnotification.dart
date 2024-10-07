@@ -14,11 +14,13 @@ class Setnotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(onPressed: (){
           Get.back();
         }, icon: const Icon(Icons.arrow_back_ios,size: 15,color: Colors.black,)),
-        title: Text("Set your avatar",style: Stylings.titles,),
+        title: Text("Set Notifications",style: Stylings.titles,),
         centerTitle: true,
         shape: Border(
             bottom: BorderSide(color: Colors.grey.shade200)

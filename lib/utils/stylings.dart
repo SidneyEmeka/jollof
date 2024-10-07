@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Stylings {
   //Colors
   static Color yellow = const Color(0xFFFEC706);
-  static Color bgColor =Colors.white;
+  static Color bgColor =const Color(0xFFF8F8F8);
 
 //textStyles
-  static TextStyle titles = const TextStyle(
+  static TextStyle titles = TextStyle(
     fontFamily: 'Inter',
       fontSize: 13,
       fontWeight: FontWeight.w600,
-      color: Colors.black
+      color: Get.isDarkMode? Colors.white :Colors.black
   );
-  static TextStyle subTitles = const TextStyle(
+  static TextStyle subTitles =  TextStyle(
       fontFamily: 'Inter',
       fontSize: 12,
       fontWeight: FontWeight.w500,
-      color: Colors.black
+      color: Get.isDarkMode? Colors.white :Colors.black
   );
-  static TextStyle body = const TextStyle(
+  static TextStyle body =  TextStyle(
       fontFamily: 'Inter',
       fontSize: 11,
-      color: Colors.black,
+      color: Get.isDarkMode? Colors.white :Colors.black,
       fontWeight: FontWeight.w400
   );
 //media

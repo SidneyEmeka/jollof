@@ -56,7 +56,7 @@ class Paymentmethod extends StatelessWidget {
               height: Get.height*0.52,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey.shade100)
+                  border: Border.all(color: Colors.grey.shade200)
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -55,7 +55,7 @@ class Addmoney extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey.shade100)
+                  border: Border.all(color: Colors.grey.shade200)
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -189,7 +189,7 @@ class Addmoney extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(child: Divider(color: Colors.grey.shade100,thickness: 1,)),
+                  Expanded(child: Divider(color: Colors.grey.shade200,thickness: 1,)),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

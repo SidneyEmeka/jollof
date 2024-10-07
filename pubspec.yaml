@@ -39,6 +39,7 @@ dependencies:
   pinput: ^5.0.0
   fluentui_system_icons: ^1.1.259
   percent_indicator: ^4.2.3
+  share_plus: ^10.0.2
 
 dev_dependencies:
   flutter_test:
