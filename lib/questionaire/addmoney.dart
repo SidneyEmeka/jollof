@@ -197,7 +197,8 @@ class Addmoney extends StatelessWidget {
                       children: [
                         Text("You are depositing",style: Stylings.titles.copyWith(fontSize: 11,color: Colors.grey.shade400),),
                         // SizedBox(height: 5,),
-                        Expanded(child: TextField(
+                        Expanded(child:
+                        TextField(
                           onChanged: (value){
                             double val = double.parse(value);
                             Get.find<Jollofx>().addMoneyAmount.value = val;
@@ -212,7 +213,8 @@ class Addmoney extends StatelessWidget {
                               suffix: Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Text("USDT",style: Stylings.subTitles,):Text("Naira",style: Stylings.subTitles,),
                               border: InputBorder.none
                           ),
-                        ))
+                        )
+                        )
                       ],
                     ),
                   ),

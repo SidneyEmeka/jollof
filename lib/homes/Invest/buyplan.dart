@@ -3,6 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homes/Invest/buyplanthrough.dart';
 import 'package:jollof/server/getxserver.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -27,7 +28,7 @@ class Buyplan extends StatelessWidget {
               color: Colors.black,
             )),
         title: Text(
-          "Payment Details",
+          "Buy Plan",
           style: Stylings.titles,
         ),
         centerTitle: true,
@@ -454,7 +455,7 @@ class Buyplan extends StatelessWidget {
                 //buy
                 GestureDetector(
                   onTap: (){
-                    Get.to(()=>const Buyplan());
+                    Get.to(()=>const Buyplanthrough());
                   },
                   child: Container(
                     height: Get.height*0.055,
