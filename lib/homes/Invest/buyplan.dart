@@ -21,10 +21,8 @@ class Buyplan extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Container(
-          padding: EdgeInsets.all(10),
-          width: 15,
-          height: 10,
-          decoration: BoxDecoration(
+            padding: const EdgeInsets.all(13),
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,),
           child: Image.asset(Jollofx.avatars[Get.find<Jollofx>().avatarIndex.value],fit: BoxFit.contain,)
         ),
@@ -36,7 +34,7 @@ class Buyplan extends StatelessWidget {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Obx(()=>Container(
-        padding: EdgeInsets.symmetric(vertical: Get.height*0.03),
+        padding: EdgeInsets.only(top: Get.height*0.01),
         width: Get.width,
         height: Get.height,
         child:Column(
@@ -469,8 +467,7 @@ class Buyplan extends StatelessWidget {
                     ),
                     child: Text("Start with \$${Get.find<Jollofx>().plans[Get.find<Jollofx>().currentPlanPage.value]["amount"]}",style: Stylings.titles.copyWith(fontSize: 12),),
                   ),
-                ),
-                const Expanded(flex:1,child: SizedBox()),
+                )
               ],
             ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homepage.dart';
 import 'package:jollof/questionaire/transactiontrack.dart';
 
 import '../homes/Invest/buyplan.dart';
@@ -48,7 +49,7 @@ class Paymentonway extends StatelessWidget {
             const SizedBox(height: 15,),
             GestureDetector(
               onTap: () {
-                Get.to(()=>const Buyplan());
+                Get.to(()=>const Homepage());
               },
               child: Container(
                 height: Get.height*0.055,

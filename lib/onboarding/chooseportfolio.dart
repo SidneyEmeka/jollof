@@ -6,6 +6,7 @@ import 'package:jollof/onboarding/regpin.dart';
 import 'package:jollof/onboarding/setavatar.dart';
 import 'package:jollof/server/getxserver.dart';
 
+import '../homepage.dart';
 import '../homes/Invest/buyplan.dart';
 import '../utils/stylings.dart';
 
@@ -126,7 +127,7 @@ class Chooseportfolio extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Buyplan());
+                Get.to(()=>const Homepage());
               },
               child: Container(
                 height: Get.height*0.055,
