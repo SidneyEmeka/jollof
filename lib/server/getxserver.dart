@@ -155,7 +155,7 @@ class Jollofx extends GetxController{
   var btcPrice = 61866.72346429836;
   var btcPercentChange = 0.6628;
   var ethPrice = 2435.344120492847;
-  var ethPercentChange = 0.0048;
+  var ethPercentChange = 0.0148;
   var adaPrice = 0.342159264285;
   var adaPercentChange = 2.5879;
 
