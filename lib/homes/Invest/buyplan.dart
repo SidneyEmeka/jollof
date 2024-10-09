@@ -17,16 +17,17 @@ class Buyplan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 15,
-              color: Colors.black,
-            )),
+        backgroundColor: Colors.white,
+        leading: Container(
+          padding: EdgeInsets.all(10),
+          width: 15,
+          height: 10,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,),
+          child: Image.asset(Jollofx.avatars[Get.find<Jollofx>().avatarIndex.value],fit: BoxFit.contain,)
+        ),
         title: Text(
           "Buy Plan",
           style: Stylings.titles,

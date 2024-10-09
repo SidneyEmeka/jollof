@@ -113,5 +113,40 @@ class Jollofx extends GetxController{
       "desc": "Earn 20% profit for 3 months, 40% for 6 months or 70% profit for 12 months. Trades only Bitcoin and Etherum"},
   ];
   var currentPlanPage = 0.obs;
+  var planAt3 = 10.obs;
+  var planAt6 = 25.obs;
+  var planAt12 = 55.obs;
+  var planAt = [
+    10.obs,
+    25.obs,
+    55.obs,
+  ].obs;
 
+  planDetails(){
+    if(currentPlanPage.value==0){
+      planAt= [
+        10.obs,
+        25.obs,
+        55.obs,
+      ].obs;
+    }
+   else if(currentPlanPage.value==1){
+      planAt= [
+        15.obs,
+        35.obs,
+         65.obs,
+      ].obs;
+    }
+   else if(currentPlanPage.value==2){
+      planAt= [
+        20.obs,
+        40.obs,
+        70.obs,
+      ].obs;}
+
+}
+
+
+  var investmentDurationAt = 0.obs;
+  var investmentAmount = 0.0.obs;
 }

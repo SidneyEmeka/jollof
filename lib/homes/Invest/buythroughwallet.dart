@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../server/getxserver.dart';
 import '../../utils/stylings.dart';
+import 'chooseduration.dart';
 
 class Buythroughwallet extends StatelessWidget {
   const Buythroughwallet({super.key});
@@ -39,17 +40,20 @@ class Buythroughwallet extends StatelessWidget {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 30),
         width: Get.width,
         height: Get.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Expanded(child: SizedBox()),
             Text(
               "Enter amount",
               style: Stylings.titles.copyWith(fontSize: 12),
+            ),
+            Text(
+              "\$1 - NGN1665",
+              style: Stylings.titles.copyWith(fontSize: 11,color: Colors.grey.shade400),
             ),
             const SizedBox(height: 30),
             SizedBox(
@@ -57,7 +61,7 @@ class Buythroughwallet extends StatelessWidget {
               child: TextField(
                 onChanged: (value) {
                   double val = double.parse(value);
-                  Get.find<Jollofx>().addMoneyAmount.value = val;
+                  Get.find<Jollofx>().investmentAmount.value = val;
                 },
                 textAlign: TextAlign.center,
                 style: Stylings.titles.copyWith(fontSize: Get.width * 0.1),
@@ -93,7 +97,7 @@ class Buythroughwallet extends StatelessWidget {
             const Expanded(flex:3,child: SizedBox()),
             GestureDetector(
               onTap: (){
-                //Get.to(()=>const Paymentmethod());
+                Get.to(()=>const Chooseduration());
               },
               child: Container(
                 height: Get.height*0.055,
@@ -106,7 +110,7 @@ class Buythroughwallet extends StatelessWidget {
                 child: Text("Continue",style: Stylings.titles.copyWith(fontSize: 12),),
               ),
             ),
-            const Expanded(flex:3,child: SizedBox()),
+
           ],
         ),
       ),
