@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
+import 'apiclient.dart';
 
 class Jollofx extends GetxController{
   static List<String> avatars = [
@@ -149,4 +150,30 @@ class Jollofx extends GetxController{
 
   var investmentDurationAt = 0.obs;
   var investmentAmount = 0.0.obs;
+
+  var apiData = [].obs;
+  var btcPrice = 61866.72346429836;
+  var btcPercentChange = 0.6628;
+  var ethPrice = 2435.344120492847;
+  var ethPercentChange = 0.0048;
+  var adaPrice = 0.342159264285;
+  var adaPercentChange = 2.5879;
+
+  //crypyoapi
+  feedCrypto(){
+    Apiclientserver().getCrypto().then((v){
+      apiData.value = v['data'];
+      btcPrice = v['data'][0]["values"]["USD"]["price"];
+      btcPercentChange = v['data'][0]["values"]["USD"]["percentChange24h"];
+      adaPrice = v['data'][2]["values"]["USD"]["price"];
+      adaPercentChange = v['data'][2]["values"]["USD"]["percentChange24h"];
+      ethPrice = v['data'][1]["values"]["USD"]["price"];
+      ethPercentChange = v['data'][1]["values"]["USD"]["percentChange24h"];
+    });
+  }
+@override
+  void onInit() {
+  feedCrypto();
+    super.onInit();
+  }
 }

@@ -8,7 +8,8 @@ import '../stylings.dart';
 
 class Balancecards extends StatelessWidget {
   final Color thecolor;
-  const Balancecards({super.key, required this.thecolor});
+  final String type;
+  const Balancecards({super.key, required this.thecolor, required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class Balancecards extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Cash balance",style: Stylings.titles,),
+              Text("$type balance",style: Stylings.titles,),
               SizedBox(width: 8),
               Icon(FluentIcons.eye_48_regular,color: Colors.black,size: 15,),
               Expanded(child: SizedBox()),
