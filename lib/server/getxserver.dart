@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
@@ -218,6 +221,10 @@ class Jollofx extends GetxController{
     "allowNotifications": true.obs,
     "avatar": "".obs
   };
+
+
+  File? file;
+  ImagePicker image = ImagePicker();
 
 
 

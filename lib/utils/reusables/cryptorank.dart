@@ -32,7 +32,7 @@ class Cryptorank extends StatelessWidget {
           SizedBox(
               width: 35,
               height:35,child: Image.asset(imgUrl,fit: BoxFit.contain,)),
-          SizedBox(width:15,),
+          const SizedBox(width:15,),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,14 +42,14 @@ class Cryptorank extends StatelessWidget {
                 style: Stylings.titles
                     .copyWith(fontSize: 12),
               ),
-              SizedBox(height: 3,),
+              const SizedBox(height: 3,),
               Text(
                 slug,
                 style: Stylings.subTitles.copyWith(color: Colors.grey.shade400,fontSize: 11),
               ),
             ],
           ),
-          Expanded(child: SizedBox()),
+          const Expanded(child: SizedBox()),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -59,12 +59,12 @@ class Cryptorank extends StatelessWidget {
                 style: Stylings.titles
                     .copyWith(fontSize: 12),
               ),
-              SizedBox(height: 3,),
+              const SizedBox(height: 3,),
               percent.toString().contains("-")?Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.arrow_drop_down_outlined,size: 15,color: Colors.red,),
+                  const Icon(Icons.arrow_drop_down_outlined,size: 15,color: Colors.red,),
                   Text(
                     percent.toStringAsFixed(2),
                     style: Stylings.subTitles.copyWith(color: Colors.red,fontSize: 11),
@@ -75,7 +75,7 @@ class Cryptorank extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.arrow_drop_up,size: 15,color: Colors.green,),
+                  const Icon(Icons.arrow_drop_up,size: 15,color: Colors.green,),
                   Text(
                     percent.toStringAsFixed(2),
                     style: Stylings.subTitles.copyWith(color: Colors.green,fontSize: 11),

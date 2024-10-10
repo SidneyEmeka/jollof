@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/homes/home/tipsandtricks.dart';
-import 'package:jollof/homes/home/userdetails.dart';
+import 'package:jollof/homes/home/userdetails/userdetails.dart';
 import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/reusables/cryptorank.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';

@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import '../../server/getxserver.dart';
-import '../../server/getxserver.dart';
-import '../../utils/reusables/radiolist.dart';
-import '../../utils/stylings.dart';
+import '../../../server/getxserver.dart';
+import '../../../server/getxserver.dart';
+import '../../../utils/reusables/radiolist.dart';
+import '../../../utils/stylings.dart';
 
 class Userdetails extends StatefulWidget {
   const Userdetails({super.key});
@@ -25,6 +25,7 @@ class _UserdetailsState extends State<Userdetails> {
       lastDate: DateTime(2006),
     );
     Get.find<Jollofx>().userInfo["dob"] = dob.toString().split(" ")[0];
+    setState(() {});
   }
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class _UserdetailsState extends State<Userdetails> {
                     )
                   ],
                 ),
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
                 SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(
@@ -137,7 +138,7 @@ class _UserdetailsState extends State<Userdetails> {
                                     bottomSheetHeight: Get.height * 0.8,
                                     searchTextStyle:
                                     Stylings.titles.copyWith(fontSize: 10),
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 5, vertical: 20),
                                     inputDecoration: InputDecoration(
                                       suffixIcon: Icon(
@@ -151,17 +152,17 @@ class _UserdetailsState extends State<Userdetails> {
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                           BorderRadius.circular(10),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: Colors.transparent)),
                                       border: OutlineInputBorder(
                                           borderRadius:
                                           BorderRadius.circular(10),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: Colors.transparent)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                           BorderRadius.circular(10),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: Colors.transparent)),
                                       isDense: true,
                                       filled: true,
@@ -181,7 +182,7 @@ class _UserdetailsState extends State<Userdetails> {
                             },
                             child: Container(
                               width: Get.width,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 15),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(7),
@@ -197,7 +198,7 @@ class _UserdetailsState extends State<Userdetails> {
                                     style:
                                     Stylings.titles.copyWith(fontSize: 12),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.keyboard_arrow_down,
                                     color: Colors.black,
                                     size: 15,
@@ -229,6 +230,7 @@ class _UserdetailsState extends State<Userdetails> {
                           ),
                           //fname
                           TextFormField(
+                            key: const Key("firstname"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -240,15 +242,15 @@ class _UserdetailsState extends State<Userdetails> {
                                   .copyWith(color: Colors.grey.shade400),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -256,10 +258,11 @@ class _UserdetailsState extends State<Userdetails> {
                             ),
                           ),
                           //mname
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextFormField(
+                            key: const Key("middlename"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -271,15 +274,15 @@ class _UserdetailsState extends State<Userdetails> {
                                   .copyWith(color: Colors.grey.shade400),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -287,10 +290,11 @@ class _UserdetailsState extends State<Userdetails> {
                             ),
                           ),
                           //lname
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextFormField(
+                            key: const Key("lastname"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -302,15 +306,15 @@ class _UserdetailsState extends State<Userdetails> {
                                   .copyWith(color: Colors.grey.shade400),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -340,6 +344,7 @@ class _UserdetailsState extends State<Userdetails> {
                           ),
                           //street
                           TextFormField(
+                            key: const Key("street"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -353,17 +358,17 @@ class _UserdetailsState extends State<Userdetails> {
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -371,10 +376,11 @@ class _UserdetailsState extends State<Userdetails> {
                             ),
                           ),
                           //city
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextFormField(
+                            key: const Key("city"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -388,17 +394,17 @@ class _UserdetailsState extends State<Userdetails> {
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -406,10 +412,11 @@ class _UserdetailsState extends State<Userdetails> {
                             ),
                           ),
                           //state
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextFormField(
+                            key: const Key("state"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -423,28 +430,30 @@ class _UserdetailsState extends State<Userdetails> {
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
                               fillColor: Colors.grey.shade100,
                             ),
                           ),
-                          //lname
-                          SizedBox(
+                          //postalcode
+                          const SizedBox(
                             height: 10,
                           ),
                           TextFormField(
+                            keyboardType: TextInputType.number,
+                            key: const Key("postalcode"),
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
@@ -458,17 +467,17 @@ class _UserdetailsState extends State<Userdetails> {
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -496,34 +505,34 @@ class _UserdetailsState extends State<Userdetails> {
                           const SizedBox(
                             height: 30,
                           ),
-
                           TextFormField(
+                           key: const Key("dob"),
                             readOnly: true,
                             onTap: userdob,
                             style: Stylings.subTitles,
                             cursorColor: Colors.grey.shade300,
                             onChanged: (v) {
-                              Get.find<Jollofx>().userInfo["postalCode"] =
+                              Get.find<Jollofx>().userInfo["dob"] =
                                   v;
                             },
                             decoration: InputDecoration(
-                              hintText: "DOB",
+                              hintText: "DOB : ${Get.find<Jollofx>().userInfo["dob"]}",
                               hintStyle: Stylings.subTitles.copyWith(
                                   color: Colors.grey.shade400),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               border: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.circular(10),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.transparent)),
                               isDense: true,
                               filled: true,
@@ -555,15 +564,15 @@ class _UserdetailsState extends State<Userdetails> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.lock_outline,color: Colors.black,size: 20),
-                              SizedBox(width: 15,),
+                              const Icon(Icons.lock_outline,color: Colors.black,size: 20),
+                              const SizedBox(width: 15,),
                               Expanded(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text("We protect your data",style: Stylings.titles),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     Text("Your information will not be shared without your permission.",style: Stylings.subTitles,),
                                   ],
                                 ),
@@ -582,36 +591,108 @@ class _UserdetailsState extends State<Userdetails> {
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-                            width: Get.width,
-                            height: Get.height*0.13,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey.shade100,
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text("Drivers License",style: Stylings.subTitles.copyWith(fontSize: 14),),
-                                    Icon(Icons.arrow_forward_ios,size: 15,color: Colors.black,)
-                                  ],
-                                ),
-                                Divider(thickness: 0.0,color: Colors.grey.shade300,),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text("Passport",style: Stylings.subTitles.copyWith(fontSize: 14),),
-                                    Icon(Icons.arrow_forward_ios,size: 15,color: Colors.black,)
-                                  ],
-                                ),
-                              ],
+                          GestureDetector(
+                            onTap: (){
+                              showModalBottomSheet(context: context,
+                                  backgroundColor: Colors.white,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20)
+                                    )
+                                  ),
+                                  showDragHandle: false,
+                                  builder: (_){
+                                return Container(
+                                  width: Get.width,
+                                  height: Get.height*0.3,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20)
+                                      ),
+                                    color: Colors.grey.shade100,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(vertical: 10),
+                                        width: Get.width,
+                                        height: Get.height*0.21,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular((20)
+                                            ),
+                                            color: Colors.white
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text("Take Photo",style: Stylings.titles,),
+                                            Divider(thickness: 0.0,color: Colors.grey.shade100,),
+                                            Text("Choose from Camera Roll",style: Stylings.titles,),
+                                            Divider(thickness: 0.0,color: Colors.grey.shade100,),
+                                            Text("Choose a PDF",style: Stylings.titles,),
+                                          ],
+                                        ),
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: Get.width,
+                                          height: Get.height*0.08,
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20)
+                                            ),
+                                          ),
+                                          child: Text("Cancel",style: Stylings.titles,),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                              width: Get.width,
+                              height: Get.height*0.13,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey.shade100,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text("Drivers License",style: Stylings.subTitles.copyWith(fontSize: 14),),
+                                      const Icon(Icons.arrow_forward_ios,size: 15,color: Colors.black,)
+                                    ],
+                                  ),
+                                  Divider(thickness: 0.0,color: Colors.grey.shade300,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text("Passport",style: Stylings.subTitles.copyWith(fontSize: 14),),
+                                      const Icon(Icons.arrow_forward_ios,size: 15,color: Colors.black,)
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -649,11 +730,11 @@ class _UserdetailsState extends State<Userdetails> {
                       )
                           :
                       //q7
-                      SizedBox(),
+                      const SizedBox(),
                     ],
                   ),
                 ),
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
               ],
             ),
           )),
@@ -703,7 +784,7 @@ class _UserdetailsState extends State<Userdetails> {
         )
             : GestureDetector(
           onTap: () {
-            print(Get.find<Jollofx>().userInfo);
+           // print(Get.find<Jollofx>().userInfo);
             Get.find<Jollofx>().userDetailsNextPage();
             Get.find<Jollofx>().calcUserDetailsPercent(
                 Get.find<Jollofx>().userDetails.value);
