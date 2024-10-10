@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
@@ -225,6 +226,17 @@ class Jollofx extends GetxController{
 
   File? file;
   ImagePicker image = ImagePicker();
+  useCam() async{
+    var theImg = await image.pickImage(source: ImageSource.camera);
+    file = File(theImg!.path);
+    Get.to(()=>Idimagepreview());
+  }
+
+  useGallery() async{
+    var theImg = await image.pickImage(source: ImageSource.gallery);
+    file = File(theImg!.path);
+    Get.to(()=>Idimagepreview());
+  }
 
 
 

@@ -3,6 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../server/getxserver.dart';
@@ -630,11 +631,23 @@ class _UserdetailsState extends State<Userdetails> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Text("Take Photo",style: Stylings.titles,),
+                                            GestureDetector(
+                                              onTap: (){
+                                              Get.find<Jollofx>().useCam();
+                                              },
+                                                child: Text("Take Photo",style: Stylings.titles,)),
                                             Divider(thickness: 0.0,color: Colors.grey.shade100,),
-                                            Text("Choose from Camera Roll",style: Stylings.titles,),
+                                            GestureDetector(
+                                              onTap: (){
+                                                Get.find<Jollofx>().useGallery();
+                                              },
+                                                child: Text("Choose from Camera Roll",style: Stylings.titles,)),
                                             Divider(thickness: 0.0,color: Colors.grey.shade100,),
-                                            Text("Choose a PDF",style: Stylings.titles,),
+                                            GestureDetector(
+                                                onTap: (){
+                                                  Get.find<Jollofx>().useGallery();
+                                                },
+                                                child: Text("Choose a PDF",style: Stylings.titles,)),
                                           ],
                                         ),
                                       ),
