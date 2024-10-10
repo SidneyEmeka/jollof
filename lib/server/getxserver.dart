@@ -28,7 +28,7 @@ class Jollofx extends GetxController{
 
   var portfolio  = "".obs;
 
-
+//questionanire
   var questionNum = 1.obs;
   nextPage(){
     if(questionNum<6){
@@ -171,9 +171,57 @@ class Jollofx extends GetxController{
       ethPercentChange = v['data'][1]["values"]["USD"]["percentChange24h"];
     });
   }
-@override
+  @override
   void onInit() {
-  feedCrypto();
+    feedCrypto();
     super.onInit();
   }
+
+
+//user details
+  var userDetails = 1.obs;
+  userDetailsNextPage(){
+    if(userDetails<7){
+      userDetails++;
+    }
+    else if(userDetails>=7){
+      // Get.to(()=>const Explainer());
+      userDetails = userDetails-6;
+    }
+  }
+
+  var userDetailsPercentage = 10.obs;
+  var userDetailscircular = 0.10.obs;
+  calcUserDetailsPercent(var val){
+    if(val==1){userDetailsPercentage=10.obs;userDetailscircular=0.10.obs;}
+    else if(val==2){userDetailsPercentage=userDetailsPercentage+20;userDetailscircular=0.30.obs;}
+    else if(val==3){userDetailsPercentage=userDetailsPercentage+20;userDetailscircular=0.50.obs;}
+    else if(val==4){userDetailsPercentage=userDetailsPercentage+20;userDetailscircular=0.70.obs;}
+    else if(val==5){userDetailsPercentage=userDetailsPercentage+10;userDetailscircular=0.80.obs;}
+    else if(val==6){userDetailsPercentage=userDetailsPercentage+10;userDetailscircular=0.90.obs;}
+    else if(val==7){userDetailsPercentage=userDetailsPercentage+10;userDetailscircular=1.0.obs;}
+  }
+
+  var userInfo = {
+    "firstname": "".obs,
+    "lastname": "".obs,
+    "othername": "".obs,
+    "country": "".obs,
+    "city": "".obs,
+    "street": "".obs,
+    "state": "".obs,
+    "postalCode": "".obs,
+    "dob": "".obs,
+    "annualIncome": "".obs,
+    "investmentType": "".obs,
+    "pin": "".obs,
+    "allowNotifications": true.obs,
+    "avatar": "".obs
+  };
+
+
+
+
 }
+
+

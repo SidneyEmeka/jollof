@@ -1,0 +1,726 @@
+import 'package:country_picker/country_picker.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import '../../server/getxserver.dart';
+import '../../server/getxserver.dart';
+import '../../utils/reusables/radiolist.dart';
+import '../../utils/stylings.dart';
+
+class Userdetails extends StatefulWidget {
+  const Userdetails({super.key});
+
+  @override
+  State<Userdetails> createState() => _UserdetailsState();
+}
+
+class _UserdetailsState extends State<Userdetails> {
+  Future<void> userdob() async{
+    DateTime? dob = await showDatePicker(context: context,
+      firstDate: DateTime(1940),
+      initialDate: DateTime(1940),
+      lastDate: DateTime(2006),
+    );
+    Get.find<Jollofx>().userInfo["dob"] = dob.toString().split(" ")[0];
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+   //   resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 15,
+              color: Colors.black,
+            )),
+        scrolledUnderElevation: 0,
+        title: Text(
+          "Account Details",
+          style: Stylings.titles,
+        ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                // Get.to(()=>const Explainer());
+              },
+              child: Text(
+                "Skip",
+                style: Stylings.titles.copyWith(color: Stylings.yellow),
+              ),
+            ),
+          )
+        ],
+        shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
+      ),
+      body: Obx(() => Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            width: Get.width,
+            height: Get.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //count
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircularPercentIndicator(
+                      radius: Get.height * 0.024,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      lineWidth: 4,
+                      progressColor: Stylings.yellow,
+                      percent: Get.find<Jollofx>().userDetailscircular.value,
+                      center: Text(
+                        "${Get.find<Jollofx>().userDetailsPercentage.value}%",
+                        style: Stylings.titles.copyWith(fontSize: 10),
+                      ),
+                      backgroundColor: Colors.grey.shade200,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Text(
+                        "${Get.find<Jollofx>().userDetails}/7",
+                        style: Stylings.titles.copyWith(fontSize: 12),
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(child: SizedBox()),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //q1 - country
+                      Get.find<Jollofx>().userDetails.value == 1
+                          ? Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Where do you live",
+                              style: Stylings.titles.copyWith(fontSize: 20)),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "The country where you currently live and pay taxes on your income. More countries will be available over time.",
+                              style: Stylings.subTitles),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            "Country",
+                            style: Stylings.titles.copyWith(fontSize: 12),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showCountryPicker(
+                                context: context,
+                                showPhoneCode: false,
+                                countryListTheme: CountryListThemeData(
+                                    flagSize: 20,
+                                    bottomSheetHeight: Get.height * 0.8,
+                                    searchTextStyle:
+                                    Stylings.titles.copyWith(fontSize: 10),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 20),
+                                    inputDecoration: InputDecoration(
+                                      suffixIcon: Icon(
+                                          FluentIcons.search_12_regular,
+                                          size: 15,
+                                          color: Colors.grey.shade300),
+                                      hintText: "Enter country name",
+                                      hintStyle: Stylings.titles.copyWith(
+                                          fontSize: 12,
+                                          color: Colors.grey.shade300),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent)),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent)),
+                                      isDense: true,
+                                      filled: true,
+                                      fillColor: Colors.grey.shade100,
+                                    ),
+                                    textStyle: Stylings.subTitles),
+                                // optional. Shows phone code before the country name.
+                                onSelect: (Country country) {
+                                  Get.find<Jollofx>().userInfo["country"] =
+                                  "$country";
+                                  Get.find<Jollofx>().userDetailsNextPage();
+                                  Get.find<Jollofx>().calcUserDetailsPercent(
+                                      Get.find<Jollofx>().userDetails.value);
+                                  //print(Get.find<Jollofx>().userInfo);
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: Get.width,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 15),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                  border:
+                                  Border.all(color: Colors.grey.shade200)),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Select country",
+                                    style:
+                                    Stylings.titles.copyWith(fontSize: 12),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: Colors.black,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                          : Get.find<Jollofx>().userDetails.value == 2
+                          ?
+                      //q2 - name
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("What's your legal name",
+                              style:
+                              Stylings.titles.copyWith(fontSize: 20)),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "please enter your full legal name. Your legal name should match any form of government ID.",
+                              style: Stylings.subTitles),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          //fname
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>().userInfo["firstname"] = v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "First name",
+                              hintStyle: Stylings.subTitles
+                                  .copyWith(color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                          //mname
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>().userInfo["othername"] = v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Middle name",
+                              hintStyle: Stylings.subTitles
+                                  .copyWith(color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                          //lname
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>().userInfo["lastname"] = v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Last name",
+                              hintStyle: Stylings.subTitles
+                                  .copyWith(color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                        ],
+                      )
+                          : Get.find<Jollofx>().userDetails.value == 3
+                          ?
+                      //q3 -street address
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Enter your current address",
+                              style: Stylings.titles
+                                  .copyWith(fontSize: 20)),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "please enter your full legal name. Your legal name should match any form of government ID.",
+                              style: Stylings.subTitles),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          //street
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>()
+                                  .userInfo["street"] = v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Street",
+                              hintStyle: Stylings.subTitles.copyWith(
+                                  color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                          //city
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>()
+                                  .userInfo["city"] = v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "City",
+                              hintStyle: Stylings.subTitles.copyWith(
+                                  color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                          //state
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>().userInfo["state"] =
+                                  v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "State/Province",
+                              hintStyle: Stylings.subTitles.copyWith(
+                                  color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                          //lname
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>().userInfo["postalCode"] =
+                                  v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Postcode/Zipcode",
+                              hintStyle: Stylings.subTitles.copyWith(
+                                  color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                        ],
+                      )
+                          : Get.find<Jollofx>().userDetails.value == 4
+                          ?
+                      //q4 - dob
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Date of Birth",
+                              style: Stylings.titles
+                                  .copyWith(fontSize: 20)),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "You must be at least 18 years old, and date must match your government issued ID or passport",
+                              style: Stylings.subTitles),
+                          const SizedBox(
+                            height: 30,
+                          ),
+
+                          TextFormField(
+                            readOnly: true,
+                            onTap: userdob,
+                            style: Stylings.subTitles,
+                            cursorColor: Colors.grey.shade300,
+                            onChanged: (v) {
+                              Get.find<Jollofx>().userInfo["postalCode"] =
+                                  v;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "DOB",
+                              hintStyle: Stylings.subTitles.copyWith(
+                                  color: Colors.grey.shade400),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent)),
+                              isDense: true,
+                              filled: true,
+                              fillColor: Colors.grey.shade100,
+                            ),
+                          ),
+                        ],
+                      )
+                          : Get.find<Jollofx>().userDetails.value == 5
+                          ?
+                      //q5 - id
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Verify your identity",
+                              style: Stylings.titles
+                                  .copyWith(fontSize: 20)),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "As an authorised investment advisor, Jollof must gather your information in accordance with federal law.",
+                              style: Stylings.subTitles),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(Icons.lock_outline,color: Colors.black,size: 20),
+                              SizedBox(width: 15,),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("We protect your data",style: Stylings.titles),
+                                    SizedBox(height: 5),
+                                    Text("Your information will not be shared without your permission.",style: Stylings.subTitles,),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          RichText(text: TextSpan(
+                            children: [
+                              TextSpan(text: "Please provide any of the required documents for verification.",style: Stylings.subTitles),
+                              TextSpan(text: " Make sure you have good lighting. Follow the command.",style: Stylings.titles.copyWith(fontSize: 12)),
+                            ]
+                          )),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                            width: Get.width,
+                            height: Get.height*0.13,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey.shade100,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text("Drivers License",style: Stylings.subTitles.copyWith(fontSize: 14),),
+                                    Icon(Icons.arrow_forward_ios,size: 15,color: Colors.black,)
+                                  ],
+                                ),
+                                Divider(thickness: 0.0,color: Colors.grey.shade300,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text("Passport",style: Stylings.subTitles.copyWith(fontSize: 14),),
+                                    Icon(Icons.arrow_forward_ios,size: 15,color: Colors.black,)
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                          : Get.find<Jollofx>().userDetails.value == 6
+                          ?
+                      //q6
+                      Column(
+                        mainAxisAlignment:
+                        MainAxisAlignment.start,
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                              "In the face of market uncertainty, what is your inclination regarding investment decisions?",
+                              style: Stylings.subTitles),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ...Get.find<Jollofx>()
+                              .question6
+                              .map((q) {
+                            return GestureDetector(
+                                onTap: () {
+                                  Get.find<Jollofx>()
+                                      .answer6
+                                      .value = q;
+                                },
+                                child: Radiolist(
+                                    title: q,
+                                    state:
+                                    "${Get.find<Jollofx>().answer6}"));
+                          })
+                        ],
+                      )
+                          :
+                      //q7
+                      SizedBox(),
+                    ],
+                  ),
+                ),
+                Expanded(child: SizedBox()),
+              ],
+            ),
+          )),
+      bottomNavigationBar: Obx(()=>BottomAppBar(
+        height: Get.height*0.08,
+        color: Colors.transparent,
+        child:  Get.find<Jollofx>().userDetails.value == 1
+            ? Align(
+          alignment: Alignment.centerRight,
+          child: GestureDetector(
+            onTap: () {
+              Get.find<Jollofx>().userDetailsNextPage();
+              Get.find<Jollofx>().calcUserDetailsPercent(
+                  Get.find<Jollofx>().userDetails.value);
+            },
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Stylings.yellow),
+              child: const Icon(
+                FluentIcons.chat_48_regular,
+                color: Colors.black,
+                size: 20,
+              ),
+            ),
+          ),
+        )
+            : Get.find<Jollofx>().userDetails.value == 5
+            ? GestureDetector(
+          onTap: () {
+            Get.find<Jollofx>().userDetailsNextPage();
+            Get.find<Jollofx>().calcUserDetailsPercent(
+                Get.find<Jollofx>().userDetails.value);
+          },
+          child: Container(
+            height: Get.height * 0.055,
+            width: Get.width,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: Stylings.yellow),
+            child: Text(
+              "Continue",
+              style: Stylings.titles.copyWith(fontSize: 12),
+            ),
+          ),
+        )
+            : GestureDetector(
+          onTap: () {
+            print(Get.find<Jollofx>().userInfo);
+            Get.find<Jollofx>().userDetailsNextPage();
+            Get.find<Jollofx>().calcUserDetailsPercent(
+                Get.find<Jollofx>().userDetails.value);
+          },
+          child: Container(
+            width: Get.width,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: Stylings.yellow),
+            child: Text(
+              "Next",
+              style: Stylings.titles.copyWith(fontSize: 12),
+            ),
+          ),
+        ),
+      ),)
+    );
+  }
+}

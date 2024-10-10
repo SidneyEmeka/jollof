@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/homes/home/tipsandtricks.dart';
+import 'package:jollof/homes/home/userdetails.dart';
 import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/reusables/cryptorank.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -78,42 +79,47 @@ class _HomescreenState extends State<Homescreen> {
         child: ListView(
           children: [
             //userdetailssurvey
-            Container(
-              margin: const EdgeInsets.only(left: 10,right: 10,bottom: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-              width: Get.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.grey.shade50
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(child: CircularPercentIndicator(
-                    radius: Get.height*0.025,percent: 0.1,
-                    circularStrokeCap: CircularStrokeCap.round,
-                    backgroundColor: Colors.grey.shade200,
-                    center: Text("5%",style: Stylings.titles.copyWith(fontSize: 8),),progressColor: Stylings.yellow,),),
-                  const Expanded(child: SizedBox()),
-                  SizedBox(
-                    width: Get.width*0.45,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Welcome to Jollof",style: Stylings.titles.copyWith(fontSize: 12),),
-                        const SizedBox(height: 5),
-                        Text("The first step is to set up your account. It only takes 2 minutes.",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400,fontSize: 10),)
-                      ],
+            GestureDetector(
+              onTap: (){
+                Get.to(()=>const Userdetails());
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 10,right: 10,bottom: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                width: Get.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey.shade50
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(child: CircularPercentIndicator(
+                      radius: Get.height*0.025,percent: 0.1,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      backgroundColor: Colors.grey.shade200,
+                      center: Text("5%",style: Stylings.titles.copyWith(fontSize: 8),),progressColor: Stylings.yellow,),),
+                    const Expanded(child: SizedBox()),
+                    SizedBox(
+                      width: Get.width*0.45,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Welcome to Jollof",style: Stylings.titles.copyWith(fontSize: 12),),
+                          const SizedBox(height: 5),
+                          Text("The first step is to set up your account. It only takes 2 minutes.",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400,fontSize: 10),)
+                        ],
+                      ),
                     ),
-                  ),
-                  const Expanded(flex:2,child: SizedBox()),
-                  const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,)
+                    const Expanded(flex:2,child: SizedBox()),
+                    const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,)
 
-                ],
+                  ],
+                ),
+
               ),
-
             ),
             SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -220,7 +226,7 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
             ),
-            SizedBox(height: Get.height * 0.04),
+            SizedBox(height: Get.height * 0.035),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
