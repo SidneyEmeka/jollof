@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
+import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:intl/intl.dart';
 import '../server/getxserver.dart';
 import '../utils/stylings.dart';
 
@@ -16,7 +17,36 @@ class _AiadvisorState extends State<Aiadvisor> {
   TextEditingController _userInput = TextEditingController();
   final apiKey = 'AIzaSyC-ySXlpynP8hqESVJMsYpBRzMmCnXyOMk';
 
-  Future<Void>() async{}
+
+    Future<void>sendInput() async{
+      final message = _userInput.text;
+      setState(() {
+        _messages.add(Message(isUser: true, message: message, date: DateTime.now()));
+      });
+      final model = GenerativeModel(
+        model: 'gemini-1.5-pro',
+        apiKey: apiKey,
+        generationConfig: GenerationConfig(
+          temperature: 2,
+          topK: 64,
+          topP: 0.95,
+        //  maxOutputTokens: 8192,
+          responseMimeType: 'text/plain',
+        ),
+        systemInstruction: Content.system('Your name is Jollof when a user greets you reply by telling them "Hello ${Get.find<Jollofx>().userInfo["othername"]} welcome to Jollof how may I help you",then send them these options to choose from (1) Short term investment(3-6 months), ROI(10-50%). (2) Mid term investment(6-10 months), ROI(50-100%) (3) Long term investment(1-2 years), ROI(100-150%). if the user chooses  then ask him the amount he plans on investing when he send amount then ask him the duration in months do the math using the ROI rate in the option he selected and the duration he sent then send him the result'),
+      );
+
+      final chat = model.startChat(history: []);
+      final content = Content.text(message);
+
+      final response = await chat.sendMessage(content);
+      setState(() {
+        _messages.add(Message(isUser: false, message: response.text?? "", date: DateTime.now()));
+      });
+      print(response.text);
+      _userInput.text = '';
+    }
+
 
 
   @override
@@ -53,20 +83,28 @@ class _AiadvisorState extends State<Aiadvisor> {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         width: Get.width,
         height: Get.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Expanded(
+                child: ListView.builder(itemCount:_messages.length,itemBuilder: (context,index){
+                  final message = _messages[index];
+                  return Messages(isUser: message.isUser, message: message.message, date: DateFormat('HH:mm').format(message.date));
+                })
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+
                 Expanded(
                   child: TextFormField(
                     key: const Key("AI"),
+                    controller: _userInput,
                     style: Stylings.subTitles,
                     cursorColor: Colors.grey.shade300,
                     decoration: InputDecoration(
@@ -93,7 +131,7 @@ class _AiadvisorState extends State<Aiadvisor> {
                 ),
               IconButton(onPressed: (){
                 sendInput();
-              }, icon:   Icon(Icons.send_outlined,color: Colors.black,size: 20,),)
+              }, icon:   const Icon(Icons.send_outlined,color: Colors.black,size: 20,),)
               ],
             ),
           ],
@@ -103,3 +141,60 @@ class _AiadvisorState extends State<Aiadvisor> {
   }
 }
 
+
+//handling responses
+final List<Message> _messages = [];
+class Message{
+  final bool isUser;
+  final String message;
+  final DateTime date;
+  Message({ required this.isUser, required this.message, required this.date});
+}
+class Messages extends StatelessWidget {
+  final bool isUser;
+  final String message;
+  final String date;
+
+  const Messages({
+    super.key,
+    required this.isUser,
+    required this.message,
+    required this.date
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.symmetric(vertical: 15).copyWith(
+          left: isUser ? 20 : 10,
+          right: isUser ? 10 : 20
+      ),
+      decoration: BoxDecoration(
+          color: isUser ? Stylings.yellow : Colors.grey.shade200,
+          borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(30),
+              bottomLeft: isUser ? const Radius.circular(30) : Radius.zero,
+              topRight: const Radius.circular(30),
+              bottomRight: isUser ? Radius.zero : const Radius.circular(30)
+          )
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            message,
+            style: TextStyle(
+                fontSize: 16, color: isUser ? Colors.white : Colors.black),
+          ),
+          Text(
+            date,
+            style: TextStyle(
+              fontSize: 10, color: isUser ? Colors.white : Colors.black,),
+          )
+        ],
+      ),
+    );
+  }
+}
