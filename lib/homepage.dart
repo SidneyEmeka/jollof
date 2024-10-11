@@ -7,6 +7,7 @@ import 'package:jollof/homes/Invest/buyplan.dart';
 import 'package:jollof/utils/reusables/bnavmorph.dart';
 import 'package:jollof/utils/stylings.dart';
 
+import 'homes/aiadvisor.dart';
 import 'homes/home/homescreen.dart';
 
 
@@ -26,7 +27,7 @@ class _UserTimelineState extends State<Homepage> {
       case 1:
         return const Buyplan();
       case 2:
-        return const Center();
+        return const Aiadvisor();
       case 3:
         return const Center();
       default:
