@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/onboarding/regemail.dart';
 import 'package:jollof/onboarding/signinmethod.dart';
+import 'package:jollof/server/apiclient.dart';
+import 'package:jollof/server/getxserver.dart';
 
 import '../utils/stylings.dart';
 
@@ -42,6 +44,7 @@ class Enterapp extends StatelessWidget {
             const Expanded(flex:1,child: SizedBox()),
             GestureDetector(
               onTap: (){
+                Get.find<Jollofx>().getDeviceIdentifier();
                 Get.to(()=>const Regemail());
               },
               child: Container(

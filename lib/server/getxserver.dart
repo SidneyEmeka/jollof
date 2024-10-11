@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
@@ -175,6 +176,7 @@ class Jollofx extends GetxController{
       ethPrice = v['data'][1]["values"]["USD"]["price"];
       ethPercentChange = v['data'][1]["values"]["USD"]["percentChange24h"];
     });
+    Apiclientserver().pingTatspace();
   }
   @override
   void onInit() {
@@ -263,8 +265,28 @@ class Jollofx extends GetxController{
 
   var anualIncome = "".obs;
 
-
   var termsRead =  false.obs;
+
+
+  //api mains
+  var isLoading = false.obs;
+//device info
+var devId = '';
+  //getdeviceInfo
+  Future<String> getDeviceIdentifier() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    String identifier = '';
+
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      devId = androidInfo.id; // This is not a persistent ID on newer Android versions
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      devId = iosInfo.identifierForVendor!; // This will change if all the app's from the vendor are uninstalled
+    }
+    print(devId);
+    return devId;
+  }
 
 
 

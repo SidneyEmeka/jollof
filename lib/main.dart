@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jollof/onboarding/regemail.dart';
@@ -5,7 +8,7 @@ import 'package:jollof/onboarding/splashscreen.dart';
 import 'package:jollof/server/getxserver.dart';
 import 'package:jollof/utils/stylings.dart';
 
-void main() {
+void main(){
   Get.put(Jollofx());
   runApp(const MyApp());
 }

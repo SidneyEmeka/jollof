@@ -3,16 +3,25 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/onboarding/awaitverification.dart';
 import 'package:jollof/onboarding/regpin.dart';
+import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/stylings.dart';
 
-class Regemail extends StatelessWidget {
+import '../server/getxserver.dart';
+
+class Regemail extends StatefulWidget {
   const Regemail({super.key});
 
+  @override
+  State<Regemail> createState() => _RegemailState();
+}
+
+class _RegemailState extends State<Regemail> {
+  final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: Obx(()=>Container(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
           height: Get.height,
           width: Get.width,
@@ -40,8 +49,10 @@ class Regemail extends StatelessWidget {
                   Text("EN",style: Stylings.titles.copyWith(fontSize: 12),)
                 ],
               ),
+              SizedBox(height: 10,),
+              Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
               SizedBox(height: Get.height*0.1,),
-              Text("Please type in your email address",style: Stylings.titles.copyWith(fontSize: 20),),
+              Text("Please type in your email address${Get.find<Jollofx>().devId}",style: Stylings.titles.copyWith(fontSize: 20),),
               const SizedBox(height: 10),
               Text("We would be verifying your email.",style: Stylings.subTitles,),
               //textfield
@@ -56,10 +67,10 @@ class Regemail extends StatelessWidget {
                   ),
                   TextFormField(
                     style: Stylings.subTitles.copyWith(fontSize: 11),
-                    // controller: _emailController,
+                    controller: _emailController,
                     validator: (value){
                       if(value==null||value.isEmpty){
-                        return 'Please enter your email';
+                        Get.snackbar("title", "message");
                       }
                       return null;
                     },
@@ -92,6 +103,14 @@ class Regemail extends StatelessWidget {
               const Expanded(flex:2,child: SizedBox()),
               GestureDetector(
                 onTap: (){
+                  Get.find<Jollofx>().isLoading.value = true;
+                  Future.delayed(Duration(seconds: 1),(){
+                    Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up", {
+                      "email": _emailController.text,
+                      "deviceToken": Get.find<Jollofx>().devId
+                    });
+                    });
+                  Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=${_emailController.text}");
                   Get.to(()=>const Awaitverification());
                 },
                 child: Container(
@@ -107,7 +126,7 @@ class Regemail extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ),)
       ),
       bottomNavigationBar: BottomAppBar(
         height: Get.height*0.15,
