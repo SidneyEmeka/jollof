@@ -43,7 +43,7 @@ class _AiadvisorState extends State<Aiadvisor> {
       setState(() {
         _messages.add(Message(isUser: false, message: response.text?? "", date: DateTime.now()));
       });
-      print(response.text);
+     // print(response.text);
       _userInput.text = '';
     }
 
@@ -93,7 +93,7 @@ class _AiadvisorState extends State<Aiadvisor> {
             Expanded(
                 child: ListView.builder(itemCount:_messages.length,itemBuilder: (context,index){
                   final message = _messages[index];
-                  return Messages(isUser: message.isUser, message: message.message, date: DateFormat('HH:mm').format(message.date));
+                  return Messages(isUser: message.isUser, message: message.message, date: DateFormat('h:mm a').format(message.date));
                 })
             ),
             Row(
@@ -102,8 +102,8 @@ class _AiadvisorState extends State<Aiadvisor> {
               children: [
 
                 Expanded(
-                  child: TextFormField(
-                    key: const Key("AI"),
+                  child: TextField(
+                    //key: const Key("AI"),
                     controller: _userInput,
                     style: Stylings.subTitles,
                     cursorColor: Colors.grey.shade300,
@@ -185,13 +185,13 @@ class Messages extends StatelessWidget {
         children: [
           Text(
             message,
-            style: TextStyle(
-                fontSize: 16, color: isUser ? Colors.white : Colors.black),
-          ),
-          Text(
-            date,
-            style: TextStyle(
-              fontSize: 10, color: isUser ? Colors.white : Colors.black,),
+            style: Stylings.subTitles.copyWith(color: isUser ? Colors.white : Colors.black,fontSize: 13),),
+          Align(
+            alignment:isUser ?  Alignment.bottomRight:Alignment.bottomLeft,
+            child: Text(
+              date,
+              style: Stylings.subTitles.copyWith(color: isUser ? Colors.white : Colors.black,fontSize: 10)
+            ),
           )
         ],
       ),
