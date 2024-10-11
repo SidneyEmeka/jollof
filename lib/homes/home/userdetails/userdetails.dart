@@ -33,37 +33,23 @@ class _UserdetailsState extends State<Userdetails> {
     return Scaffold(
    //   resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 15,
-              color: Colors.black,
-            )),
-        scrolledUnderElevation: 0,
-        title: Text(
-          "Account Details",
-          style: Stylings.titles,
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: GestureDetector(
-              onTap: () {
-                // Get.to(()=>const Explainer());
-              },
-              child: Text(
-                "Skip",
-                style: Stylings.titles.copyWith(color: Stylings.yellow),
-              ),
-            ),
-          )
-        ],
-        shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
+      leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 15,
+            color: Colors.black,
+          )),
+      scrolledUnderElevation: 0,
+      title: Text(
+        "Account Details",
+        style: Stylings.titles,
       ),
+      centerTitle: true,
+      shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
+    ),
       body: Obx(() => Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             width: Get.width,
@@ -92,7 +78,7 @@ class _UserdetailsState extends State<Userdetails> {
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0),
                       child: Text(
-                        "${Get.find<Jollofx>().userDetails}/7",
+                        "${Get.find<Jollofx>().userDetails}/6",
                         style: Stylings.titles.copyWith(fontSize: 12),
                       ),
                     )
@@ -633,19 +619,19 @@ class _UserdetailsState extends State<Userdetails> {
                                           children: [
                                             GestureDetector(
                                               onTap: (){
-                                              Get.find<Jollofx>().useCam();
+                                              Get.find<Jollofx>().useCamForId();
                                               },
                                                 child: Text("Take Photo",style: Stylings.titles,)),
                                             Divider(thickness: 0.0,color: Colors.grey.shade100,),
                                             GestureDetector(
                                               onTap: (){
-                                                Get.find<Jollofx>().useGallery();
+                                                Get.find<Jollofx>().useGalleryForId();
                                               },
                                                 child: Text("Choose from Camera Roll",style: Stylings.titles,)),
                                             Divider(thickness: 0.0,color: Colors.grey.shade100,),
                                             GestureDetector(
                                                 onTap: (){
-                                                  Get.find<Jollofx>().useGallery();
+                                                  Get.find<Jollofx>().useGalleryForId();
                                                 },
                                                 child: Text("Choose a PDF",style: Stylings.titles,)),
                                           ],
@@ -714,31 +700,60 @@ class _UserdetailsState extends State<Userdetails> {
                           ?
                       //q6
                       Column(
-                        mainAxisAlignment:
-                        MainAxisAlignment.start,
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text("Anual income",
+                              style: Stylings.titles
+                                  .copyWith(fontSize: 20)),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Text(
-                              "In the face of market uncertainty, what is your inclination regarding investment decisions?",
+                              "Can include salary, alimony, social security, investment income e.t.c",
                               style: Stylings.subTitles),
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
-                          ...Get.find<Jollofx>()
-                              .question6
-                              .map((q) {
-                            return GestureDetector(
-                                onTap: () {
-                                  Get.find<Jollofx>()
-                                      .answer6
-                                      .value = q;
-                                },
-                                child: Radiolist(
-                                    title: q,
-                                    state:
-                                    "${Get.find<Jollofx>().answer6}"));
-                          })
+                        Container(
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: Colors.grey.shade100
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$0 - \$10,000";
+                                    Get.find<Jollofx>().anualIncome.value = "\$0 - \$10,000";
+                                  },child: Radiolist(title: "\$0 - \$10,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$10,000 - \$50,000";
+                                    Get.find<Jollofx>().anualIncome.value = "\$10,000 - \$50,000";
+                                  },child: Radiolist(title: "\$10,000 - \$50,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$50,000 - \$100,000";
+                                    Get.find<Jollofx>().anualIncome.value = "\$50,000 - \$100,000";
+                                  },child: Radiolist(title: "\$50,000 - \$100,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$100,000 - \$500,000";
+                                    Get.find<Jollofx>().anualIncome.value = "\$100,000 - \$500,000";
+                                  },child: Radiolist(title: "\$100,000 - \$500,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$500,000 and above";
+                                    Get.find<Jollofx>().anualIncome.value = "\$500,000 and above";
+                                  },child: Radiolist(isLast: true,title: "\$500,000 and above", state: "${Get.find<Jollofx>().anualIncome.value}")),
+
+                            ],
+                          ),
+                        )
                         ],
                       )
                           :
@@ -759,9 +774,6 @@ class _UserdetailsState extends State<Userdetails> {
           alignment: Alignment.centerRight,
           child: GestureDetector(
             onTap: () {
-              Get.find<Jollofx>().userDetailsNextPage();
-              Get.find<Jollofx>().calcUserDetailsPercent(
-                  Get.find<Jollofx>().userDetails.value);
             },
             child: Container(
               padding: const EdgeInsets.all(10),
@@ -776,21 +788,22 @@ class _UserdetailsState extends State<Userdetails> {
           ),
         )
             : Get.find<Jollofx>().userDetails.value == 5
-            ? GestureDetector(
+            ? const SizedBox(): Get.find<Jollofx>().userDetails.value == 6
+          ?GestureDetector(
           onTap: () {
+            //print(Get.find<Jollofx>().userInfo);
             Get.find<Jollofx>().userDetailsNextPage();
             Get.find<Jollofx>().calcUserDetailsPercent(
                 Get.find<Jollofx>().userDetails.value);
           },
           child: Container(
-            height: Get.height * 0.055,
             width: Get.width,
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
                 color: Stylings.yellow),
             child: Text(
-              "Continue",
+              "Finish",
               style: Stylings.titles.copyWith(fontSize: 12),
             ),
           ),

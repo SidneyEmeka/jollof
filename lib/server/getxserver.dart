@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 
+import '../homes/home/userdetails/termsandcondition.dart';
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
 import 'apiclient.dart';
@@ -183,14 +184,15 @@ class Jollofx extends GetxController{
 
 
 //user details
+  var userDetailsCollected = false.obs;
   var userDetails = 1.obs;
   userDetailsNextPage(){
-    if(userDetails<7){
+    if(userDetails<6){
       userDetails++;
     }
-    else if(userDetails>=7){
-      // Get.to(()=>const Explainer());
-      userDetails = userDetails-6;
+    else if(userDetails>=6){
+      Get.to(()=>const Termsandcondition());
+      userDetails = userDetails-5;
     }
   }
 
@@ -202,8 +204,7 @@ class Jollofx extends GetxController{
     else if(val==3){userDetailsPercentage=userDetailsPercentage+20;userDetailscircular=0.50.obs;}
     else if(val==4){userDetailsPercentage=userDetailsPercentage+20;userDetailscircular=0.70.obs;}
     else if(val==5){userDetailsPercentage=userDetailsPercentage+10;userDetailscircular=0.80.obs;}
-    else if(val==6){userDetailsPercentage=userDetailsPercentage+10;userDetailscircular=0.90.obs;}
-    else if(val==7){userDetailsPercentage=userDetailsPercentage+10;userDetailscircular=1.0.obs;}
+    else if(val==6){userDetailsPercentage=userDetailsPercentage+20;userDetailscircular.value=1;}
   }
 
   var userInfo = {
@@ -226,17 +227,46 @@ class Jollofx extends GetxController{
 
   File? file;
   ImagePicker image = ImagePicker();
-  useCam() async{
+  useCamForId() async{
     var theImg = await image.pickImage(source: ImageSource.camera);
     file = File(theImg!.path);
-    Get.to(()=>Idimagepreview());
+    Get.to(()=>const Idimagepreview());
   }
 
-  useGallery() async{
+  useGalleryForId() async{
     var theImg = await image.pickImage(source: ImageSource.gallery);
     file = File(theImg!.path);
-    Get.to(()=>Idimagepreview());
+    Get.to(()=>const Idimagepreview());
   }
+
+  var processingIdCheck = 0.obs;
+  processImageIndicators(){
+    processingIdCheck = 0.obs;
+    if(processingIdCheck<4){
+    //  print(processingIdCheck);
+      Future.delayed(Duration(seconds: 5),(){
+        processingIdCheck++;
+       // print(processingIdCheck);
+      });
+      Future.delayed(Duration(seconds: 3),(){
+        processingIdCheck++;
+        //print(processingIdCheck);
+      });
+      Future.delayed(Duration(seconds: 2),(){
+        processingIdCheck++;
+       // print(processingIdCheck);
+      });
+    }
+    else{processingIdCheck = 0.obs;
+    print(processingIdCheck);}
+  }
+
+  var anualIncome = "".obs;
+
+
+  var termsRead =  false.obs;
+
+
 
 
 

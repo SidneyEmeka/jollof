@@ -55,6 +55,8 @@ class Chooseportfolio extends StatelessWidget {
             GestureDetector(
               onTap: (){
                 Get.find<Jollofx>().portfolio.value="Fixed";
+                Get.find<Jollofx>().userInfo["investmentType"] = "Fixed";
+               // print( Get.find<Jollofx>().userInfo);
               },
               child: Container(
                 width: Get.width,
@@ -92,6 +94,8 @@ class Chooseportfolio extends StatelessWidget {
             GestureDetector(
               onTap: (){
                 Get.find<Jollofx>().portfolio.value="Ai";
+                Get.find<Jollofx>().userInfo["investmentType"] = "Ai";
+               // print( Get.find<Jollofx>().userInfo);
               },
               child: Container(
                 width: Get.width,

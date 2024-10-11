@@ -9,7 +9,8 @@ import '../stylings.dart';
 class Radiolist extends StatefulWidget {
   final String title;
   final String state;
-  const Radiolist({super.key, required this.title, required this.state});
+  final bool isLast;
+  const Radiolist({super.key, required this.title, required this.state, this.isLast=false});
 
   @override
   State<Radiolist> createState() => _RadiolistState();
@@ -21,7 +22,7 @@ class _RadiolistState extends State<Radiolist> {
     return Container(
       width: Get.width,
       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-      margin: const EdgeInsets.only(bottom: 15),
+      margin: widget.isLast==false?const EdgeInsets.only(bottom: 15):EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         border: Border.all(color: Colors.grey.shade200)

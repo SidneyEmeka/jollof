@@ -69,7 +69,10 @@ class Idimagepreview extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15,),
-            Text("Take Another Photo",style: Stylings.subTitles.copyWith(color: Stylings.yellow),),
+            GestureDetector(
+                onTap: (){
+                  Get.back();
+                },child: Text("Take Another Photo",style: Stylings.subTitles.copyWith(color: Stylings.yellow),)),
           ],
         ),
       ),

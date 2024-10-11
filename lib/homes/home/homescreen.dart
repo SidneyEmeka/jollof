@@ -44,7 +44,7 @@ class _HomescreenState extends State<Homescreen> {
               fit: BoxFit.contain,
             )),
         title: Text(
-          "Hello",
+          "Hello ${Get.find<Jollofx>().userInfo["othername"]}",
           style: Stylings.titles,
         ),
         actions: const [
@@ -79,7 +79,7 @@ class _HomescreenState extends State<Homescreen> {
         child: ListView(
           children: [
             //userdetailssurvey
-            GestureDetector(
+            Get.find<Jollofx>().userDetailsCollected.value==true?SizedBox():GestureDetector(
               onTap: (){
                 Get.to(()=>const Userdetails());
               },
