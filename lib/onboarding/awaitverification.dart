@@ -112,7 +112,11 @@ class Awaitverification extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Didn't get the email?  ",textAlign: TextAlign.center,style: Stylings.subTitles),
-                      Text("Resend link",textAlign: TextAlign.center,style: Stylings.subTitles.copyWith(color: Stylings.yellow),),
+                      GestureDetector(
+                      onTap: (){
+                        Get.find<Jollofx>().isLoading.value=true;
+                        Get.find<Jollofx>().requestOTPresend();
+                      },child: Text("Resend link",textAlign: TextAlign.center,style: Stylings.subTitles.copyWith(color: Stylings.yellow),)),
                     ],
                   )),
               const Expanded(flex:2,child: SizedBox()),

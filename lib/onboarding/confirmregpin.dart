@@ -6,6 +6,8 @@ import 'package:jollof/onboarding/setavatar.dart';
 import 'package:jollof/utils/stylings.dart';
 import 'package:pinput/pinput.dart';
 
+import '../server/getxserver.dart';
+
 class ConfirmRegpin extends StatefulWidget {
   const ConfirmRegpin({super.key});
 
@@ -14,7 +16,6 @@ class ConfirmRegpin extends StatefulWidget {
 }
 
 class _ConfirmRegpinState extends State<ConfirmRegpin> {
-  String pass = "";
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +25,14 @@ class _ConfirmRegpinState extends State<ConfirmRegpin> {
           icon:const Icon(Icons.arrow_back_ios,size: 15,color: Colors.black,),
           onPressed: () {Get.back();},),
       ),
-      body: SizedBox(
+      body: Obx(()=>SizedBox(
         height: Get.height,
         width: Get.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             const Expanded(flex:2,child: SizedBox()),
             //padlock
             Container(
@@ -52,6 +54,17 @@ class _ConfirmRegpinState extends State<ConfirmRegpin> {
             const SizedBox(height: 10),
             Text("Re-type your pin",style: Stylings.subTitles.copyWith(color: Colors.grey),),
             const Expanded(child: SizedBox()),
+            //pin
+            Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                const SizedBox(width: 5),
+                Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+              ],
+            ),
+            const SizedBox(height: 2,),
             SizedBox(
               width: Get.width*0.32,
               child: Pinput(
@@ -75,14 +88,15 @@ class _ConfirmRegpinState extends State<ConfirmRegpin> {
                 cursor: const SizedBox(),
                 obscuringWidget: Icon(Icons.circle,color: Stylings.yellow,size: 20,),
                 onCompleted: (pin){
-                  Get.off(()=>const Setavatar());
+                  Get.find<Jollofx>().isLoading.value= true;
+                  Get.find<Jollofx>().passwordPinSet(pin);
                 },
               ),
             ),
             const Expanded(flex:2,child: SizedBox()),
           ],
         ),
-      ),
+      ),)
     );
   }
 }

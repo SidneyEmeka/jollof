@@ -6,9 +6,19 @@ import 'package:jollof/server/getxserver.dart';
 
 import '../utils/stylings.dart';
 
-class Setavatar extends StatelessWidget {
+class Setavatar extends StatefulWidget {
   const Setavatar({super.key});
 
+  @override
+  State<Setavatar> createState() => _SetavatarState();
+}
+
+class _SetavatarState extends State<Setavatar> {
+  @override
+  void initState() {
+    Get.find<Jollofx>().getAllAvatars();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,21 +37,22 @@ class Setavatar extends StatelessWidget {
         height: Get.height,
         width: Get.width,
         padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 30),
-        child: Column(
+        child:Get.find<Jollofx>().isLoading.value==true?   AlertDialog(backgroundColor: Colors.transparent,content: Center(child: CircularProgressIndicator(color: Stylings.yellow,strokeCap: StrokeCap.round,)),):Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
-                alignment: Alignment.centerLeft,child: Text("Select an avatar for your profile to personalize",style: Stylings.subTitles,)),
+                alignment: Alignment.centerLeft,child: Text("Select an avatar for your profile to personalize your account",style: Stylings.subTitles,)),
             const Expanded(child: SizedBox()),
             Wrap(
               direction: Axis.horizontal,
               alignment: WrapAlignment.center,
               spacing: Get.width*0.05,
               runSpacing: Get.width*0.08,
-              children: [
-                ...Jollofx.avatars.map((av){
-                  final index = Jollofx.avatars.indexOf(av);
+              children:
+                Get.find<Jollofx>().apiAvatars.map((av){
+                  final index = Get.find<Jollofx>().apiAvatars.indexOf(av);
+                  final imgUrl = av["image"];
                   return GestureDetector(
                     onTap: (){
                       Get.find<Jollofx>().avatarIndex.value = index;
@@ -52,18 +63,18 @@ class Setavatar extends StatelessWidget {
                       height: Get.width*0.18,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border:  Get.find<Jollofx>().avatarIndex.value==index?Border.all(color: Stylings.yellow,width: 3):Border.all(color: Colors.black26),
-                          image: DecorationImage(image: AssetImage(av),fit: BoxFit.contain)
+                        border:  Get.find<Jollofx>().avatarIndex.value==index?Border.all(color: Stylings.yellow,width: 3):Border.all(color: Colors.transparent),
+                          image: DecorationImage(image: NetworkImage("$imgUrl"),fit: BoxFit.contain)
                       ),
                     ),
                   );
-                })
-              ],
+                }).toList()
+
             ),
             const Expanded(flex:2,child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(());
+                Get.find<Jollofx>().getAllAvatars();
               },
               child: Container(
                 height: Get.height*0.055,
@@ -82,7 +93,7 @@ class Setavatar extends StatelessWidget {
             },child: Text("Skip for now",style: Stylings.titles.copyWith(fontSize: 13),)),
             const Expanded(child: SizedBox()),
           ],
-        ),
+        )
       ),)
     );
   }

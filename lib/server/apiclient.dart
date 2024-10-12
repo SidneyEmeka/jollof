@@ -48,7 +48,7 @@ class Apiclientserver {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         // Add any other headers you need, e.g., authentication tokens
-         //'Authorization': 'Bearer YOUR_TOKEN_HERE',
+         'Authorization': 'Bearer ${Get.find<Jollofx>().userTokens["accessToken"]}',
       };
 
       // Make the POST request
@@ -85,10 +85,9 @@ class Apiclientserver {
 
   Future<Map<String, dynamic>> makeGetRequest(String url) async {
     try {
-
       // Make the GET request
       final response = await http.get(
-        Uri.parse(url),
+        Uri.parse(url),headers: {'Authorization': 'Bearer ${Get.find<Jollofx>().userTokens["accessToken"]}',}
       );
 
       // Check the status code

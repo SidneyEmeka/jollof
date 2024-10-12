@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -8,6 +9,7 @@ import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import '../homes/home/userdetails/termsandcondition.dart';
 import '../onboarding/awaitverification.dart';
 import '../onboarding/emailverified.dart';
+import '../onboarding/setavatar.dart';
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
 import 'apiclient.dart';
@@ -180,11 +182,9 @@ class Jollofx extends GetxController{
     });
    // Apiclientserver().pingTatspace();
   }
-  @override
-  void onInit() {
-    feedCrypto();
-    super.onInit();
-  }
+
+
+
 
 
 //user details
@@ -270,15 +270,57 @@ class Jollofx extends GetxController{
   var termsRead =  false.obs;
 
 
-  //api mains
+  ///API MAINS////////////
+
+  ///TO-DO Refresh token
+  //how many refreshes
+  //Timer? _timer;
+  // void startTimer() {
+  // _timer = Timer.periodic(Duration(seconds: 3500), (timer) {
+  //     call refreshtoken api and
+  //https://jollof.tatspace.com/api/v1/auth/token/refresh POST and then use returned value
+  //{
+  //     "message": "[Success]: Access token refreshed successfully.",
+  //     "statusCode": 200,
+  //     "data": {
+  //         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGFiMTUzNjU4YjFjZWE5MTZjMTZlMiIsImVtYWlsIjoibUB5b3BtYWlsLmNvbSIsInJvbGVzIjpbInVzZXIiXSwicHJvbW9Db2RlIjoiSk9MTE9GLVJMUi05MjgiLCJpYXQiOjE3Mjg3NTQwOTMsImV4cCI6MTcyODc1NzY5MywiaXNzIjoiam9sbG9mLmNvbSJ9.c9bWBaid2VpLRltygteT16KCOuaQp2qQv8JqZwqP5BA",
+  //         "expiresIn": 3600
+  //     }
+
+  //     to set the new access token
+  //userToken["accessToken"] = thenvalue@accessTokens
+  //   });
+  // }
+  @override
+  void onInit() {
+    //feed crypto rates
+    feedCrypto();
+
+    ///Implement worker that refreshes token every 3500 seconds cos tokens expires in 3600 seconds
+    //every time the token map stops being null or has data
+    // ever(userTokens, (_) {
+    // startTimer();
+    //   print('yes');
+    // });
+    // // Start the timer
+    super.onInit();
+  }
+
+  ///dispose timer to avoid mem leaks
+  // @override
+  // void onClose() {
+  //   _timer?.cancel();
+  //   super.onClose();
+  // }
   var isLoading = false.obs;
   var errorText = ''.obs;
   var postSuccessReturn = {}.obs;
   var validatedUserEmail = ''.obs;
   var userTokens = {}.obs;
   var statusCode = 0.obs;
+
 //device info
-var devId = '';
+  var devId = '';
   Future<String> getDeviceIdentifier() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     String identifier = '';
@@ -310,13 +352,11 @@ var devId = '';
       });
       Future.delayed(const Duration(seconds: 2),(){
         if(statusCode.value==0){
+          isLoading.value = false;
+          errorText.value = "";
+          validatedUserEmail.value =userEmail;
+          Get.to(()=>const Awaitverification());
           //send otp
-          Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=$userEmail").then((g){
-            isLoading.value = false;
-            errorText.value = "";
-            validatedUserEmail.value =userEmail;
-            Get.to(()=>const Awaitverification());
-          });
         }
         else {
          // print(errorText);
@@ -326,8 +366,19 @@ var devId = '';
     }
   }
 
+  //request opt
+  requestOTPresend(){
+    Future.delayed(Duration(seconds: 1),(){
+      Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=$validatedUserEmail").then((g){
+        isLoading.value=false;
+        Get.snackbar("OTP Request", "OTP sent succesfully");
+        errorText.value = "";
+      });
+    });
+     }
+
   //verifyOTP
-verifyOTP(String otp) {
+  verifyOTP(String otp) {
 Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/verify", {
   "email": validatedUserEmail.value,
   "code": otp
@@ -351,14 +402,56 @@ Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-
       isLoading.value = false;
     }
   });
-
-
 });
 }
 
+//pintoPassword
+ var userPin = '';
+  passwordPinSet(String fPin){
+    if(fPin!=userPin){
+      errorText.value = "Pin does not match";
+      Future.delayed(const Duration(seconds: 1),(){
+        isLoading.value = false;
+      });
+
+    }
+    else{
+      errorText.value = "";
+      Get.find<Jollofx>().userInfo["pin"] = fPin;
+      Future.delayed(Duration(seconds: 2),(){
+        //updatepassword api
+        Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/password/update", {
+          "email": validatedUserEmail.value,
+          "password": userPin,
+          "repeatPassword": userPin
+        }).then((p){
+          //print(p);
+          print(userInfo);
+          isLoading.value = false;
+        });
+       Get.to(()=>const Setavatar());
+      });
+
+    }
+  }
+
+ var apiAvatars = [];
+  //getAvatars
+ getAllAvatars(){
+    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/avatar/filter").then((a){
+      print(statusCode);
+      if(statusCode.value==0){
+        final avatarMapsList = a["data"];
+        apiAvatars = avatarMapsList;
+       // print(apiAvatars);
+        isLoading.value = false;
+      }
+      //print(a["data"]);
+    });
+ }
 
 
-
+  
 
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/server/getxserver.dart';
 import 'package:jollof/utils/stylings.dart';
 import 'package:pinput/pinput.dart';
 
@@ -14,7 +15,6 @@ class Regpin extends StatefulWidget {
 }
 
 class _RegpinState extends State<Regpin> {
-  String pass = "";
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +52,7 @@ class _RegpinState extends State<Regpin> {
             const SizedBox(height: 10),
             Text("Please create your pin",style: Stylings.subTitles.copyWith(color: Colors.grey),),
            const Expanded(child: SizedBox()),
+            //pin
             SizedBox(
               width: Get.width*0.32,
               child: Pinput(
@@ -75,6 +76,8 @@ class _RegpinState extends State<Regpin> {
                 cursor: const SizedBox(),
                 obscuringWidget: Icon(Icons.circle,color: Stylings.yellow,size: 20,),
                 onCompleted: (pin){
+                  Get.find<Jollofx>().userPin = pin;
+                  //print(Get.find<Jollofx>().userPin);
                   Get.off(()=>const ConfirmRegpin());
                 },
               ),

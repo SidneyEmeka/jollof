@@ -131,7 +131,8 @@ class Chooseportfolio extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Homepage());
+                Get.find<Jollofx>().portfolio.value==""?Get.snackbar("Choose Portfolio", "Kindly select a portfolio type of your choice"):
+                Get.to(()=>const Regpin());
               },
               child: Container(
                 height: Get.height*0.055,
