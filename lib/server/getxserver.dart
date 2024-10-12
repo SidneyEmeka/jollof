@@ -178,7 +178,7 @@ class Jollofx extends GetxController{
       ethPrice = v['data'][1]["values"]["USD"]["price"];
       ethPercentChange = v['data'][1]["values"]["USD"]["percentChange24h"];
     });
-    Apiclientserver().pingTatspace();
+   // Apiclientserver().pingTatspace();
   }
   @override
   void onInit() {
@@ -273,7 +273,9 @@ class Jollofx extends GetxController{
   //api mains
   var isLoading = false.obs;
   var errorText = ''.obs;
+  var postSuccessReturn = {}.obs;
   var validatedUserEmail = ''.obs;
+  var userTokens = {}.obs;
   var statusCode = 0.obs;
 //device info
 var devId = '';
@@ -301,19 +303,23 @@ var devId = '';
       });
     }
       else{
+        //register
       Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up", {
         "email": userEmail,
         "deviceToken": devId
       });
       Future.delayed(const Duration(seconds: 2),(){
         if(statusCode.value==0){
-          Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=$userEmail");
-          isLoading.value = false;
-        errorText.value = "";
-        validatedUserEmail.value =userEmail;
-        Get.to(()=>const Awaitverification());}
+          //send otp
+          Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=$userEmail").then((g){
+            isLoading.value = false;
+            errorText.value = "";
+            validatedUserEmail.value =userEmail;
+            Get.to(()=>const Awaitverification());
+          });
+        }
         else {
-          print(errorText);
+         // print(errorText);
           isLoading.value = false;
         }
       });
@@ -325,14 +331,26 @@ verifyOTP(String otp) {
 Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/verify", {
   "email": validatedUserEmail.value,
   "code": otp
+}).then((p){
+  //to get tokens and id
+  final mainKey = p['data'];
+  userTokens.value = {
+    'id':mainKey['user']["id"],
+    'promoCode':mainKey['user']["promoCode"],
+    'accessToken':mainKey['credentials']["accessToken"],
+    'refreshToken':mainKey['credentials']["refreshToken"],
+    'expiresIn':mainKey['credentials']["expiresIn"],
+  };
+
 });
 Future.delayed(Duration(seconds: 1),(){
   if(statusCode.value==0){
     isLoading.value = false;
     errorText.value = "";
     Get.off(()=>const Emailverified());
-    print(statusCode);}
-  else{isLoading.value = false;print(statusCode);}
+  }
+  else{isLoading.value = false;
+  }
 });
 }
 

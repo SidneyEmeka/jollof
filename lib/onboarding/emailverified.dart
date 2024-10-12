@@ -29,9 +29,14 @@ class Emailverified extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Expanded(flex:2,child: SizedBox()),
+            const Expanded(flex:1,child: SizedBox()),
+            SizedBox(
+              width: Get.width*0.4,
+              height: Get.width*0.4,
+              child: Image.asset("assets/images/flog.png",fit: BoxFit.contain,),
+            ),
             Text("Your email have been confirmed",style: Stylings.titles,),
-            const SizedBox(height: 10,),
+            const SizedBox(height: 5,),
             Text("We have verified your email, we will now notify you on any transaction via the email you have provided",style: Stylings.subTitles,textAlign: TextAlign.center,),
             const Expanded(child: SizedBox()),
             GestureDetector(

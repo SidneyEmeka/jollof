@@ -38,7 +38,7 @@ class Apiclientserver {
     }
   }
 
-  Future<void> makePostRequest(String url, Map<String, dynamic> body) async {
+  Future<Map<String,dynamic>> makePostRequest(String url, Map<String, dynamic> body) async {
     try {
       // Convert the body into JSON
       String jsonBody = json.encode(body);
@@ -59,10 +59,13 @@ class Apiclientserver {
       );
       // Check the status code
       if (response.statusCode == 200 || response.statusCode == 201) {
+        Map<String,dynamic> successReturnbody = jsonDecode(response.body);
         // Request successful
         print('Request successful');
         print('Response body: ${response.body}');
         Get.find<Jollofx>().statusCode.value = 0;
+        return successReturnbody;
+
       } else {
         Map<String,dynamic> errorMessage = jsonDecode(response.body);
         // Request failed
@@ -71,10 +74,12 @@ class Apiclientserver {
        // print(errorMessage['message']);
         Get.find<Jollofx>().statusCode.value = response.statusCode;
         Get.find<Jollofx>().errorText.value = errorMessage['message'];
+        return  errorMessage;
       }
     } catch (e) {
       Get.find<Jollofx>().statusCode.value = 1; //addedd these to the two
       print('Error occurred: $e');
+      return {};
     }
   }
 
