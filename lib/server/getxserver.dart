@@ -298,7 +298,7 @@ var devId = '';
   signUP(String userEmail) {
     if(!userEmail.contains("@")){
       errorText.value = "Invalid Email Address";
-      Future.delayed(Duration(seconds: 1),(){
+      Future.delayed(const Duration(seconds: 1),(){
         isLoading.value=false;
       });
     }
@@ -332,25 +332,27 @@ Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-
   "email": validatedUserEmail.value,
   "code": otp
 }).then((p){
-  //to get tokens and id
-  final mainKey = p['data'];
-  userTokens.value = {
-    'id':mainKey['user']["id"],
-    'promoCode':mainKey['user']["promoCode"],
-    'accessToken':mainKey['credentials']["accessToken"],
-    'refreshToken':mainKey['credentials']["refreshToken"],
-    'expiresIn':mainKey['credentials']["expiresIn"],
-  };
+  Future.delayed(const Duration(seconds: 1),(){
+    if(statusCode.value==0){
+      //to get tokens and id
+      final mainKey = p['data'];
+      userTokens.value = {
+        'id':mainKey['user']["id"],
+        'promoCode':mainKey['user']["promoCode"],
+        'accessToken':mainKey['credentials']["accessToken"],
+        'refreshToken':mainKey['credentials']["refreshToken"],
+        'expiresIn':mainKey['credentials']["expiresIn"],
+      };
+      isLoading.value = false;
+      errorText.value = "";
+      Get.off(()=>const Emailverified());
+    }
+    else{
+      isLoading.value = false;
+    }
+  });
 
-});
-Future.delayed(Duration(seconds: 1),(){
-  if(statusCode.value==0){
-    isLoading.value = false;
-    errorText.value = "";
-    Get.off(()=>const Emailverified());
-  }
-  else{isLoading.value = false;
-  }
+
 });
 }
 
