@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 
 import '../homes/home/userdetails/termsandcondition.dart';
+import '../onboarding/awaitverification.dart';
+import '../onboarding/emailverified.dart';
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
 import 'apiclient.dart';
@@ -246,15 +248,15 @@ class Jollofx extends GetxController{
     processingIdCheck = 0.obs;
     if(processingIdCheck<4){
     //  print(processingIdCheck);
-      Future.delayed(Duration(seconds: 5),(){
+      Future.delayed(const Duration(seconds: 5),(){
         processingIdCheck++;
        // print(processingIdCheck);
       });
-      Future.delayed(Duration(seconds: 3),(){
+      Future.delayed(const Duration(seconds: 3),(){
         processingIdCheck++;
         //print(processingIdCheck);
       });
-      Future.delayed(Duration(seconds: 2),(){
+      Future.delayed(const Duration(seconds: 2),(){
         processingIdCheck++;
        // print(processingIdCheck);
       });
@@ -270,9 +272,11 @@ class Jollofx extends GetxController{
 
   //api mains
   var isLoading = false.obs;
+  var errorText = ''.obs;
+  var validatedUserEmail = ''.obs;
+  var statusCode = 0.obs;
 //device info
 var devId = '';
-  //getdeviceInfo
   Future<String> getDeviceIdentifier() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     String identifier = '';
@@ -288,6 +292,49 @@ var devId = '';
     return devId;
   }
 
+  //register
+  signUP(String userEmail) {
+    if(!userEmail.contains("@")){
+      errorText.value = "Invalid Email Address";
+      Future.delayed(Duration(seconds: 1),(){
+        isLoading.value=false;
+      });
+    }
+      else{
+      Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up", {
+        "email": userEmail,
+        "deviceToken": devId
+      });
+      Future.delayed(const Duration(seconds: 2),(){
+        if(statusCode.value==0){
+          Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=$userEmail");
+          isLoading.value = false;
+        errorText.value = "";
+        validatedUserEmail.value =userEmail;
+        Get.to(()=>const Awaitverification());}
+        else {
+          print(errorText);
+          isLoading.value = false;
+        }
+      });
+    }
+  }
+
+  //verifyOTP
+verifyOTP(String otp) {
+Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/verify", {
+  "email": validatedUserEmail.value,
+  "code": otp
+});
+Future.delayed(Duration(seconds: 1),(){
+  if(statusCode.value==0){
+    isLoading.value = false;
+    errorText.value = "";
+    Get.off(()=>const Emailverified());
+    print(statusCode);}
+  else{isLoading.value = false;print(statusCode);}
+});
+}
 
 
 

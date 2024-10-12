@@ -49,10 +49,10 @@ class _RegemailState extends State<Regemail> {
                   Text("EN",style: Stylings.titles.copyWith(fontSize: 12),)
                 ],
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
               SizedBox(height: Get.height*0.1,),
-              Text("Please type in your email address${Get.find<Jollofx>().devId}",style: Stylings.titles.copyWith(fontSize: 20),),
+              Text("Please type in your email address",style: Stylings.titles.copyWith(fontSize: 20),),
               const SizedBox(height: 10),
               Text("We would be verifying your email.",style: Stylings.subTitles,),
               //textfield
@@ -65,6 +65,16 @@ class _RegemailState extends State<Regemail> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text("Email address.",style: Stylings.titles.copyWith(fontSize: 12),),
                   ),
+                 Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                      const SizedBox(width: 5),
+                      Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+                    ],
+                  ),
+                  const SizedBox(height: 5,),
                   TextFormField(
                     style: Stylings.subTitles.copyWith(fontSize: 11),
                     controller: _emailController,
@@ -98,20 +108,13 @@ class _RegemailState extends State<Regemail> {
                     ),
 
                   ),
-                ],
+                  ],
               ),
               const Expanded(flex:2,child: SizedBox()),
               GestureDetector(
                 onTap: (){
                   Get.find<Jollofx>().isLoading.value = true;
-                  Future.delayed(Duration(seconds: 1),(){
-                    Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up", {
-                      "email": _emailController.text,
-                      "deviceToken": Get.find<Jollofx>().devId
-                    });
-                    });
-                  Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=${_emailController.text}");
-                  Get.to(()=>const Awaitverification());
+                  Get.find<Jollofx>().signUP(_emailController.text);
                 },
                 child: Container(
                   height: Get.height*0.055,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/onboarding/emailverified.dart';
+import 'package:jollof/server/getxserver.dart';
 import 'package:pinput/pinput.dart';
 
 import '../utils/stylings.dart';
@@ -25,7 +26,7 @@ class Awaitverification extends StatelessWidget {
             bottom: BorderSide(color: Colors.grey.shade200)
         ),
       ),
-      body: Container(
+      body: Obx(()=>Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         height: Get.height,
         child: SizedBox(
@@ -34,16 +35,17 @@ class Awaitverification extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
               const Expanded(child: SizedBox()),
               Icon(FluentIcons.mail_32_regular,size: 60,color: Stylings.yellow,),
               const SizedBox(height: 20,),
               Text("We've sent you an email",style: Stylings.titles,),
               const SizedBox(height: 10,),
               RichText(text: TextSpan(
-                children: [
-                  TextSpan(text:"Enter the code we've sent by mail to theemailhesent@gmail.com ",style: Stylings.subTitles,),
-                  TextSpan(text:"Change email",style: Stylings.titles.copyWith(fontSize: 12),),
-                ]
+                  children: [
+                    TextSpan(text:"Enter the code we've sent by mail to ${Get.find<Jollofx>().validatedUserEmail} ",style: Stylings.subTitles,),
+                    TextSpan(text:"Change email",style: Stylings.titles.copyWith(fontSize: 12),),
+                  ]
               )),
               const SizedBox(height: 60,),
               Text("Enter code",style: Stylings.subTitles,),
@@ -51,14 +53,14 @@ class Awaitverification extends StatelessWidget {
               SizedBox(
                 width: Get.width,
                 child: Pinput(
-                  length: 5,
+                  length: 6,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   defaultPinTheme: PinTheme(
                       width: 65,
                       height: 55,
                       textStyle: Stylings.titles,
                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(5),
+                          borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey.shade300)
                       )),
                   focusedPinTheme: PinTheme(
@@ -80,21 +82,32 @@ class Awaitverification extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Stylings.yellow),
-                        boxShadow: [
-                          BoxShadow(color: Colors.yellow.shade100,blurRadius: 2,blurStyle: BlurStyle.outer),
-                          BoxShadow(color: Colors.grey.shade300,blurRadius: 10,blurStyle: BlurStyle.outer)
-                        ]
+                          boxShadow: [
+                            BoxShadow(color: Colors.yellow.shade100,blurRadius: 2,blurStyle: BlurStyle.outer),
+                            BoxShadow(color: Colors.grey.shade300,blurRadius: 10,blurStyle: BlurStyle.outer)
+                          ]
                       )),
                   cursor: const SizedBox(),
                   onCompleted: (pin){
-                    Get.off(()=>const Emailverified());
+                    Get.find<Jollofx>().isLoading.value = true;
+                    Get.find<Jollofx>().verifyOTP(pin);
                   },
                 ),
               ),
+              const SizedBox(height: 5),
+              Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                  const SizedBox(width: 5),
+                  Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+                ],
+              ),
               const Expanded(child: SizedBox()),
               GestureDetector(
-                onTap: (){
-                },
+                  onTap: (){
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -106,7 +119,7 @@ class Awaitverification extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ),)
     );
   }
 }

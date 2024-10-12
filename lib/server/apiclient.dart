@@ -48,7 +48,7 @@ class Apiclientserver {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         // Add any other headers you need, e.g., authentication tokens
-        // 'Authorization': 'Bearer YOUR_TOKEN_HERE',
+         //'Authorization': 'Bearer YOUR_TOKEN_HERE',
       };
 
       // Make the POST request
@@ -57,23 +57,24 @@ class Apiclientserver {
         headers: headers,
         body: jsonBody,
       );
-
       // Check the status code
       if (response.statusCode == 200 || response.statusCode == 201) {
         // Request successful
         print('Request successful');
         print('Response body: ${response.body}');
-        Get.find<Jollofx>().isLoading.value = false;
+        Get.find<Jollofx>().statusCode.value = 0;
       } else {
+        Map<String,dynamic> errorMessage = jsonDecode(response.body);
         // Request failed
         print('Request failed with status code: ${response.statusCode}');
         print('Response body: ${response.body}');
-        Get.find<Jollofx>().isLoading.value = false;
+       // print(errorMessage['message']);
+        Get.find<Jollofx>().statusCode.value = response.statusCode;
+        Get.find<Jollofx>().errorText.value = errorMessage['message'];
       }
     } catch (e) {
-      // Handle any errors
+      Get.find<Jollofx>().statusCode.value = 1; //addedd these to the two
       print('Error occurred: $e');
-      Get.find<Jollofx>().isLoading.value = false;
     }
   }
 
@@ -91,15 +92,18 @@ class Apiclientserver {
         print('Request successful');
         // Parse the JSON response
         Map<String, dynamic> data = json.decode(response.body);
+        Get.find<Jollofx>().statusCode.value = 0;
         return data;
       } else {
         // Request failed
         print('Request failed with status code: ${response.statusCode}');
         print('Response body: ${response.body}');
+        Get.find<Jollofx>().statusCode.value = 1;
         throw Exception('Failed to load data');
       }
     } catch (e) {
       // Handle any errors
+      Get.find<Jollofx>().statusCode.value = 1;
       print('Error occurred: $e');
       throw Exception('Failed to make request');
     }
