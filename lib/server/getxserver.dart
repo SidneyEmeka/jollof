@@ -21,25 +21,6 @@ import 'apiclient.dart';
 class Jollofx extends GetxController{
   var obscure = true.obs;
 
-
-  static List<String> avatars = [
-    "assets/images/1.png",
-    "assets/images/2.png",
-    "assets/images/3.png",
-    "assets/images/4.png",
-    "assets/images/5.png",
-    "assets/images/6.png",
-    "assets/images/7.png",
-    "assets/images/8.png",
-    "assets/images/9.png",
-    "assets/images/10.png",
-    "assets/images/11.png",
-    "assets/images/12.png",
-    "assets/images/13.png",
-    "assets/images/14.png",
-    "assets/images/15.png",
-    "assets/images/16.png",
-  ];
   var avatarIndex = 50.obs;
 
 
@@ -475,6 +456,10 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
        print(l);
        if(statusCode.value==0){
          final mainKey = l['data'];
+         //print(mainKey);
+         final imgUrl = mainKey['user']["avatarImage"];
+         //print(a?["data"]["avatarImageUrl"]);
+         validatedUserAvatar.value = imgUrl;
          userTokens.value = {
            'id':mainKey['user']["id"],
            'promoCode':mainKey['user']["promoCode"],
@@ -536,24 +521,6 @@ updateUserProfile(Future<dynamic>? toWhere){
    });
 }
 
-//setAvatar
-setAvatar(Future<dynamic>? toWhere){
-  Apiclientserver().makePatchRequest("https://jollof.tatspace.com/api/v1/user/update", {"firstname": "", "lastname": "", "othername": "", "country": "", "city": "", "street": "", "state": "", "postalCode": "", "dob": "", "annualIncome": "zero_to_ten_thousand_dollars", "investmentType": "fix_investment", "pin": "1111", "allowNotifications": true, "avatar": "rebecca"}).then((a){
-    if(statusCode.value==0){
-      //print(jsonEncode(userInfo));
-      final imgUrl = a["data"]["avatarImageUrl"];
-      //print(a['data']['annualIncome']);
-      validatedUserAvatar.value = imgUrl;
-      print(validatedUserAvatar.value);
-      secondIsLoading.value=false;
-      toWhere!;
-    }
-    else{
-      secondIsLoading.value=false;
-    }
-  });
-
-}
 
 
 

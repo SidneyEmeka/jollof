@@ -24,7 +24,10 @@ class Buyplan extends StatelessWidget {
             padding: const EdgeInsets.all(13),
           decoration: const BoxDecoration(
             shape: BoxShape.circle,),
-          child: Image.asset(Jollofx.avatars[Get.find<Jollofx>().avatarIndex.value],fit: BoxFit.contain,)
+          child:Image.network(
+            Get.find<Jollofx>().validatedUserAvatar.value,
+            fit: BoxFit.contain,
+          ),
         ),
         title: Text(
           "Buy Plan",
