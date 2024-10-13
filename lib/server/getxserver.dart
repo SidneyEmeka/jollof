@@ -523,9 +523,9 @@ updateUserProfile(Future<dynamic>? toWhere){
       print(a);
      // print(userTokens);
      // print(userInfo);
-     // final imgUrl = a["data"]["avatarImageUrl"];
+     final imgUrl = a["data"]["avatarImageUrl"];
       //print(a?["data"]["avatarImageUrl"]);
-     // validatedUserAvatar.value = imgUrl;
+     validatedUserAvatar.value = imgUrl;
       //print('Set to '+a?["data"]["avatarImageUrl"]);
       secondIsLoading.value=false;
      toWhere!;
@@ -539,13 +539,12 @@ updateUserProfile(Future<dynamic>? toWhere){
 //setAvatar
 setAvatar(Future<dynamic>? toWhere){
   Apiclientserver().makePatchRequest("https://jollof.tatspace.com/api/v1/user/update", {"firstname": "", "lastname": "", "othername": "", "country": "", "city": "", "street": "", "state": "", "postalCode": "", "dob": "", "annualIncome": "zero_to_ten_thousand_dollars", "investmentType": "fix_investment", "pin": "1111", "allowNotifications": true, "avatar": "rebecca"}).then((a){
-   print(a);
     if(statusCode.value==0){
       //print(jsonEncode(userInfo));
-      //final imgUrl = a["data"]["avatarImageUrl"];
+      final imgUrl = a["data"]["avatarImageUrl"];
       //print(a['data']['annualIncome']);
-      //validatedUserAvatar.value = imgUrl;
-      //print('Set to '+a?["data"]["avatarImageUrl"]);
+      validatedUserAvatar.value = imgUrl;
+      print(validatedUserAvatar.value);
       secondIsLoading.value=false;
       toWhere!;
     }
