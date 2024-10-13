@@ -707,6 +707,7 @@ class _UserdetailsState extends State<Userdetails> {
                           Text("Anual income",
                               style: Stylings.titles
                                   .copyWith(fontSize: 20)),
+                          Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
                           const SizedBox(
                             height: 10,
                           ),
@@ -792,6 +793,7 @@ class _UserdetailsState extends State<Userdetails> {
             ? const SizedBox(): Get.find<Jollofx>().userDetails.value == 6
           ?GestureDetector(
           onTap: () {
+            Get.find<Jollofx>().isLoading.value=true;
             print(Get.find<Jollofx>().userInfo);
            Future.delayed(Duration(seconds: 2),(){
              Get.find<Jollofx>().updateUserProfile(Get.to(()=>const Termsandcondition()));

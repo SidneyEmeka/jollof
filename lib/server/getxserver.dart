@@ -214,7 +214,7 @@ class Jollofx extends GetxController{
     "investmentType": "fix_investment",
     "pin": "",
     "allowNotifications": true,
-    "avatar": ""
+    "avatar": "fineboy"
   };
 
 
@@ -307,6 +307,7 @@ class Jollofx extends GetxController{
   var postSuccessReturn = {}.obs;
   var validatedUserEmail = ''.obs;
   var validatedUserAvatar = ''.obs;
+  var validatedlastName = ''.obs;
   var userTokens = {}.obs;
   var statusCode = 0.obs;
 
@@ -435,7 +436,9 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
         final avatarMapsList = a["data"];
         apiAvatars = avatarMapsList;
        // print(apiAvatars);
-        isLoading.value = false;
+        Future.delayed(Duration(seconds: 1),(){
+          isLoading.value = false;
+        });
       }
       //print(a["data"]);
     });
@@ -458,8 +461,10 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
          final mainKey = l['data'];
          //print(mainKey);
          final imgUrl = mainKey['user']["avatarImage"];
+         final lastName = mainKey['user']["lastname"];
          //print(a?["data"]["avatarImageUrl"]);
          validatedUserAvatar.value = imgUrl;
+         validatedlastName.value = lastName;
          userTokens.value = {
            'id':mainKey['user']["id"],
            'promoCode':mainKey['user']["promoCode"],
@@ -509,8 +514,10 @@ updateUserProfile(Future<dynamic>? toWhere){
      // print(userTokens);
      // print(userInfo);
      final imgUrl = a["data"]["avatarImageUrl"];
+     final lastName = a["data"]["lastname"];
       //print(a?["data"]["avatarImageUrl"]);
      validatedUserAvatar.value = imgUrl;
+     validatedlastName.value = lastName;
       //print('Set to '+a?["data"]["avatarImageUrl"]);
       secondIsLoading.value=false;
      toWhere!;
