@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/onboarding/signinmethod.dart';
 import 'package:jollof/questionaire/questions.dart';
 
+import '../server/getxserver.dart';
 import '../utils/reusables/bnavmorph.dart';
 import '../utils/stylings.dart';
 
@@ -45,46 +47,63 @@ class Setnotification extends StatelessWidget {
             const Expanded(flex:2,child: SizedBox()),
             GestureDetector(
               onTap: (){
-               Get.dialog(
-                   BackdropFilter(
-                     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                     child: Dialog(
-                       backgroundColor: Colors.transparent,
-                       child: Container(
-                         width: Get.width*0.7,
-                         padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 30),
-                         decoration: BoxDecoration(
-                           color: Colors.black.withOpacity(0.5),
-                           borderRadius: BorderRadius.circular(10),
-                           border: Border.all(color: Colors.white.withOpacity(0.2)),
-                         ),
-                         child: Column(
-                           mainAxisSize: MainAxisSize.min,
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           crossAxisAlignment: CrossAxisAlignment.center,
-                           children: [
-                             Text("\"Jollof\" Would like to Send You Notifications",style: Stylings.titles.copyWith(color: Colors.white),textAlign: TextAlign.center,),
-                             const SizedBox(height: 10,),
-                             Text("Notifications may include alerts, sounds and icon badges. These can be configured in Settings",style: Stylings.subTitles.copyWith(color: Colors.white),textAlign: TextAlign.center,),
-                             const SizedBox(height: 15,),
-                           const Divider(height: 0.5,color: Colors.black12,),
-                             const SizedBox(height: 15,),
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             crossAxisAlignment: CrossAxisAlignment.end,
-                             children: [
-                               Text("Don't Allow",style: Stylings.subTitles.copyWith(color: Colors.blueAccent),textAlign: TextAlign.center,),
-                               Text("Allow",style: Stylings.subTitles.copyWith(color: Colors.blueAccent),textAlign: TextAlign.center,),
-                             ],
-                           )
-                           ],
-                         ),
-                       ),
-                     ),
-                   ),
-                 barrierColor: Colors.black.withOpacity(0.5),
-                 transitionCurve: Curves.easeInOut,
-                 transitionDuration: const Duration(milliseconds: 300),);
+                Get.dialog(
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                    child: Dialog(
+                      backgroundColor: Colors.transparent,
+                      child: Container(
+                        width: Get.width*0.7,
+                        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 30),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.white.withOpacity(0.2)),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("\"Jollof\" Would like to Send You Notifications",style: Stylings.titles.copyWith(color: Colors.white),textAlign: TextAlign.center,),
+                            const SizedBox(height: 10,),
+                            Text("Notifications may include alerts, sounds and icon badges. These can be configured in Settings",style: Stylings.subTitles.copyWith(color: Colors.white),textAlign: TextAlign.center,),
+                            const SizedBox(height: 15,),
+                            const Divider(height: 0.5,color: Colors.black12,),
+                            const SizedBox(height: 15,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                GestureDetector(
+                                    onTap: (){
+                                      Get.find<Jollofx>().userInfo["allowNotifications"] = false;
+                                      Get.back();
+                                      Future.delayed(const Duration(milliseconds: 500),(){
+                                        Get.to(()=>const Signinmethod());
+                                      //  print( Get.find<Jollofx>().userInfo);
+                                      });
+
+                                    },child: Text("Don't Allow",style: Stylings.subTitles.copyWith(color: Colors.blueAccent),textAlign: TextAlign.center,)),
+                                GestureDetector( onTap: (){
+                                  Get.find<Jollofx>().userInfo["allowNotifications"] = true;
+                                  Get.back();
+                                  Future.delayed(const Duration(milliseconds: 500),(){
+                                   //print( Get.find<Jollofx>().userInfo);
+                                    Get.to(()=>const Signinmethod());
+                                  });
+
+                                },child: Text("Allow",style: Stylings.subTitles.copyWith(color: Colors.blueAccent),textAlign: TextAlign.center,)),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  barrierColor: Colors.black.withOpacity(0.5),
+                  transitionCurve: Curves.easeInOut,
+                  transitionDuration: const Duration(milliseconds: 300),);
               },
               child: Container(
                 height: Get.height*0.055,
@@ -99,12 +118,12 @@ class Setnotification extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             GestureDetector(onTap:(){
-              Get.to(()=>const Questions());
+              Get.to(()=>const Signinmethod());
             },child: Text("Skip for now",style: Stylings.titles.copyWith(fontSize: 13),)),
             const Expanded(child: SizedBox()),
           ],
         ),
-      ),
+      )
     );
   }
 }

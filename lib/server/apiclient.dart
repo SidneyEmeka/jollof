@@ -38,14 +38,15 @@ class Apiclientserver {
     }
   }
 
-  Future<Map<String,dynamic>> makePostRequest(String url, Map<String, dynamic> body) async {
+  Future<Map<String,dynamic>> makePostRequest(
+      {required String url, required Map<String, dynamic> body, String contentType = 'application/json'}) async {
     try {
       // Convert the body into JSON
       String jsonBody = json.encode(body);
 
       // Set headers
       Map<String, String> headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': contentType,
         'Accept': 'application/json',
         // Add any other headers you need, e.g., authentication tokens
          'Authorization': 'Bearer ${Get.find<Jollofx>().userTokens["accessToken"]}',
@@ -77,8 +78,9 @@ class Apiclientserver {
         return  errorMessage;
       }
     } catch (e) {
-      Get.find<Jollofx>().statusCode.value = 1; //addedd these to the two
+      Get.find<Jollofx>().statusCode.value = 2; //addedd these to the two
       print('Error occurred: $e');
+      Get.find<Jollofx>().errorText.value = 'An error occurred';
       return {};
     }
   }
@@ -107,7 +109,8 @@ class Apiclientserver {
       }
     } catch (e) {
       // Handle any errors
-      Get.find<Jollofx>().statusCode.value = 1;
+      Get.find<Jollofx>().statusCode.value = 2;
+      Get.find<Jollofx>().errorText.value = 'An error occurred';
       print('Error occurred: $e');
       throw Exception('Failed to make request');
     }

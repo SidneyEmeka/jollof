@@ -19,6 +19,7 @@ class _QuestionsState extends State<Questions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -89,6 +90,7 @@ class _QuestionsState extends State<Questions> {
                   "Question ${Get.find<Jollofx>().questionNum.value}",
                   style: Stylings.titles.copyWith(fontSize: 20),
                 ),
+                Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
                 const Expanded(child: SizedBox()),
                 //q1
                 Get.find<Jollofx>().questionNum.value==1?
@@ -106,6 +108,7 @@ class _QuestionsState extends State<Questions> {
                      return GestureDetector(
                        onTap: (){
                          Get.find<Jollofx>().answer1.value = q;
+                        // print(Get.find<Jollofx>().answer1.value);
                        },
                          child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer1}"));
                    })
@@ -200,6 +203,7 @@ class _QuestionsState extends State<Questions> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Text(
                         "In the face of market uncertainty, what is your inclination regarding investment decisions?",
                         style: Stylings.subTitles),
@@ -220,9 +224,18 @@ class _QuestionsState extends State<Questions> {
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
                     onTap: () {
-                      Get.find<Jollofx>().nextPage();
+                      Get.find<Jollofx>().questionNum.value!=6?
+                      {
+                      Get.find<Jollofx>().nextPage(),
                       Get.find<Jollofx>()
-                          .calcPercent(Get.find<Jollofx>().questionNum.value);
+                          .calcPercent(Get
+                          .find<Jollofx>()
+                          .questionNum
+                          .value)
+                    }:{
+                        Get.find<Jollofx>().isLoading.value=true,
+                        Get.find<Jollofx>().submitQuestionaire()
+                      };
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),

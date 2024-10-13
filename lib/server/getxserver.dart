@@ -5,6 +5,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
+import 'package:jollof/questionaire/questions.dart';
 
 import '../homes/home/userdetails/termsandcondition.dart';
 import '../onboarding/awaitverification.dart';
@@ -15,6 +16,9 @@ import '../questionaire/welcome.dart';
 import 'apiclient.dart';
 
 class Jollofx extends GetxController{
+  var obscure = true.obs;
+
+
   static List<String> avatars = [
     "assets/images/1.png",
     "assets/images/2.png",
@@ -346,7 +350,7 @@ class Jollofx extends GetxController{
     }
       else{
         //register
-      Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up", {
+      Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/sign-up", body:{
         "email": userEmail,
         "deviceToken": devId
       });
@@ -366,9 +370,9 @@ class Jollofx extends GetxController{
     }
   }
 
-  //request opt
+  //request opt resend
   requestOTPresend(){
-    Future.delayed(Duration(seconds: 1),(){
+    Future.delayed(const Duration(seconds: 1),(){
       Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/request?email=$validatedUserEmail").then((g){
         isLoading.value=false;
         Get.snackbar("OTP Request", "OTP sent succesfully");
@@ -379,7 +383,7 @@ class Jollofx extends GetxController{
 
   //verifyOTP
   verifyOTP(String otp) {
-Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-up/otp/verify", {
+Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/sign-up/otp/verify", body:{
   "email": validatedUserEmail.value,
   "code": otp
 }).then((p){
@@ -418,9 +422,9 @@ Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-
     else{
       errorText.value = "";
       Get.find<Jollofx>().userInfo["pin"] = fPin;
-      Future.delayed(Duration(seconds: 2),(){
+      Future.delayed(const Duration(seconds: 2),(){
         //updatepassword api
-        Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/password/update", {
+        Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/password/update", body: {
           "email": validatedUserEmail.value,
           "password": userPin,
           "repeatPassword": userPin
@@ -449,6 +453,54 @@ Apiclientserver().makePostRequest("https://jollof.tatspace.com/api/v1/auth/sign-
       //print(a["data"]);
     });
  }
+ 
+ //login
+ signIn(String theEmail, String thePin){
+   if(theEmail.isEmpty||thePin.isEmpty){
+     errorText.value = "Please fill the required form";
+     isLoading.value=false;
+   }
+   else{
+     Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/sign-in", body: {
+       "email": theEmail,
+       "pin": thePin,
+       "deviceToken": devId
+     }).then((l){
+       if(statusCode.value==0){
+         isLoading.value=false;
+         errorText.value = "";
+         Get.to(()=>const Questions());
+       }
+       else{
+         isLoading.value=false;
+       }});
+   }
+ }
+
+ //submitQuestions
+ submitQuestionaire(){
+   print(answer1,);
+   print(answer2,);
+   print(answer3,);
+   print(answer4,);
+   print(answer5,);
+   print(answer6,);
+
+   Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/user/questionare/submit", body: {
+     'investmentRiskPreference': answer1.value,
+     'shortTermInvestmentFluctionReaction': answer2.value,
+     'investmentTemporaryDeclineReaction': answer3.value,
+     'investmentAchievementPreferedTimeline': answer4.value,
+     'investmentMarketExperience': answer5.value,
+     'inclinationRegardingMarketDecisions': answer6.value,
+   },).then((q){
+     isLoading.value=false;
+     nextPage();
+     calcPercent(questionNum.value);
+   });
+ }
+
+
 
 
   

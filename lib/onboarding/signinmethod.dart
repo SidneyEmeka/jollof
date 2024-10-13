@@ -3,18 +3,32 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/server/getxserver.dart';
 
 import '../utils/stylings.dart';
 import 'forgotpass.dart';
 
-class Signinmethod extends StatelessWidget {
+class Signinmethod extends StatefulWidget {
   const Signinmethod({super.key});
 
+  @override
+  State<Signinmethod> createState() => _SigninmethodState();
+}
+
+class _SigninmethodState extends State<Signinmethod> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  @override
+  void dispose() {
+    _emailController;
+    _passwordController;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
+      body: Obx(()=>SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
           width: Get.width,
@@ -23,6 +37,7 @@ class Signinmethod extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
               //header
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +61,7 @@ class Signinmethod extends StatelessWidget {
               const Expanded(child: SizedBox()),
               Row(
                 children: [
-                  Text("Welcome back",style: Stylings.titles,),
+                  Text("Welcome",style: Stylings.titles,),
                   const SizedBox(width: 10,),
                   Icon(FluentIcons.hand_wave_20_filled,color: Stylings.yellow,size: 20,)
                 ],
@@ -59,34 +74,28 @@ class Signinmethod extends StatelessWidget {
                 children: [
                   TextFormField(
                     style: Stylings.subTitles.copyWith(fontSize: 11),
-                    // controller: _emailController,
-                    validator: (value){
-                      if(value==null||value.isEmpty){
-                        return 'Please enter your email';
-                      }
-                      return null;
-                    },
+                    controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Colors.grey.shade500,
                     cursorHeight: 15,
                     decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(color: Stylings.yellow)
-                      ),
-                      errorStyle: Stylings.subTitles.copyWith(fontSize: 10,color: Stylings.yellow),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(color: Stylings.yellow)
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(color: Stylings.yellow)
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: const BorderSide(color: Colors.black12,width: 1)
-                      ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide: BorderSide(color: Stylings.yellow)
+                        ),
+                        errorStyle: Stylings.subTitles.copyWith(fontSize: 10,color: Stylings.yellow),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide: BorderSide(color: Stylings.yellow)
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide: BorderSide(color: Stylings.yellow)
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide: const BorderSide(color: Colors.black12,width: 1)
+                        ),
                         labelText: "Email",
                         floatingLabelStyle: Stylings.titles.copyWith(fontSize: 11) ,
                         labelStyle: Stylings.titles.copyWith(fontSize: 12)
@@ -97,15 +106,10 @@ class Signinmethod extends StatelessWidget {
                   ),
                   const SizedBox(height: 20,),
                   TextFormField(
+                    obscureText: Get.find<Jollofx>().obscure.value,
                     style: Stylings.subTitles.copyWith(fontSize: 11),
-                    // controller: _emailController,
-                    validator: (value){
-                      if(value==null||value.isEmpty){
-                        return 'Please enter your email';
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.emailAddress,
+                    controller: _passwordController,
+                    keyboardType: TextInputType.number,
                     cursorColor: Colors.grey.shade500,
                     cursorHeight: 15,
                     decoration: InputDecoration(
@@ -129,12 +133,21 @@ class Signinmethod extends StatelessWidget {
                         labelText: "Password",
                         floatingLabelStyle: Stylings.titles.copyWith(fontSize: 11) ,
                         labelStyle: Stylings.titles.copyWith(fontSize: 12),
-                      suffix: Text("Show",style: Stylings.subTitles.copyWith(color: Stylings.yellow),)
+                        suffix: GestureDetector(
+                            onTap: (){
+                              Get.find<Jollofx>().obscure.value?Get.find<Jollofx>().obscure.value=false:Get.find<Jollofx>().obscure.value=true;
+                            },child: Text(Get.find<Jollofx>().obscure.value?"Show":"Hide",style: Stylings.subTitles.copyWith(color: Stylings.yellow),))
                     ),
-
-
                   ),
-
+                  Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                      const SizedBox(width: 5),
+                      Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(height: 30,),
@@ -148,7 +161,10 @@ class Signinmethod extends StatelessWidget {
               const SizedBox(height: 30,),
               GestureDetector(
                 onTap: (){
-                  Get.to(());
+                  // print(Get.find<Jollofx>().validatedUserEmail,);
+                 // print(Get.find<Jollofx>().userPin,);
+                  Get.find<Jollofx>().isLoading.value=true;
+                  Get.find<Jollofx>().signIn(_emailController.text, _passwordController.text);
                 },
                 child: Container(
                   height: Get.height*0.055,
@@ -175,7 +191,7 @@ class Signinmethod extends StatelessWidget {
               const Expanded(child: SizedBox()),
               Row(
                 children: [
-                 Expanded(child: Container(height: 1,width: Get.width*0.4,color: Colors.black12,)),
+                  Expanded(child: Container(height: 1,width: Get.width*0.4,color: Colors.black12,)),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text("OR",style: Stylings.titles.copyWith(color: Colors.grey.shade400,fontSize: 12),),
@@ -194,7 +210,7 @@ class Signinmethod extends StatelessWidget {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
-                    border: Border.all(color: Colors.grey.shade300)
+                      border: Border.all(color: Colors.grey.shade300)
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -244,7 +260,7 @@ class Signinmethod extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ),)
     );
   }
 }

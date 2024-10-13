@@ -74,7 +74,7 @@ class _SetavatarState extends State<Setavatar> {
             const Expanded(flex:2,child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.find<Jollofx>().getAllAvatars();
+                Get.to(()=>const Setnotification());
               },
               child: Container(
                 height: Get.height*0.055,

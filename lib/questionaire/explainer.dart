@@ -158,7 +158,7 @@ class Explainer extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Get.find<Jollofx>().nextExplainer();
-                  print(Get.find<Jollofx>().explainer.value);
+                 // print(Get.find<Jollofx>().explainer.value);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(10),
