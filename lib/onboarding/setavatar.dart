@@ -43,8 +43,9 @@ class _SetavatarState extends State<Setavatar> {
           children: [
             Align(
                 alignment: Alignment.centerLeft,child: Text("Select an avatar for your profile to personalize your account",style: Stylings.subTitles,)),
+            Get.find<Jollofx>().secondIsLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             const Expanded(child: SizedBox()),
-            Wrap(
+             Wrap(
               direction: Axis.horizontal,
               alignment: WrapAlignment.center,
               spacing: Get.width*0.05,
@@ -52,10 +53,13 @@ class _SetavatarState extends State<Setavatar> {
               children:
                 Get.find<Jollofx>().apiAvatars.map((av){
                   final index = Get.find<Jollofx>().apiAvatars.indexOf(av);
+                  final imgAvatar = av["avatar"];
                   final imgUrl = av["image"];
                   return GestureDetector(
                     onTap: (){
                       Get.find<Jollofx>().avatarIndex.value = index;
+                      Get.find<Jollofx>().userInfo["avatar"] = imgAvatar;
+                      print(Get.find<Jollofx>().userInfo);
                     },
                     child: Container(
                       alignment: Alignment.bottomCenter,
@@ -74,7 +78,9 @@ class _SetavatarState extends State<Setavatar> {
             const Expanded(flex:2,child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Setnotification());
+                Get.find<Jollofx>().secondIsLoading.value=true;
+              //  Get.find<Jollofx>().setAvatar(Get.to(()=>const Setnotification()));
+                Get.find<Jollofx>().updateUserProfile(Get.to(()=>const Setnotification()));
               },
               child: Container(
                 height: Get.height*0.055,

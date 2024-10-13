@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
+import 'package:jollof/homes/home/userdetails/termsandcondition.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../server/getxserver.dart';
@@ -727,27 +728,27 @@ class _UserdetailsState extends State<Userdetails> {
                             children: [
                               GestureDetector(
                                   onTap: (){
-                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$0 - \$10,000";
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "zero_to_ten_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$0 - \$10,000";
                                   },child: Radiolist(title: "\$0 - \$10,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
                               GestureDetector(
                                   onTap: (){
-                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$10,000 - \$50,000";
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "ten_to_fifly_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$10,000 - \$50,000";
                                   },child: Radiolist(title: "\$10,000 - \$50,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
                               GestureDetector(
                                   onTap: (){
-                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$50,000 - \$100,000";
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "fifty_thousand_to_one_hundred_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$50,000 - \$100,000";
                                   },child: Radiolist(title: "\$50,000 - \$100,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
                               GestureDetector(
                                   onTap: (){
-                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$100,000 - \$500,000";
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "one_hundred_thousand_to_five_hundred_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$100,000 - \$500,000";
                                   },child: Radiolist(title: "\$100,000 - \$500,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
                               GestureDetector(
                                   onTap: (){
-                                    Get.find<Jollofx>().userInfo["annualIncome"] = "\$500,000 and above";
+                                    Get.find<Jollofx>().userInfo["annualIncome"] = "five_hundred_thousand_dollars_and_above";
                                     Get.find<Jollofx>().anualIncome.value = "\$500,000 and above";
                                   },child: Radiolist(isLast: true,title: "\$500,000 and above", state: "${Get.find<Jollofx>().anualIncome.value}")),
 
@@ -791,10 +792,14 @@ class _UserdetailsState extends State<Userdetails> {
             ? const SizedBox(): Get.find<Jollofx>().userDetails.value == 6
           ?GestureDetector(
           onTap: () {
-            //print(Get.find<Jollofx>().userInfo);
-            Get.find<Jollofx>().userDetailsNextPage();
-            Get.find<Jollofx>().calcUserDetailsPercent(
-                Get.find<Jollofx>().userDetails.value);
+            print(Get.find<Jollofx>().userInfo);
+           Future.delayed(Duration(seconds: 2),(){
+             Get.find<Jollofx>().updateUserProfile(Get.to(()=>const Termsandcondition()));
+           }).then((v){
+             Get.find<Jollofx>().userDetailsNextPage();
+             Get.find<Jollofx>().calcUserDetailsPercent(
+                 Get.find<Jollofx>().userDetails.value);
+           });
           },
           child: Container(
             width: Get.width,

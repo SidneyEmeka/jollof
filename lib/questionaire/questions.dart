@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homepage.dart';
 import 'package:jollof/questionaire/explainer.dart';
 import 'package:jollof/server/getxserver.dart';
 import 'package:jollof/utils/reusables/radiolist.dart';
@@ -40,7 +41,7 @@ class _QuestionsState extends State<Questions> {
             padding: const EdgeInsets.only(right: 10.0),
             child: GestureDetector(
               onTap: (){
-                Get.to(()=>const Explainer());
+                Get.to(()=>const Homepage());
               },
               child: Text(
                 "Skip",
@@ -104,13 +105,14 @@ class _QuestionsState extends State<Questions> {
                     const SizedBox(
                       height: 20,
                     ),
-                   ...Get.find<Jollofx>().question1.map((q){
+                   ...Get.find<Jollofx>().question1.entries.map((q){
                      return GestureDetector(
                        onTap: (){
-                         Get.find<Jollofx>().answer1.value = q;
+                         Get.find<Jollofx>().answer1.value = q.value;
+                         Get.find<Jollofx>().questionIndicator.value = q.key;
                         // print(Get.find<Jollofx>().answer1.value);
                        },
-                         child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer1}"));
+                         child: Radiolist(title:q.key, state:Get.find<Jollofx>().questionIndicator.value));
                    })
                   ],
                 )
@@ -126,12 +128,13 @@ class _QuestionsState extends State<Questions> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ...Get.find<Jollofx>().question2.map((q){
+                    ...Get.find<Jollofx>().question2.entries.map((q){
                       return GestureDetector(
                           onTap: (){
-                            Get.find<Jollofx>().answer2.value = q;
+                            Get.find<Jollofx>().answer2.value = q.value;
+                            Get.find<Jollofx>().questionIndicator.value = q.key;
                           },
-                          child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer2}"));
+                          child: Radiolist(title:q.key, state:  Get.find<Jollofx>().questionIndicator.value));
                     })
                   ],
                 )
@@ -147,12 +150,13 @@ class _QuestionsState extends State<Questions> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ...Get.find<Jollofx>().question3.map((q){
+                    ...Get.find<Jollofx>().question3.entries.map((q){
                       return GestureDetector(
                           onTap: (){
-                            Get.find<Jollofx>().answer3.value = q;
+                            Get.find<Jollofx>().answer3.value = q.value;
+                            Get.find<Jollofx>().questionIndicator.value = q.key;
                           },
-                          child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer3}"));
+                          child: Radiolist(title:q.key, state:  Get.find<Jollofx>().questionIndicator.value));
                     })
                   ],
                 )
@@ -168,12 +172,13 @@ class _QuestionsState extends State<Questions> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ...Get.find<Jollofx>().question4.map((q){
+                    ...Get.find<Jollofx>().question4.entries.map((q){
                       return GestureDetector(
                           onTap: (){
-                            Get.find<Jollofx>().answer4.value = q;
+                            Get.find<Jollofx>().answer4.value = q.value;
+                            Get.find<Jollofx>().questionIndicator.value = q.key;
                           },
-                          child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer4}"));
+                          child: Radiolist(title:q.key, state:  Get.find<Jollofx>().questionIndicator.value));
                     })
                   ],
                 )
@@ -189,12 +194,13 @@ class _QuestionsState extends State<Questions> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ...Get.find<Jollofx>().question5.map((q){
+                    ...Get.find<Jollofx>().question5.entries.map((q){
                       return GestureDetector(
                           onTap: (){
-                            Get.find<Jollofx>().answer5.value = q;
+                            Get.find<Jollofx>().questionIndicator.value = q.key;
+                            Get.find<Jollofx>().answer5.value = q.value;
                           },
-                          child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer5}"));
+                          child: Radiolist(title:q.key, state:  Get.find<Jollofx>().questionIndicator.value));
                     })
                   ],
                 ):
@@ -210,12 +216,13 @@ class _QuestionsState extends State<Questions> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ...Get.find<Jollofx>().question6.map((q){
+                    ...Get.find<Jollofx>().question6.entries.map((q){
                       return GestureDetector(
                           onTap: (){
-                            Get.find<Jollofx>().answer6.value = q;
+                            Get.find<Jollofx>().answer6.value = q.value;
+                            Get.find<Jollofx>().questionIndicator.value = q.key;
                           },
-                          child: Radiolist(title:q, state: "${Get.find<Jollofx>().answer6}"));
+                          child: Radiolist(title:q.key, state:  Get.find<Jollofx>().questionIndicator.value));
                     })
                   ],
                 ),
@@ -233,8 +240,9 @@ class _QuestionsState extends State<Questions> {
                           .questionNum
                           .value)
                     }:{
+                       // print(Get.find<Jollofx>().answer6),
                         Get.find<Jollofx>().isLoading.value=true,
-                        Get.find<Jollofx>().submitQuestionaire()
+                   Get.find<Jollofx>().submitQuestionaire()
                       };
                     },
                     child: Container(

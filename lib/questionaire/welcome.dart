@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homepage.dart';
 
 import '../utils/stylings.dart';
 import 'addmoney.dart';
@@ -139,7 +140,7 @@ class Welcome extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-              //  Get.to(()=>const Regemail());
+                Get.to(()=>const Homepage());
               },
               child: Container(
                 height: Get.height*0.055,

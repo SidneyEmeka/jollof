@@ -44,6 +44,7 @@ class Chooseportfolio extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             const Expanded(child: SizedBox()),
             Text("Welcome to Jollof",style: Stylings.titles.copyWith(fontSize: 20),),
             const SizedBox(height: 15,),
@@ -55,7 +56,7 @@ class Chooseportfolio extends StatelessWidget {
             GestureDetector(
               onTap: (){
                 Get.find<Jollofx>().portfolio.value="Fixed";
-                Get.find<Jollofx>().userInfo["investmentType"] = "Fixed";
+                Get.find<Jollofx>().userInfo["investmentType"] = "fix_investment";
                // print( Get.find<Jollofx>().userInfo);
               },
               child: Container(
@@ -94,7 +95,7 @@ class Chooseportfolio extends StatelessWidget {
             GestureDetector(
               onTap: (){
                 Get.find<Jollofx>().portfolio.value="Ai";
-                Get.find<Jollofx>().userInfo["investmentType"] = "Ai";
+                Get.find<Jollofx>().userInfo["investmentType"] = "ai_managed_portfilio";
                // print( Get.find<Jollofx>().userInfo);
               },
               child: Container(
@@ -131,8 +132,10 @@ class Chooseportfolio extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
+                //Get.find<Jollofx>().isLoading.value=true;
                 Get.find<Jollofx>().portfolio.value==""?Get.snackbar("Choose Portfolio", "Kindly select a portfolio type of your choice"):
-                Get.to(()=>const Regpin());
+                Get.find<Jollofx>().updateUserProfile(Get.to(()=>const Regpin()));
+               // print(Get.find<Jollofx>().userInfo);
               },
               child: Container(
                 height: Get.height*0.055,

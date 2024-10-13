@@ -39,8 +39,8 @@ class _HomescreenState extends State<Homescreen> {
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: Image.asset(
-              Jollofx.avatars[Get.find<Jollofx>().avatarIndex.value],
+            child: Image.network(
+              Get.find<Jollofx>().validatedUserAvatar.value,
               fit: BoxFit.contain,
             )),
         title: Text(

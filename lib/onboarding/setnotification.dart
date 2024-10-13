@@ -80,8 +80,8 @@ class Setnotification extends StatelessWidget {
                                       Get.find<Jollofx>().userInfo["allowNotifications"] = false;
                                       Get.back();
                                       Future.delayed(const Duration(milliseconds: 500),(){
-                                        Get.to(()=>const Signinmethod());
-                                      //  print( Get.find<Jollofx>().userInfo);
+                                        Get.find<Jollofx>().updateUserProfile( Get.to(()=>const Signinmethod()));
+                                      // print( Get.find<Jollofx>().userInfo);
                                       });
 
                                     },child: Text("Don't Allow",style: Stylings.subTitles.copyWith(color: Colors.blueAccent),textAlign: TextAlign.center,)),
@@ -89,8 +89,8 @@ class Setnotification extends StatelessWidget {
                                   Get.find<Jollofx>().userInfo["allowNotifications"] = true;
                                   Get.back();
                                   Future.delayed(const Duration(milliseconds: 500),(){
-                                   //print( Get.find<Jollofx>().userInfo);
-                                    Get.to(()=>const Signinmethod());
+                                 //  print( Get.find<Jollofx>().userInfo);
+                                    Get.find<Jollofx>().updateUserProfile( Get.to(()=>const Signinmethod()));
                                   });
 
                                 },child: Text("Allow",style: Stylings.subTitles.copyWith(color: Colors.blueAccent),textAlign: TextAlign.center,)),

@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
@@ -11,6 +13,7 @@ import '../homes/home/userdetails/termsandcondition.dart';
 import '../onboarding/awaitverification.dart';
 import '../onboarding/emailverified.dart';
 import '../onboarding/setavatar.dart';
+import '../onboarding/setnotification.dart';
 import '../questionaire/explainer.dart';
 import '../questionaire/welcome.dart';
 import 'apiclient.dart';
@@ -37,7 +40,7 @@ class Jollofx extends GetxController{
     "assets/images/15.png",
     "assets/images/16.png",
   ];
-  var avatarIndex = 0.obs;
+  var avatarIndex = 50.obs;
 
 
   var portfolio  = "".obs;
@@ -65,36 +68,37 @@ class Jollofx extends GetxController{
     else if(val==6){percentage=percentage+15;circular=1.0.obs;}
   }
 
+  var questionIndicator = "".obs;
   var answer1 = "".obs;
-  var question1 = [
-    "I'm seeking higher returns and am willing to accept higher risks.",
-    "I value a balance between returns and stability.",
-    "I prioritize capital preservation and am risk-averse."];
+  var question1 = {
+    "I'm seeking higher returns and am willing to accept higher risks.":"higher_returns_and_higher_risk",
+    "I value a balance between returns and stability.":"balance_between_returns_and_stability",
+    "I prioritize capital preservation and am risk-averse.":"capital_preservation_and_risk_averse"};
   var answer2 = "".obs;
-  var question2 = [
-    "I'm comfortable with some ups and downs.",
-    "I prefer stability and am willing to accept minimal fluctuations.",
-    "I'm open to moderate changes but cautious about significant swings."];
+  var question2 = {
+    "I'm comfortable with some ups and downs.":"comfortable_with_some_ups_and_downs",
+    "I prefer stability and am willing to accept minimal fluctuations.":"stability_and_willing_to_accept_minimal_fluction",
+    "I'm open to moderate changes but cautious about significant swings.":"moderate_changes_but_caution_about_significant_changes"};
   var answer3 = "".obs;
-  var question3 = [
-    "I would stay invested and wait for the market to recover.",
-    "I might consider adjusting my portfolio slightly to minimise losses.",
-    " I would be concerned and might consider a more conservative approach."];
+  var question3 = {
+    "I would stay invested and wait for the market to recover.":"stay_invented_and_wait_for_market_recovery",
+    "I might consider adjusting my portfolio slightly to minimise losses.":"consider_adjusting_portfilio_slightly_to_minimal_losses",
+    " I would be concerned and might consider a more conservative approach.":"consider_a_more_conservative_approach"};
   var answer4 = "".obs;
-  var question4 = [
-    "I have a longer-term perspective and can weather market fluctuations.",
-    "I have a balanced outlook with both short and medium-term goals.",
-    "I prefer shorter-term goals with quicker returns."];
+  var question4 = {
+    "I have a longer-term perspective and can weather market fluctuations.":"long_term_and_can-weather_market_fluction",
+    "I have a cbalanced outlook with both short and medium-term goals.":"have_balance_outlook_with_both_short_term_and_medium_term_goals",
+    "I prefer shorter-term goals with quicker returns.":"short_term_goals_with_quicker_returns"};
   var answer5 = "".obs;
-  var question5 = [
-    "I'm well-versed and actively follow market trends.",
-    "I have a moderate understanding and keep an eye on key developments.",
-    "I'm relatively new and prefer straightforward, low-risk options."];
+  var question5 = {
+    "I'm well-versed and actively follow market trends.":"well_versed_and_actively_follow_market_trends",
+    "I have a moderate understanding and keep an eye on key developments.":"moderate_understanding_and_keeps_an_eye_on_key_developments",
+    "I'm relatively new and prefer straightforward, low-risk options.":"relatively_new_and_prefer_straightforward_low_risk_options"};
   var answer6 = "".obs;
-  var question6 = [
-    "I am open to making adjustments based on market conditions.",
-    "I prefer a steady course and may make minimal changes.",
-    "I tend to avoid making hasty decisions and would stay the course."];
+  var question6 = {
+    "I am open to making adjustments based on market conditions.":"open_to_market_adjustments_based_on_market_conditions",
+    "I prefer a steady course and may make minimal changes.":"steady_course_and_makes_minimal_changes",
+    "I tend to avoid making hasty decisions and would stay the course.":"avoid_making_hasty_decisions_and_would_stay_the_course"};
 
 
   var explainer = 1.obs;
@@ -216,20 +220,20 @@ class Jollofx extends GetxController{
   }
 
   var userInfo = {
-    "firstname": "".obs,
-    "lastname": "".obs,
-    "othername": "".obs,
-    "country": "".obs,
-    "city": "".obs,
-    "street": "".obs,
-    "state": "".obs,
-    "postalCode": "".obs,
-    "dob": "".obs,
-    "annualIncome": "".obs,
-    "investmentType": "".obs,
-    "pin": "".obs,
-    "allowNotifications": true.obs,
-    "avatar": "".obs
+    "firstname": "",
+    "lastname": "",
+    "othername": "",
+    "country": "",
+    "city": "",
+    "street": "",
+    "state": "",
+    "postalCode": "",
+    "dob": "",
+    "annualIncome": "zero_to_ten_thousand_dollars",
+    "investmentType": "fix_investment",
+    "pin": "",
+    "allowNotifications": true,
+    "avatar": ""
   };
 
 
@@ -317,9 +321,11 @@ class Jollofx extends GetxController{
   //   super.onClose();
   // }
   var isLoading = false.obs;
+  var secondIsLoading = false.obs;
   var errorText = ''.obs;
   var postSuccessReturn = {}.obs;
   var validatedUserEmail = ''.obs;
+  var validatedUserAvatar = ''.obs;
   var userTokens = {}.obs;
   var statusCode = 0.obs;
 
@@ -466,7 +472,16 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
        "pin": thePin,
        "deviceToken": devId
      }).then((l){
+       print(l);
        if(statusCode.value==0){
+         final mainKey = l['data'];
+         userTokens.value = {
+           'id':mainKey['user']["id"],
+           'promoCode':mainKey['user']["promoCode"],
+           'accessToken':mainKey['credentials']["accessToken"],
+           'refreshToken':mainKey['credentials']["refreshToken"],
+           'expiresIn':mainKey['credentials']["expiresIn"],
+         };
          isLoading.value=false;
          errorText.value = "";
          Get.to(()=>const Questions());
@@ -479,12 +494,13 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
 
  //submitQuestions
  submitQuestionaire(){
-   print(answer1,);
-   print(answer2,);
-   print(answer3,);
-   print(answer4,);
-   print(answer5,);
-   print(answer6,);
+   // print(answer1,);
+   // print(answer2,);
+   // print(answer3,);
+   // print(answer4,);
+   // print(answer5,);
+   // print(answer6,);
+  
 
    Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/user/questionare/submit", body: {
      'investmentRiskPreference': answer1.value,
@@ -499,7 +515,46 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
      calcPercent(questionNum.value);
    });
  }
+ 
+ //updateProfile
+updateUserProfile(Future<dynamic>? toWhere){
+   Apiclientserver().makePatchRequest("https://jollof.tatspace.com/api/v1/user/update", userInfo).then((a){
+    if(statusCode.value==0){
+      print(a);
+     // print(userTokens);
+     // print(userInfo);
+     // final imgUrl = a["data"]["avatarImageUrl"];
+      //print(a?["data"]["avatarImageUrl"]);
+     // validatedUserAvatar.value = imgUrl;
+      //print('Set to '+a?["data"]["avatarImageUrl"]);
+      secondIsLoading.value=false;
+     toWhere!;
+    }
+    else{
+      secondIsLoading.value=false;
+    }
+   });
+}
 
+//setAvatar
+setAvatar(Future<dynamic>? toWhere){
+  Apiclientserver().makePatchRequest("https://jollof.tatspace.com/api/v1/user/update", {"firstname": "", "lastname": "", "othername": "", "country": "", "city": "", "street": "", "state": "", "postalCode": "", "dob": "", "annualIncome": "zero_to_ten_thousand_dollars", "investmentType": "fix_investment", "pin": "1111", "allowNotifications": true, "avatar": "rebecca"}).then((a){
+   print(a);
+    if(statusCode.value==0){
+      //print(jsonEncode(userInfo));
+      //final imgUrl = a["data"]["avatarImageUrl"];
+      //print(a['data']['annualIncome']);
+      //validatedUserAvatar.value = imgUrl;
+      //print('Set to '+a?["data"]["avatarImageUrl"]);
+      secondIsLoading.value=false;
+      toWhere!;
+    }
+    else{
+      secondIsLoading.value=false;
+    }
+  });
+
+}
 
 
 
