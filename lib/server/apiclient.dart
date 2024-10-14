@@ -149,4 +149,34 @@ class Apiclientserver {
     }
   }
 
+  Future<Map<String, dynamic>> makePutRequest(String url,String id) async {
+    final formedUrl = '$url/$id';
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${Get.find<Jollofx>().userTokens["accessToken"]}',
+    };
+
+    try {
+      final response = await http.put(Uri.parse(formedUrl), headers: headers);
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> returned = jsonDecode(response.body);
+        Get.find<Jollofx>().statusCode.value = 0;
+        print('Resource updated successfully');
+        print('Response: ${response.body}');
+        return returned;
+      } else {
+        Get.find<Jollofx>().statusCode.value = 1;
+        print('Failed to update resource. Status code: ${response.statusCode}');
+        print('Response: ${response.body}');
+        return {};
+      }
+    } catch (e) {
+      Get.find<Jollofx>().statusCode.value = 2;
+      print('Error occurred: $e');
+      return {};
+    }
+  }
+
 }

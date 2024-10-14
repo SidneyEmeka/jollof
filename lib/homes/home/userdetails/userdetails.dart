@@ -731,27 +731,27 @@ class _UserdetailsState extends State<Userdetails> {
                                   onTap: (){
                                     Get.find<Jollofx>().userInfo["annualIncome"] = "zero_to_ten_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$0 - \$10,000";
-                                  },child: Radiolist(title: "\$0 - \$10,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                                  },child: Radiolist(title: "\$0 - \$10,000", state: Get.find<Jollofx>().anualIncome.value)),
                               GestureDetector(
                                   onTap: (){
                                     Get.find<Jollofx>().userInfo["annualIncome"] = "ten_to_fifly_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$10,000 - \$50,000";
-                                  },child: Radiolist(title: "\$10,000 - \$50,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                                  },child: Radiolist(title: "\$10,000 - \$50,000", state: Get.find<Jollofx>().anualIncome.value)),
                               GestureDetector(
                                   onTap: (){
                                     Get.find<Jollofx>().userInfo["annualIncome"] = "fifty_thousand_to_one_hundred_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$50,000 - \$100,000";
-                                  },child: Radiolist(title: "\$50,000 - \$100,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                                  },child: Radiolist(title: "\$50,000 - \$100,000", state: Get.find<Jollofx>().anualIncome.value)),
                               GestureDetector(
                                   onTap: (){
                                     Get.find<Jollofx>().userInfo["annualIncome"] = "one_hundred_thousand_to_five_hundred_thousand_dollars";
                                     Get.find<Jollofx>().anualIncome.value = "\$100,000 - \$500,000";
-                                  },child: Radiolist(title: "\$100,000 - \$500,000", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                                  },child: Radiolist(title: "\$100,000 - \$500,000", state: Get.find<Jollofx>().anualIncome.value)),
                               GestureDetector(
                                   onTap: (){
                                     Get.find<Jollofx>().userInfo["annualIncome"] = "five_hundred_thousand_dollars_and_above";
                                     Get.find<Jollofx>().anualIncome.value = "\$500,000 and above";
-                                  },child: Radiolist(isLast: true,title: "\$500,000 and above", state: "${Get.find<Jollofx>().anualIncome.value}")),
+                                  },child: Radiolist(isLast: true,title: "\$500,000 and above", state: Get.find<Jollofx>().anualIncome.value)),
 
                             ],
                           ),
@@ -794,8 +794,8 @@ class _UserdetailsState extends State<Userdetails> {
           ?GestureDetector(
           onTap: () {
             Get.find<Jollofx>().isLoading.value=true;
-            print(Get.find<Jollofx>().userInfo);
-           Future.delayed(Duration(seconds: 2),(){
+            //print(Get.find<Jollofx>().userInfo);
+           Future.delayed(const Duration(seconds: 2),(){
              Get.find<Jollofx>().updateUserProfile(Get.to(()=>const Termsandcondition()));
            }).then((v){
              Get.find<Jollofx>().userDetailsNextPage();

@@ -6,10 +6,13 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:jollof/homes/home/tipsandtricks/atipfullread.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import 'package:jollof/questionaire/questions.dart';
 
+import '../homes/home/tipsandtricks/alltipsandtricks.dart';
 import '../homes/home/userdetails/termsandcondition.dart';
+import '../model/tipmodel.dart';
 import '../onboarding/awaitverification.dart';
 import '../onboarding/emailverified.dart';
 import '../onboarding/setavatar.dart';
@@ -527,6 +530,64 @@ updateUserProfile(Future<dynamic>? toWhere){
     }
    });
 }
+
+
+var apiTips = [].obs;
+ var isLiked = false.obs;
+//getTipsandTricks
+getTipsandTricks(){
+   Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/tips/filter?sortBy=createdAt&orderBy=desc&page=1&limit=5").then((t){
+     //print(t);
+     if(statusCode.value==0){
+       final tip = tipFromJson(jsonEncode(t));
+       apiTips.value = tip.data;
+       // print(1);
+       isLoading.value=false;
+       // print(2);
+       Get.to(()=>const Alltipsandtricks());
+     }
+     else{
+       isLoading.value=false;
+     }
+   });
+}
+
+//togetaparticulartip
+  readATipFully(String tipId){
+    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/tips/$tipId").then((t){
+     // print(t['data']);
+      if(statusCode.value==0){
+        isLoading.value=false;
+        Get.to(()=>Atipfullread(whichTip: t['data']));
+      }
+      else{
+        isLoading.value=false;
+      }
+      // print(2);
+    });
+  }
+
+
+var likedorUnlikedId = [""].obs;
+  //tolikeorUnlikeAtip
+likeATip(String id){
+  Apiclientserver().makePutRequest("https://jollof.tatspace.com/api/v1/tips/like", id).then((l){
+   // print(l['data']["post"]);
+    if(statusCode.value==0){
+      print("liked");
+      likedorUnlikedId.add(l['data']["post"]);
+    }
+  });
+}
+//toUnlikeAtip
+  unlikeATip(String id){
+    Apiclientserver().makePutRequest("https://jollof.tatspace.com/api/v1/tips/unlike", id).then((u){
+      if(statusCode.value==0){
+        print("unliked");
+        likedorUnlikedId.remove(u['data']["post"]);
+      }
+    });
+  }
 
 
 

@@ -2,7 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:jollof/homes/home/tipsandtricks.dart';
+import 'package:jollof/homes/home/tipsandtricks/alltipsandtricks.dart';
 import 'package:jollof/homes/home/userdetails/userdetails.dart';
 import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/reusables/cryptorank.dart';
@@ -72,7 +72,7 @@ class _HomescreenState extends State<Homescreen> {
         centerTitle: true,
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
-      body: Container(
+      body: Obx(()=>Container(
         padding: const EdgeInsets.only(top: 20),
         width: Get.width,
         height: Get.height,
@@ -88,8 +88,8 @@ class _HomescreenState extends State<Homescreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                 width: Get.width,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey.shade50
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.shade50
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -253,6 +253,7 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
             ),
+            Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             SizedBox(height: Get.height * 0.02),
             //crypto
             Container(
@@ -268,11 +269,11 @@ class _HomescreenState extends State<Homescreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                 //btc
+                  //btc
                   Cryptorank(imgUrl: "assets/images/btc.png", percent: Get.find<Jollofx>().btcPercentChange.toDouble(), price: Get.find<Jollofx>().btcPrice, name: "Bitcoin", slug: "BTC"),
                   //eth
                   Cryptorank(imgUrl: "assets/images/eth.png", percent: Get.find<Jollofx>().ethPercentChange.toDouble(), price: Get.find<Jollofx>().ethPrice, name: "Etherum", slug: "ETH"),
-                 //ada
+                  //ada
                   Cryptorank(isLast: true,imgUrl: "assets/images/ada.png", percent: Get.find<Jollofx>().adaPercentChange.toDouble(), price: Get.find<Jollofx>().adaPrice, name: "Cardano", slug: "ADA"),
                 ],
               ),
@@ -280,14 +281,15 @@ class _HomescreenState extends State<Homescreen> {
             //tips and tricks
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Tipsandtricks());
+                Get.find<Jollofx>().isLoading.value=true;
+                Get.find<Jollofx>().getTipsandTricks();
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 width: Get.width,
                 height: Get.height * 0.3,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade100),
+                    border: Border.all(color: Colors.grey.shade100),
                     borderRadius: BorderRadius.circular(10),
                     color: Stylings.bgColor),
                 child: Column(
@@ -351,10 +353,10 @@ class _HomescreenState extends State<Homescreen> {
                                     const Icon(Icons.circle,color: Colors.purple,size: 10,),
                                     const SizedBox(width: 10,),
                                     RichText(text: TextSpan(
-                                      children: [
-                                        TextSpan(text: "50% ",style: Stylings.titles.copyWith(fontSize: 10)),
-                                        TextSpan(text: "Growth on your investment",style: Stylings.subTitles.copyWith(fontSize: 10)),
-                                      ]
+                                        children: [
+                                          TextSpan(text: "50% ",style: Stylings.titles.copyWith(fontSize: 10)),
+                                          TextSpan(text: "Growth on your investment",style: Stylings.subTitles.copyWith(fontSize: 10)),
+                                        ]
                                     ))
                                   ],
                                 ),
@@ -404,14 +406,13 @@ class _HomescreenState extends State<Homescreen> {
                       ),
                       child: Text("View all tips",style: Stylings.titles.copyWith(fontSize: 12),),
                     )
-                    ],
+                  ],
                 ),
               ),
             ),
-
           ],
         ),
-      ),
+      ),)
     );
   }
 }
