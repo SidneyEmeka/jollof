@@ -150,23 +150,28 @@ class _HomescreenState extends State<Homescreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //add money
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        FluentIcons.wallet_credit_card_48_regular,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      const SizedBox(
-                        height: 1,
-                      ),
-                      Text(
-                        "Add money",
-                        style: Stylings.subTitles.copyWith(fontSize: 10),
-                      )
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.find<Jollofx>().initiatePaymentMethod();
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          FluentIcons.wallet_credit_card_48_regular,
+                          size: 20,
+                          color: Colors.black,
+                        ),
+                        const SizedBox(
+                          height: 1,
+                        ),
+                        Text(
+                          "Add money",
+                          style: Stylings.subTitles.copyWith(fontSize: 10),
+                        )
+                      ],
+                    ),
                   ),
                   //withdraw
                   Column(
@@ -279,6 +284,7 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 10),
             //tips and tricks
             GestureDetector(
               onTap: (){

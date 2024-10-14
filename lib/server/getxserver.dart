@@ -653,6 +653,16 @@ getAllNotifications(){
 }
 
 
+///PAYMENTSS///
+initiatePaymentMethod() {
+  Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/payment/link/redeem", body:
+  {
+    "paymentLink": "https://pay.squadco.com/SQVOIC6386451186843300001"
+  });
+
+  }
+
+
 
 
 }
