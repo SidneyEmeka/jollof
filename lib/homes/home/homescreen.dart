@@ -60,6 +60,7 @@ class _HomescreenState extends State<Homescreen> {
               // ),
               const SizedBox(width: 10),
               IconButton(alignment: Alignment.centerRight,onPressed: (){
+                Get.find<Jollofx>().isLoading.value=true;
                 Get.to(()=>const Allnotifications());
               }, icon: const Icon(
                 Icons.notifications_none_outlined,
@@ -253,7 +254,6 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
             ),
-            Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             SizedBox(height: Get.height * 0.02),
             //crypto
             Container(

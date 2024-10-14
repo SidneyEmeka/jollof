@@ -23,6 +23,31 @@ import 'apiclient.dart';
 
 class Jollofx extends GetxController{
   var obscure = true.obs;
+  //date formatter
+  getRelativeTime(String isoString) {
+    // Parse the ISO 8601 string to DateTime
+    DateTime dateTime = DateTime.parse(isoString);
+
+    // Get the current time
+    DateTime now = DateTime.now().toUtc();
+
+    // Calculate the difference
+    Duration difference = now.difference(dateTime);
+
+    if (difference.inDays > 365) {
+      return "${difference.inDays ~/ 365} ${difference.inDays ~/ 365 == 1 ? 'year' : 'years'} ago";
+    } else if (difference.inDays > 30) {
+      return "${difference.inDays ~/ 30} ${difference.inDays ~/ 30 == 1 ? 'month' : 'months'} ago";
+    } else if (difference.inDays > 0) {
+      return "${difference.inDays} ${difference.inDays == 1 ? 'day' : 'days'} ago";
+    } else if (difference.inHours > 0) {
+      return "${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'} ago";
+    } else if (difference.inMinutes > 0) {
+      return "${difference.inMinutes} ${difference.inMinutes == 1 ? 'minute' : 'minutes'} ago";
+    } else {
+      return "just now";
+    }
+  }
 
   var avatarIndex = 50.obs;
 
@@ -509,6 +534,7 @@ var apiTips = [].obs;
  var isLiked = false.obs;
 //getTipsandTricks
 getTipsandTricks(){
+  Get.to(()=>const Alltipsandtricks());
    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/tips/filter?sortBy=createdAt&orderBy=asc&page=1&limit=5").then((t){
      //print(t);
      if(statusCode.value==0){
@@ -517,7 +543,6 @@ getTipsandTricks(){
        // print(1);
        isLoading.value=false;
        // print(2);
-       Get.to(()=>const Alltipsandtricks());
      }
      else{
        isLoading.value=false;
@@ -573,6 +598,7 @@ likeATip(String id){
     feedCrypto();
   });
   }
+
   //WalletApi
   var usdBalance = 20.obs;
   var ngnBalance = 50000.obs;
@@ -608,6 +634,23 @@ getWalletDetails(){
     });
     // Apiclientserver().pingTatspace();
   }
+
+
+  ///notifications///
+  var userNotifications = [].obs;
+//getUserActivites
+getAllNotifications(){
+    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/notification/activities?page=1&limit=10").then((n){
+      if(statusCode.value==0){
+        print(n['data']);
+        userNotifications.value=n['data'];
+        isLoading.value=false;
+      }
+      else{
+        isLoading.value=false;
+      }
+    });
+}
 
 
 

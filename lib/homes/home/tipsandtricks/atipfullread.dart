@@ -12,32 +12,6 @@ class Atipfullread extends StatelessWidget {
   final dynamic whichTip;
   const Atipfullread({super.key, required this.whichTip});
 
-  //date formatter
-  String getRelativeTime(String isoString) {
-    // Parse the ISO 8601 string to DateTime
-    DateTime dateTime = DateTime.parse(isoString);
-
-    // Get the current time
-    DateTime now = DateTime.now().toUtc();
-
-    // Calculate the difference
-    Duration difference = now.difference(dateTime);
-
-    if (difference.inDays > 365) {
-      return "${difference.inDays ~/ 365} ${difference.inDays ~/ 365 == 1 ? 'year' : 'years'} ago";
-    } else if (difference.inDays > 30) {
-      return "${difference.inDays ~/ 30} ${difference.inDays ~/ 30 == 1 ? 'month' : 'months'} ago";
-    } else if (difference.inDays > 0) {
-      return "${difference.inDays} ${difference.inDays == 1 ? 'day' : 'days'} ago";
-    } else if (difference.inHours > 0) {
-      return "${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'} ago";
-    } else if (difference.inMinutes > 0) {
-      return "${difference.inMinutes} ${difference.inMinutes == 1 ? 'minute' : 'minutes'} ago";
-    } else {
-      return "just now";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
