@@ -78,7 +78,7 @@ class _AlltipsandtricksState extends State<Alltipsandtricks> {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body:Obx(()=>Container(
-        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
         width: Get.width,
         height: Get.height,
         child: Get.find<Jollofx>().isLoading.value==true? AlertDialog(backgroundColor: Colors.transparent,content: Center(child: CircularProgressIndicator(color: Stylings.yellow,strokeCap: StrokeCap.round,)),):

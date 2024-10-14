@@ -87,24 +87,25 @@ class Atipfullread extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 15),
+                //padding: const EdgeInsets.only(left: 15),
                 width: Get.width,
                 height: Get.height*0.05,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade300,width: 0.0),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('${whichTip['stats']['likeCount']} likes',style: Stylings.subTitles.copyWith(fontSize: 11),),
-                    const Expanded(child: SizedBox()),
-                   IconButton(onPressed: (){
-                     Get.find<Jollofx>().likedorUnlikedId.contains(whichTip['id'])?Get.find<Jollofx>().unlikeATip(whichTip['id']) :Get.find<Jollofx>().likeATip(whichTip['id']);
-                     }, icon: Get.find<Jollofx>().likedorUnlikedId.contains(whichTip['id'])?Icon(FluentIcons.heart_48_filled,color: Colors.red,size: 17,) :Icon(FluentIcons.heart_48_regular,color: Colors.black,size: 17,)),
-                    IconButton(onPressed: ()async{await Share.share(
+                    //Text('${whichTip['stats']['likeCount']} likes',style: Stylings.subTitles.copyWith(fontSize: 11),),
+                   // const Expanded(child: SizedBox()),
+                    IconButton(padding: EdgeInsets.zero,constraints: const BoxConstraints(maxWidth: 1),onPressed: ()async{await Share.share(
                         "${whichTip.title}");}, icon: const Icon(FluentIcons.share_ios_48_regular,color: Colors.black,size: 17,)),
-                    IconButton(onPressed: (){
+                    IconButton(padding: EdgeInsets.zero,constraints: const BoxConstraints(maxWidth: 1),onPressed: (){
+                     Get.find<Jollofx>().likedorUnlikedId.contains(whichTip['id'])?Get.find<Jollofx>().unlikeATip(whichTip['id']) :Get.find<Jollofx>().likeATip(whichTip['id']);
+                     }, icon: Get.find<Jollofx>().likedorUnlikedId.contains(whichTip['id'])?const Icon(FluentIcons.heart_48_filled,color: Colors.red,size: 17,) :const Icon(FluentIcons.heart_48_regular,color: Colors.black,size: 17,)),
+          Text('${whichTip['stats']['likeCount']}',style: Stylings.subTitles.copyWith(fontSize: 11),),
+                IconButton(padding: EdgeInsets.zero,constraints: const BoxConstraints(maxWidth: 1),onPressed: (){
                     }, icon: const Icon(FluentIcons.more_vertical_48_filled,color: Colors.black,size: 17,)),
                   ],
                 ),

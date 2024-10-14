@@ -16,7 +16,7 @@ class Tipcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 15),
       width: Get.width,
       height: Get.height*0.5,
       decoration: BoxDecoration(
@@ -38,7 +38,7 @@ class Tipcard extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             width: Get.width,
             height: Get.height*0.04,
             decoration: BoxDecoration(
@@ -49,22 +49,22 @@ class Tipcard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(time,style: Stylings.subTitles.copyWith(fontSize: 11),),
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
                 Obx(()=>IconButton(onPressed: (){
                   Get.find<Jollofx>().likedorUnlikedId.contains(id)?Get.find<Jollofx>().unlikeATip(id) :Get.find<Jollofx>().likeATip(id);
-                }, icon: Get.find<Jollofx>().likedorUnlikedId.contains(id)?Icon(FluentIcons.heart_48_filled,color: Colors.red,size: 17,) :Icon(FluentIcons.heart_48_regular,color: Colors.black,size: 17,)),
+                }, icon: Get.find<Jollofx>().likedorUnlikedId.contains(id)?const Icon(FluentIcons.heart_48_filled,color: Colors.red,size: 17,) :const Icon(FluentIcons.heart_48_regular,color: Colors.black,size: 17,)),
                 ),
                 IconButton(onPressed: ()async{await Share.share(
-                    title);}, icon: Icon(FluentIcons.share_ios_48_regular,color: Colors.black,size: 17,)),
+                    title);}, icon: const Icon(FluentIcons.share_ios_48_regular,color: Colors.black,size: 17,)),
                 IconButton(onPressed: (){
 
-                }, icon: Icon(FluentIcons.more_vertical_48_filled,color: Colors.black,size: 17,)),
+                }, icon: const Icon(FluentIcons.more_vertical_48_filled,color: Colors.black,size: 17,)),
               ],
             ),
           ),
           Container(
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 10,right: 20),
+            padding: const EdgeInsets.only(left: 10,right: 20),
             width: Get.width*0.9,
             height: Get.height*0.05,
             child: Text(title,style: Stylings.titles.copyWith(fontSize: 10),overflow: TextOverflow.fade,),

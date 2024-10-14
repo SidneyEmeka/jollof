@@ -153,30 +153,6 @@ class Jollofx extends GetxController{
   var investmentDurationAt = 0.obs;
   var investmentAmount = 0.0.obs;
 
-  var apiData = [].obs;
-  var btcPrice = 61866.72346429836;
-  var btcPercentChange = 0.6628;
-  var ethPrice = 2435.344120492847;
-  var ethPercentChange = 0.0148;
-  var adaPrice = 0.342159264285;
-  var adaPercentChange = 2.5879;
-
-  //crypyoapi
-  feedCrypto(){
-    Apiclientserver().getCrypto().then((v){
-      apiData.value = v['data'];
-      btcPrice = v['data'][0]["values"]["USD"]["price"];
-      btcPercentChange = v['data'][0]["values"]["USD"]["percentChange24h"];
-      adaPrice = v['data'][2]["values"]["USD"]["price"];
-      adaPercentChange = v['data'][2]["values"]["USD"]["percentChange24h"];
-      ethPrice = v['data'][1]["values"]["USD"]["price"];
-      ethPercentChange = v['data'][1]["values"]["USD"]["percentChange24h"];
-    });
-   // Apiclientserver().pingTatspace();
-  }
-
-
-
 
 
 //user details
@@ -285,9 +261,6 @@ class Jollofx extends GetxController{
   // }
   @override
   void onInit() {
-    //feed crypto rates
-    feedCrypto();
-
     ///Implement worker that refreshes token every 3500 seconds cos tokens expires in 3600 seconds
     //every time the token map stops being null or has data
     // ever(userTokens, (_) {
@@ -531,12 +504,12 @@ updateUserProfile(Future<dynamic>? toWhere){
    });
 }
 
-
+//TipsAndTricks
 var apiTips = [].obs;
  var isLiked = false.obs;
 //getTipsandTricks
 getTipsandTricks(){
-   Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/tips/filter?sortBy=createdAt&orderBy=desc&page=1&limit=5").then((t){
+   Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/tips/filter?sortBy=createdAt&orderBy=asc&page=1&limit=5").then((t){
      //print(t);
      if(statusCode.value==0){
        final tip = tipFromJson(jsonEncode(t));
@@ -567,7 +540,7 @@ getTipsandTricks(){
     });
   }
 
-
+///immplemment permanency
 var likedorUnlikedId = [""].obs;
   //tolikeorUnlikeAtip
 likeATip(String id){
@@ -579,6 +552,7 @@ likeATip(String id){
     }
   });
 }
+
 //toUnlikeAtip
   unlikeATip(String id){
     Apiclientserver().makePutRequest("https://jollof.tatspace.com/api/v1/tips/unlike", id).then((u){
@@ -590,9 +564,53 @@ likeATip(String id){
   }
 
 
-
-
   
+  ///FeedingHomepage///
+  //Feed home page
+  feedHome(){
+  getWalletDetails();
+  Future.delayed(Duration(seconds: 1),(){
+    feedCrypto();
+  });
+  }
+  //WalletApi
+  var usdBalance = 20.obs;
+  var ngnBalance = 50000.obs;
+getWalletDetails(){
+  Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/wallet").then((w){
+    if(statusCode.value==0){
+      final data = w['data'];
+      usdBalance.value = data['usdBalance'];
+      ngnBalance.value = data['ngnBalance'];
+      print("wallet retrieved");
+    }
+  });
+}
+
+  //crypyoapi
+  var apiData = [].obs;
+  var btcPrice = 61866.72346429836.obs;
+  var btcPercentChange = 0.6628.obs;
+  var ethPrice = 2435.344120492847.obs;
+  var ethPercentChange = 0.0148.obs;
+  var adaPrice = 0.342159264285.obs;
+  var adaPercentChange = 2.5879.obs;
+  feedCrypto(){
+    Apiclientserver().getCrypto().then((v){
+      apiData.value = v['data'];
+      btcPrice.value = v['data'][0]["values"]["USD"]["price"];
+      btcPercentChange.value = v['data'][0]["values"]["USD"]["percentChange24h"];
+      adaPrice.value = v['data'][2]["values"]["USD"]["price"];
+      adaPercentChange.value = v['data'][2]["values"]["USD"]["percentChange24h"];
+      ethPrice.value = v['data'][1]["values"]["USD"]["price"];
+      ethPercentChange.value = v['data'][1]["values"]["USD"]["percentChange24h"];
+      print("Crypto fed");
+    });
+    // Apiclientserver().pingTatspace();
+  }
+
+
+
 
 }
 

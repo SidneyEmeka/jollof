@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homes/home/notifications/allnotifications.dart';
 import 'package:jollof/homes/home/tipsandtricks/alltipsandtricks.dart';
 import 'package:jollof/homes/home/userdetails/userdetails.dart';
 import 'package:jollof/server/apiclient.dart';
@@ -23,7 +24,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   void initState() {
-    Get.find<Jollofx>().feedCrypto();
+    Get.find<Jollofx>().feedHome();
     super.initState();
   }
 
@@ -47,26 +48,25 @@ class _HomescreenState extends State<Homescreen> {
           "Hello ${Get.find<Jollofx>().validatedlastName}",
           style: Stylings.titles,
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.card_giftcard_outlined,
-                  size: 17,
-                  color: Colors.black,
-                ),
-                SizedBox(width: 10),
-                Icon(
-                  Icons.notifications_none_outlined,
-                  size: 17,
-                  color: Colors.black,
-                )
-              ],
-            ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Icon(
+              //   Icons.card_giftcard_outlined,
+              //   size: 17,
+              //   color: Colors.black,
+              // ),
+              const SizedBox(width: 10),
+              IconButton(alignment: Alignment.centerRight,onPressed: (){
+                Get.to(()=>const Allnotifications());
+              }, icon: const Icon(
+                Icons.notifications_none_outlined,
+                size: 19,
+                color: Colors.black,
+              ))
+            ],
           ),
         ],
         centerTitle: true,
@@ -128,14 +128,14 @@ class _HomescreenState extends State<Homescreen> {
                 children: [
                   Balancecards(
                     thecolor: Stylings.yellow,
-                    type: 'USDT',
+                    type: 'USD', balance: Get.find<Jollofx>().usdBalance.value, currency: '\$',
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Balancecards(
+                   Balancecards(
                     thecolor: Colors.green,
-                    type: 'NGN',
+                    type: 'NGN', balance: Get.find<Jollofx>().ngnBalance.value, currency: '₦',
                   )
                 ],
               ),
@@ -270,11 +270,11 @@ class _HomescreenState extends State<Homescreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   //btc
-                  Cryptorank(imgUrl: "assets/images/btc.png", percent: Get.find<Jollofx>().btcPercentChange.toDouble(), price: Get.find<Jollofx>().btcPrice, name: "Bitcoin", slug: "BTC"),
+                  Cryptorank(imgUrl: "assets/images/btc.png", percent: Get.find<Jollofx>().btcPercentChange.toDouble(), price: Get.find<Jollofx>().btcPrice.value, name: "Bitcoin", slug: "BTC"),
                   //eth
-                  Cryptorank(imgUrl: "assets/images/eth.png", percent: Get.find<Jollofx>().ethPercentChange.toDouble(), price: Get.find<Jollofx>().ethPrice, name: "Etherum", slug: "ETH"),
+                  Cryptorank(imgUrl: "assets/images/eth.png", percent: Get.find<Jollofx>().ethPercentChange.toDouble(), price: Get.find<Jollofx>().ethPrice.value, name: "Etherum", slug: "ETH"),
                   //ada
-                  Cryptorank(isLast: true,imgUrl: "assets/images/ada.png", percent: Get.find<Jollofx>().adaPercentChange.toDouble(), price: Get.find<Jollofx>().adaPrice, name: "Cardano", slug: "ADA"),
+                  Cryptorank(isLast: true,imgUrl: "assets/images/ada.png", percent: Get.find<Jollofx>().adaPercentChange.toDouble(), price: Get.find<Jollofx>().adaPrice.value, name: "Cardano", slug: "ADA"),
                 ],
               ),
             ),
