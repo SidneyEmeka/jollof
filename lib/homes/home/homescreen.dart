@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:jollof/homes/home/notifications/allnotifications.dart';
 import 'package:jollof/homes/home/tipsandtricks/alltipsandtricks.dart';
 import 'package:jollof/homes/home/userdetails/userdetails.dart';
@@ -129,14 +130,14 @@ class _HomescreenState extends State<Homescreen> {
                 children: [
                   Balancecards(
                     thecolor: Stylings.yellow,
-                    type: 'USD', balance: Get.find<Jollofx>().usdBalance.value, currency: '\$',
+                    type: 'USD', balance: Get.find<Jollofx>().usdBalance, currency: '\$',
                   ),
                   const SizedBox(
                     width: 15,
                   ),
                    Balancecards(
                     thecolor: Colors.green,
-                    type: 'NGN', balance: Get.find<Jollofx>().ngnBalance.value, currency: '₦',
+                    type: 'NGN', balance: Get.find<Jollofx>().ngnBalance, currency: '₦',
                   )
                 ],
               ),
@@ -270,11 +271,11 @@ class _HomescreenState extends State<Homescreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   //btc
-                  Cryptorank(imgUrl: "assets/images/btc.png", percent: Get.find<Jollofx>().btcPercentChange.toDouble(), price: Get.find<Jollofx>().btcPrice.value, name: "Bitcoin", slug: "BTC"),
+                  Cryptorank(imgUrl: "assets/images/btc.png", percent: Get.find<Jollofx>().btcPercentChange.toDouble(), price: NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().btcPrice.value), name: "Bitcoin", slug: "BTC"),
                   //eth
-                  Cryptorank(imgUrl: "assets/images/eth.png", percent: Get.find<Jollofx>().ethPercentChange.toDouble(), price: Get.find<Jollofx>().ethPrice.value, name: "Etherum", slug: "ETH"),
+                  Cryptorank(imgUrl: "assets/images/eth.png", percent: Get.find<Jollofx>().ethPercentChange.toDouble(), price: NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().ethPrice.value), name: "Etherum", slug: "ETH"),
                   //ada
-                  Cryptorank(isLast: true,imgUrl: "assets/images/ada.png", percent: Get.find<Jollofx>().adaPercentChange.toDouble(), price: Get.find<Jollofx>().adaPrice.value, name: "Cardano", slug: "ADA"),
+                  Cryptorank(isLast: true,imgUrl: "assets/images/ada.png", percent: Get.find<Jollofx>().adaPercentChange.toDouble(), price: NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().adaPrice.value), name: "Cardano", slug: "ADA"),
                 ],
               ),
             ),

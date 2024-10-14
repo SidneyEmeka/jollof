@@ -600,14 +600,14 @@ likeATip(String id){
   }
 
   //WalletApi
-  var usdBalance = 20.obs;
-  var ngnBalance = 50000.obs;
+   dynamic usdBalance = 20;
+  dynamic ngnBalance = 50000;
 getWalletDetails(){
   Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/wallet").then((w){
     if(statusCode.value==0){
       final data = w['data'];
-      usdBalance.value = data['usdBalance'];
-      ngnBalance.value = data['ngnBalance'];
+      usdBalance = data['usdBalance'];
+      ngnBalance = data['ngnBalance'];
       print("wallet retrieved");
     }
   });

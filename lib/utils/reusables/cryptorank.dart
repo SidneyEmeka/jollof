@@ -9,7 +9,7 @@ class Cryptorank extends StatelessWidget {
   final String name;
   final String slug;
   final num percent;
-  final num price;
+  final dynamic price;
   final bool isLast;
   const Cryptorank({super.key, required this.imgUrl, required this.percent, required this.price, required this.name, required this.slug, this.isLast=false});
 
@@ -55,7 +55,7 @@ class Cryptorank extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "\$${price.toStringAsFixed(2)}",
+                "\$$price",
                 style: Stylings.titles
                     .copyWith(fontSize: 12),
               ),

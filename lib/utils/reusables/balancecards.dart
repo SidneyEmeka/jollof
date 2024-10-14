@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:jollof/server/getxserver.dart';
 
 import '../stylings.dart';
@@ -10,7 +11,7 @@ class Balancecards extends StatelessWidget {
   final Color thecolor;
   final String type;
   final String currency;
-  final num balance;
+  final dynamic balance;
   const Balancecards({super.key, required this.thecolor, required this.type, required this.balance, required this.currency});
 
   @override
@@ -48,8 +49,7 @@ class Balancecards extends StatelessWidget {
             Get.find<Jollofx>().obscure.value==false? RichText(text: TextSpan(
               children: [
                 TextSpan(text:currency,style: Stylings.titles.copyWith(fontSize: 20)),
-                TextSpan(text:"$balance",style: Stylings.titles.copyWith(fontSize: 20)),
-                TextSpan(text:".00",style: Stylings.titles.copyWith(fontSize: 10)),
+                TextSpan(text:NumberFormat.decimalPattern('en').format(balance),style: Stylings.titles.copyWith(fontSize: 20)),
               ]
             )):Text("*******",style: Stylings.titles,),
             const Expanded(child: SizedBox()),
