@@ -121,14 +121,10 @@ class _AddmoneyState extends State<Addmoney> {
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-                                                    SizedBox(
-                                                      width: 15,
-                                                      height: 15,
-                                                      child: Image.asset("assets/images/usdt.png",fit: BoxFit.contain,),
-                                                    ),
-                                                    const SizedBox(width: 10),
+                                                   const Icon(Icons.attach_money_sharp,color: Colors.black,size: 19,),
+                                                    const SizedBox(width: 8),
                                                     Text("USD",style: Stylings.titles.copyWith(fontSize: 12),),
-                                                    const Expanded(flex:2,child: SizedBox()),
+                                                    const Expanded(child: SizedBox()),
                                                     Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="Dollar"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
                                                   ],
                                                 ),
@@ -152,7 +148,7 @@ class _AddmoneyState extends State<Addmoney> {
                                                     ),
                                                     const SizedBox(width: 10),
                                                     Text("NGN",style: Stylings.titles.copyWith(fontSize: 12),),
-                                                    const Expanded(flex:2,child: SizedBox()),
+                                                    const Expanded(child: SizedBox()),
                                                     Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="Naira"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
                                                   ],
                                                 ),
@@ -240,7 +236,7 @@ class _AddmoneyState extends State<Addmoney> {
             GestureDetector(
               onTap: (){
                 if(amountController.text.isNotEmpty){
-                    Get.find<Jollofx>().addMoneyAmount = double.parse(amountController.text);
+                    Get.find<Jollofx>().addMoneyAmount = num.parse(amountController.text);
                     Get.find<Jollofx>().paymentPayloadCheck();
                 }
                 else{

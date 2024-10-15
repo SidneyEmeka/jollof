@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../server/getxserver.dart';
 import '../utils/stylings.dart';
@@ -67,11 +68,11 @@ class Transactiontrack extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("To Naira Wallet",style: Stylings.titles),
-                            Text("29th Oct, 18:33 PM",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),
+                            Text("To ${Get.find<Jollofx>().addMoneyCurrency} Wallet",style: Stylings.titles),
+                            Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),
                             )],
                         ),
-                        Text("NGN ${Get.find<Jollofx>().addMoneyAmount.value.toInt()}",style: Stylings.titles),
+                        Text("${Get.find<Jollofx>().theCurrency.toUpperCase()} ${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().addMoneyAmount)}",style: Stylings.titles),
                       ],
                     ),
                   ),
@@ -102,10 +103,10 @@ class Transactiontrack extends StatelessWidget {
                                     Container(height: 25,color: Colors.green,width: 1,)
                                   ],
                                 ),
-                                const SizedBox(width: 15,),
-                                Text("Processing",style: Stylings.titles,),
-                                const Expanded(child: SizedBox()),
-                                Text("29th Oct",style: Stylings.subTitles,),
+                                const SizedBox(width: 10,),
+                                Text("Processing",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Expanded(child: SizedBox()),
+                                Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles,overflow: TextOverflow.ellipsis,),
                               ],
                             ),
                             const SizedBox(height: 5),
@@ -122,10 +123,10 @@ class Transactiontrack extends StatelessWidget {
                                     Container(height: 25,color: Colors.black,width: 1,)
                                   ],
                                 ),
-                                const SizedBox(width: 15,),
-                                Text("Waiting to receive funds",style: Stylings.titles,),
+                                const SizedBox(width: 10,),
+                                Text("Waiting to receive funds",style: Stylings.titles.copyWith(fontSize: 12),),
                                 const Expanded(child: SizedBox()),
-                                Text("29th Oct",style: Stylings.subTitles,),
+                                SizedBox(width: Get.width*0.3,child: Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles,overflow: TextOverflow.ellipsis,)),
                               ],
                             ),
                             const SizedBox(height: 5),
@@ -134,10 +135,10 @@ class Transactiontrack extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Icon(Icons.circle_outlined,size: 20,color: Colors.black,),
-                                const SizedBox(width: 15,),
-                                Text("Funds Deposited",style: Stylings.titles,),
+                                const SizedBox(width: 10,),
+                                Text("Funds Deposited",style: Stylings.titles.copyWith(fontSize: 12),),
                                 const Expanded(child: SizedBox()),
-                                Text("29th Oct",style: Stylings.subTitles,),
+                                Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles,overflow: TextOverflow.ellipsis,),
                               ],
                             ),
 
@@ -179,16 +180,16 @@ class Transactiontrack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Reference no",style: Stylings.titles),
+                        Text("Ref ID",style: Stylings.titles.copyWith(fontSize: 12)),
                         const Expanded(child: SizedBox()),
-                        Text("JF-112827289Q7",style: Stylings.titles),
+                        Text(Get.find<Jollofx>().idOfTopUp,style: Stylings.titles.copyWith(fontSize: 12)),
                       const SizedBox(width: 10),
                       GestureDetector(
                         onTap: (){
-                          Get.snackbar("Copied", "Copied to clipboard",duration: const Duration(milliseconds: 800));
-                          Clipboard.setData(const ClipboardData(text: "Reference no - JF-112827289Q7"));
+                          Get.snackbar("Copied", "Ref ID - ${Get.find<Jollofx>().idOfTopUp}",duration: const Duration(milliseconds: 800));
+                          Clipboard.setData(ClipboardData(text: "Ref ID - ${Get.find<Jollofx>().idOfTopUp}"));
                         },
-                          child: const Icon(Icons.copy,size: 17,color: Colors.blueAccent,))
+                          child: const Icon(Icons.copy,size: 15,color: Colors.blueAccent,))
                       ],
                     ),
                   ),
@@ -204,9 +205,9 @@ class Transactiontrack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("You will get",style: Stylings.titles),
+                        Text("You will get",style: Stylings.titles.copyWith(fontSize: 12)),
                         const Expanded(child: SizedBox()),
-                        Text("₦${Get.find<Jollofx>().addMoneyAmount.value.toInt()}",style: Stylings.titles),
+                        Text("${Get.find<Jollofx>().theCurrency.toUpperCase()} ${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().addMoneyAmount)}",style: Stylings.titles.copyWith(fontSize: 12)),
                       ],
                     ),
                   ),
@@ -222,10 +223,10 @@ class Transactiontrack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Fee",style: Stylings.titles),
+                        Text("Fee",style: Stylings.titles.copyWith(fontSize: 12)),
                         const Expanded(child: SizedBox()),
-                        Text("₦0.00",style: Stylings.titles),
-                        const SizedBox(width: 10),
+                        Text("${Get.find<Jollofx>().theCurrency.toUpperCase()} 0.00",style: Stylings.titles.copyWith(fontSize: 12)),
+                       // const SizedBox(width: 10),
                       ],
                     ),
                   ),
@@ -238,8 +239,8 @@ class Transactiontrack extends StatelessWidget {
                       children: [
                         Text("Total paid",style: Stylings.titles),
                         const Expanded(child: SizedBox()),
-                        Text("₦${Get.find<Jollofx>().addMoneyAmount.value.toInt()}",style: Stylings.titles),
-                        const SizedBox(width: 10),
+                        Text("${Get.find<Jollofx>().theCurrency.toUpperCase()} ${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().addMoneyAmount)}",style: Stylings.titles.copyWith(fontSize: 12)),
+                      //  const SizedBox(width: 10),
                       ],
                     ),
                   ),

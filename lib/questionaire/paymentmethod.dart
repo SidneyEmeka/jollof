@@ -98,34 +98,43 @@ class Paymentmethod extends StatelessWidget {
                   // ),
                   //paypal
                   //paypal
-                  Container(
-                    width: Get.width,
-                    height: Get.height*0.1,
-                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
-                        )
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.paypal_outlined,size: 20,color: Colors.blueAccent,),
-                        const SizedBox(width: 15),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("PayPal",style: Stylings.titles.copyWith(fontSize: 12),),
-                            const SizedBox(height: 5),
-                            Text("Pay with PayPal",style: Stylings.titles.copyWith(fontSize: 10,
-                                color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.find<Jollofx>().isLoading.value=true;
+                      Get.find<Jollofx>().manualTopUP();
+                      // print(Get.find<Jollofx>().validatedUserEmail.value);
+                      // print(Get.find<Jollofx>().addMoneyAmount);
+                      // print(Get.find<Jollofx>().theCurrency);
+                    },
+                    child: Container(
+                      width: Get.width,
+                      height: Get.height*0.1,
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                          )
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.paypal_outlined,size: 20,color: Colors.blueAccent,),
+                          const SizedBox(width: 15),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("PayPal",style: Stylings.titles.copyWith(fontSize: 12),),
+                              const SizedBox(height: 5),
+                              Text("Pay with PayPal",style: Stylings.titles.copyWith(fontSize: 10,
+                                  color: Colors.grey.shade400),),
+                            ],
+                          ),
+                          const Expanded(flex:2,child: SizedBox()),
+                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                   //bank

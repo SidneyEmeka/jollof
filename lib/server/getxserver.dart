@@ -6,6 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:jollof/homes/home/tipsandtricks/atipfullread.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import 'package:jollof/questionaire/questions.dart';
@@ -20,12 +21,13 @@ import '../onboarding/setnotification.dart';
 import '../paymentwebview.dart';
 import '../questionaire/explainer.dart';
 import '../questionaire/paymentmethod.dart';
+import '../questionaire/pyamentonway.dart';
 import '../questionaire/welcome.dart';
 import 'apiclient.dart';
 
 class Jollofx extends GetxController{
   var obscure = true.obs;
-  //date formatter
+  //date formatter to how mamny days or hours ago
   getRelativeTime(String isoString) {
     // Parse the ISO 8601 string to DateTime
     DateTime dateTime = DateTime.parse(isoString);
@@ -49,6 +51,20 @@ class Jollofx extends GetxController{
     } else {
       return "just now";
     }
+  }
+
+  //date formaterr to dd/mm/yy
+  dateFormat(String theDate){
+    String dateTimeString = theDate;
+    DateTime dateTime = DateTime.parse(dateTimeString);
+
+    // Create a DateFormat object with the desired format
+    DateFormat formatter = DateFormat('d, MMMM yyyy');
+
+    // Format the date and time
+    String formattedDateTime = formatter.format(dateTime);
+    return formattedDateTime;
+   // print(formattedDateTime);
   }
 
   var avatarIndex = 50.obs;
@@ -453,15 +469,17 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
        "pin": thePin,
        "deviceToken": devId
      }).then((l){
-       print(l);
+       //print(l);
        if(statusCode.value==0){
          final mainKey = l['data'];
          //print(mainKey);
          final imgUrl = mainKey['user']["avatarImage"];
          final lastName = mainKey['user']["lastname"];
+         final email = mainKey['user']["email"];
          //print(a?["data"]["avatarImageUrl"]);
          validatedUserAvatar.value = imgUrl;
          validatedlastName.value = lastName;
+         validatedUserEmail.value = email;
          userTokens.value = {
            'id':mainKey['user']["id"],
            'promoCode':mainKey['user']["promoCode"],
@@ -663,7 +681,7 @@ getAllNotifications(){
       theCurrency = "ngn";
     }
   }
-//to ensure amounts and currencies are valid
+//to ensure amounts and currencies are valid before choosing payment method
    paymentPayloadCheck(){
      formatCurrency();
      if(theCurrency=="ngn"&&addMoneyAmount<100){
@@ -678,6 +696,32 @@ getAllNotifications(){
         }
    }
 
+   var timeOfTopUP = '';
+   var idOfTopUp = '';
+   //manual wallet topup without going through squad
+  manualTopUP(){
+    Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/wallet/manual/topup", body: {
+      "email": validatedUserEmail.value,
+      "amount": addMoneyAmount,
+      "currency": theCurrency
+    }).then((m){
+      //print(m);
+      if(statusCode.value==0){
+        final time = m['data']['createdAt'];
+        final id = m['data']['_id'];
+        timeOfTopUP = time;
+        idOfTopUp = id;
+        isLoading.value=false;
+        //print(timeOfTopUP);
+       Get.to(()=>Paymentonway());
+      }
+      else{
+        isLoading.value=false;
+      }
+    });
+  }
+
+//initializepayment i.e for paying in local currencies  dollar/naira
   initiatePaymentMethod() {
     Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/payment/initialize", body:
     {
@@ -697,6 +741,47 @@ getAllNotifications(){
       }
     });
   }
+
+
+
+  ///Conversion
+  dynamic dollarToNaira = 950.98;
+  var fromCurrency = 'ngn'.obs;
+  dynamic convertedResult = 0.0.obs;
+//get exchangeRate
+getExchangeRate(){
+    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/exchange/rate").then((e){
+      if(statusCode.value==0){
+        print(e['data']['targetCurrency']);
+        final rate = num.parse(e['data']['targetCurrency']);
+        dollarToNaira = rate;
+        isLoading.value=false;
+      }
+      else{
+        isLoading.value=false;
+      }
+    });
+}
+
+//checkIfBalanceCovers
+chcekIfBalanceCovers(num toConvert){
+  dynamic amount;
+  fromCurrency.value=='ngn'?amount=ngnBalance:amount=usdBalance;
+  if(toConvert>amount){
+    errorText.value = "Amount exceeds your wallet balance";
+  }
+  else{
+    errorText.value = '';
+  }
+}
+
+//conversion function
+doConversion(String amount){
+  num toConvert = num.parse(amount);
+  fromCurrency.value=='ngn'?convertedResult.value=(toConvert/dollarToNaira):convertedResult.value=(dollarToNaira*toConvert);
+}
+
+
 
 
 
