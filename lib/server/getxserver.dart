@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jollof/homes/home/more/convert/reviewconversiondetails.dart';
 import 'package:jollof/homes/home/tipsandtricks/atipfullread.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import 'package:jollof/questionaire/questions.dart';
@@ -449,7 +450,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
         final avatarMapsList = a["data"];
         apiAvatars = avatarMapsList;
        // print(apiAvatars);
-        Future.delayed(Duration(seconds: 1),(){
+        Future.delayed(const Duration(seconds: 1),(){
           isLoading.value = false;
         });
       }
@@ -608,7 +609,7 @@ likeATip(String id){
   //Feed home page
   feedHome(){
   getWalletDetails();
-  Future.delayed(Duration(seconds: 1),(){
+  Future.delayed(const Duration(seconds: 1),(){
     feedCrypto();
   });
   }
@@ -713,7 +714,7 @@ getAllNotifications(){
         idOfTopUp = id;
         isLoading.value=false;
         //print(timeOfTopUP);
-       Get.to(()=>Paymentonway());
+       Get.to(()=>const Paymentonway());
       }
       else{
         isLoading.value=false;
@@ -772,6 +773,7 @@ chcekIfBalanceCovers(num toConvert){
   }
   else{
     errorText.value = '';
+    Get.to(()=>const Reviewconversiondetails());
   }
 }
 

@@ -44,7 +44,7 @@ class _ConvertwalletState extends State<Convertwallet> {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Obx(()=>Container(
-        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
         width: Get.width,
         height: Get.height,
         child: Column(
@@ -54,14 +54,14 @@ class _ConvertwalletState extends State<Convertwallet> {
             Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             Align(
                 alignment: Alignment.center,child: Text("Exchange rate \$1 - ₦${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().dollarToNaira!)}",style: Stylings.titles.copyWith(fontSize: 12),)),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             //from
             Text("You are converting",style: Stylings.titles.copyWith(fontSize: 12),),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Container(
               width: Get.width,
               height: Get.height*0.2,
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey.shade300,width: 0.0),
                 borderRadius: BorderRadius.circular(7)
@@ -76,15 +76,15 @@ class _ConvertwalletState extends State<Convertwallet> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 10),
+                          margin: const EdgeInsets.only(left: 10),
                           width: Get.width*0.08,
                           height: Get.width*0.08,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: DecorationImage(image: Get.find<Jollofx>().fromCurrency.value=='ngn'?AssetImage("assets/images/ngflag.png"):AssetImage("assets/images/usflag.jpeg"),fit: BoxFit.fill)
+                            image: DecorationImage(image: Get.find<Jollofx>().fromCurrency.value=='ngn'?const AssetImage("assets/images/ngflag.png"):const AssetImage("assets/images/usflag.jpeg"),fit: BoxFit.fill)
                           ),
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                        Get.find<Jollofx>().fromCurrency.value=='ngn'? Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,12 +100,12 @@ class _ConvertwalletState extends State<Convertwallet> {
                            Text("Balance - \$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().usdBalance)}",style: Stylings.subTitles.copyWith(fontSize: 10),),
                          ],
                        ),
-                        Expanded(child: SizedBox()),
+                        const Expanded(child: SizedBox()),
                        IconButton(onPressed: (){
                          Get.find<Jollofx>().fromCurrency.value=='usd'?Get.find<Jollofx>().fromCurrency.value='ngn':Get.find<Jollofx>().fromCurrency.value='usd';
                          //print(Get.find<Jollofx>().fromCurrency.value);
                          Get.find<Jollofx>().doConversion(_amountController.text);
-                       }, icon:  Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,))
+                       }, icon:  const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,))
                       ],
                     ),
                   ),
@@ -115,12 +115,13 @@ class _ConvertwalletState extends State<Convertwallet> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         Text("Amount",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.grey.shade400),),
                         Expanded(child: TextField(
                         controller: _amountController,
                           onChanged: (value){
                           Get.find<Jollofx>().doConversion(value);
+                          Get.find<Jollofx>().errorText.value='';
                           },
                           textAlign: TextAlign.end,
                           style: Stylings.titles.copyWith(fontSize: 15),
@@ -140,11 +141,11 @@ class _ConvertwalletState extends State<Convertwallet> {
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Align(alignment: Alignment.center,child:Container(
               height: 28,
               width: 28,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle
               ),
@@ -152,11 +153,11 @@ class _ConvertwalletState extends State<Convertwallet> {
             ),),
             //to
             Text("To",style: Stylings.titles.copyWith(fontSize: 12),),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Container(
               width: Get.width,
               height: Get.height*0.2,
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade300,width: 0.0),
                   borderRadius: BorderRadius.circular(7)
@@ -171,15 +172,15 @@ class _ConvertwalletState extends State<Convertwallet> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 10),
+                          margin: const EdgeInsets.only(left: 10),
                           width: Get.width*0.08,
                           height: Get.width*0.08,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              image: DecorationImage(image: Get.find<Jollofx>().fromCurrency.value=='ngn'?AssetImage("assets/images/usflag.jpeg"):AssetImage("assets/images/ngflag.png"),fit: BoxFit.fill)
+                              image: DecorationImage(image: Get.find<Jollofx>().fromCurrency.value=='ngn'?const AssetImage("assets/images/usflag.jpeg"):const AssetImage("assets/images/ngflag.png"),fit: BoxFit.fill)
                           ),
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         Get.find<Jollofx>().fromCurrency.value=='ngn'? Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,13 +196,13 @@ class _ConvertwalletState extends State<Convertwallet> {
                             Text("Balance - \$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().ngnBalance)}",style: Stylings.subTitles.copyWith(fontSize: 10),),
                           ],
                         ),
-                        Expanded(child: SizedBox()),
+                        const Expanded(child: SizedBox()),
                         IconButton(onPressed: (){
                           Get.find<Jollofx>().fromCurrency.value=='usd'?Get.find<Jollofx>().fromCurrency.value='ngn':Get.find<Jollofx>().fromCurrency.value='usd';
                           //print(Get.find<Jollofx>().fromCurrency.value);
 
                           Get.find<Jollofx>().doConversion(_amountController.text);
-                        }, icon:  Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,))
+                        }, icon:  const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 15,))
                       ],
                     ),
                   ),
@@ -211,9 +212,9 @@ class _ConvertwalletState extends State<Convertwallet> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         Text("Receive",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.grey.shade400),),
-                        Expanded(child: SizedBox()),
+                        const Expanded(child: SizedBox()),
                         Get.find<Jollofx>().fromCurrency.value=='ngn'?Text("\$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().convertedResult.value)}",style: Stylings.titles.copyWith(fontSize: 20),):Text("₦${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().convertedResult.value)}",style: Stylings.titles.copyWith(fontSize: 20),)
                       ],
                     ),
@@ -230,7 +231,7 @@ class _ConvertwalletState extends State<Convertwallet> {
                 Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
               ],
             ),
-            Expanded(flex:3,child: SizedBox()),
+            const Expanded(flex:3,child: SizedBox()),
             GestureDetector(
               onTap: () {
                if(_amountController.text.isNotEmpty){
