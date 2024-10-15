@@ -5,9 +5,19 @@ import 'package:get/get_core/src/get_main.dart';
 import '../server/getxserver.dart';
 import '../utils/stylings.dart';
 
-class Explainer extends StatelessWidget {
+class Explainer extends StatefulWidget {
   const Explainer({super.key});
 
+  @override
+  State<Explainer> createState() => _ExplainerState();
+}
+
+class _ExplainerState extends State<Explainer> {
+  @override
+  void initState() {
+    Get.find<Jollofx>().feedHome();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jollof/homepage.dart';
 import 'package:jollof/homes/home/more/convert/convertsuccesspage.dart';
 import 'package:jollof/homes/home/more/convert/reviewconversiondetails.dart';
 import 'package:jollof/homes/home/tipsandtricks/atipfullread.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
+import 'package:jollof/questionaire/paymentpreview.dart';
 import 'package:jollof/questionaire/questions.dart';
 
 import '../homes/home/tipsandtricks/alltipsandtricks.dart';
@@ -494,7 +496,8 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
          };
          isLoading.value=false;
          errorText.value = "";
-         Get.to(()=>const Questions());
+         //to avoid repeating questionaire.
+        validatedlastName.value==''? Get.to(()=>const Questions()):Get.to(()=>const Homepage());
        }
        else{
          isLoading.value=false;
@@ -699,7 +702,7 @@ getAllNotifications(){
      }
      else{
        errorText.value = "";
-       Get.to(()=>const Paymentmethod());
+       Get.to(()=>const Paymentpreview());
         }
    }
 
@@ -803,6 +806,7 @@ convertIntoWallet(){
       dynamic requestedAmount = c['data']['requestedAmount'];
       final transferredAmount = c['data']['transferredAmount'];
       final destinationAccount = c['data']['destinationAccount'];
+      getWalletDetails();
       Get.off(()=>Convertsuccesspage(from: requestedAmount, transferredAmount: transferredAmount, destinationAccount: destinationAccount,));
     }
     else{
