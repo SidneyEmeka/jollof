@@ -7,8 +7,15 @@ import 'package:jollof/server/getxserver.dart';
 
 import '../utils/stylings.dart';
 
-class Addmoney extends StatelessWidget {
+class Addmoney extends StatefulWidget {
   const Addmoney({super.key});
+
+  @override
+  State<Addmoney> createState() => _AddmoneyState();
+}
+
+class _AddmoneyState extends State<Addmoney> {
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +114,8 @@ class Addmoney extends StatelessWidget {
                                             Expanded(
                                               child: GestureDetector(
                                                 onTap: (){
-                                                  Get.find<Jollofx>().addMoneyCurrency.value = "USDT";
+                                                  Get.find<Jollofx>().addMoneyCurrency.value = "Dollar";
+                                                  Get.back();
                                                 },
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -119,9 +127,9 @@ class Addmoney extends StatelessWidget {
                                                       child: Image.asset("assets/images/usdt.png",fit: BoxFit.contain,),
                                                     ),
                                                     const SizedBox(width: 10),
-                                                    Text("USDT",style: Stylings.titles.copyWith(fontSize: 12),),
+                                                    Text("USD",style: Stylings.titles.copyWith(fontSize: 12),),
                                                     const Expanded(flex:2,child: SizedBox()),
-                                                    Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
+                                                    Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="Dollar"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
                                                   ],
                                                 ),
                                               ),
@@ -131,6 +139,7 @@ class Addmoney extends StatelessWidget {
                                               child: GestureDetector(
                                                 onTap: (){
                                                   Get.find<Jollofx>().addMoneyCurrency.value = "Naira";
+                                                  Get.back();
                                                 },
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -142,7 +151,7 @@ class Addmoney extends StatelessWidget {
                                                       child: Image.asset("assets/images/naira.png",fit: BoxFit.contain,),
                                                     ),
                                                     const SizedBox(width: 10),
-                                                    Text("Naira",style: Stylings.titles.copyWith(fontSize: 12),),
+                                                    Text("NGN",style: Stylings.titles.copyWith(fontSize: 12),),
                                                     const Expanded(flex:2,child: SizedBox()),
                                                     Obx(()=>  Get.find<Jollofx>().addMoneyCurrency.value=="Naira"?Icon(Icons.radio_button_checked,size: 15,color: Stylings.yellow,):const Icon(Icons.circle_outlined,size: 15,color: Colors.black))
                                                   ],
@@ -199,18 +208,15 @@ class Addmoney extends StatelessWidget {
                         // SizedBox(height: 5,),
                         Expanded(child:
                         TextField(
-                          onChanged: (value){
-                            double val = double.parse(value);
-                            Get.find<Jollofx>().addMoneyAmount.value = val;
-                          },
+                          controller: amountController,
                           textAlign: TextAlign.end,
                           style: Stylings.titles,
                           cursorColor: Colors.grey.shade300,
-                          keyboardType: TextInputType.number,
+                          keyboardType:  TextInputType.number,
                           decoration: InputDecoration(
-                              hintText: Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?"\$0.00":"₦0.00",
+                              hintText: Get.find<Jollofx>().addMoneyCurrency.value=="Dollar"?"\$0.00":"₦0.00",
                               hintStyle: Stylings.titles.copyWith(fontSize: 15,color: Colors.grey.shade400),
-                              suffix: Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Text("USDT",style: Stylings.subTitles,):Text("Naira",style: Stylings.subTitles,),
+                              suffix: Get.find<Jollofx>().addMoneyCurrency.value=="Dollar"?Text("USD",style: Stylings.subTitles,):Text("NGN",style: Stylings.subTitles,),
                               border: InputBorder.none
                           ),
                         )
@@ -221,11 +227,27 @@ class Addmoney extends StatelessWidget {
                 ],
               ),
             ),
+            Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                const SizedBox(width: 5),
+                Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+              ],
+            ),
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Paymentmethod());
-              },
+                if(amountController.text.isNotEmpty){
+                    Get.find<Jollofx>().addMoneyAmount = double.parse(amountController.text);
+                    Get.find<Jollofx>().paymentPayloadCheck();
+                }
+                else{
+                  Get.snackbar("Invalid", "Please enter a valid amount");
+                }
+                },
+
               child: Container(
                 height: Get.height*0.055,
                 width: Get.width,

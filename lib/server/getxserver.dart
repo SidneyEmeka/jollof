@@ -17,7 +17,9 @@ import '../onboarding/awaitverification.dart';
 import '../onboarding/emailverified.dart';
 import '../onboarding/setavatar.dart';
 import '../onboarding/setnotification.dart';
+import '../paymentwebview.dart';
 import '../questionaire/explainer.dart';
+import '../questionaire/paymentmethod.dart';
 import '../questionaire/welcome.dart';
 import 'apiclient.dart';
 
@@ -121,12 +123,6 @@ class Jollofx extends GetxController{
     }
   }
 
-
-  var addMoneyCurrency  = "USDT".obs;
-  var addMoneyAmount  = 0.00.obs;
-
-
-  var savePaymentMethod = true.obs;
 
 
   var plans = [
@@ -654,14 +650,53 @@ getAllNotifications(){
 
 
 ///PAYMENTSS///
-initiatePaymentMethod() {
-  Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/payment/link/redeem", body:
-  {
-    "paymentLink": "https://pay.squadco.com/SQVOIC6386451186843300001"
-  });
+   var addMoneyCurrency  = "Dollar".obs;
+   dynamic addMoneyAmount  = 0;
+  var savePaymentMethod = true.obs;
 
+   var theCurrency = "usd";
+  formatCurrency(){
+    if(addMoneyCurrency.value=="Dollar"){
+      theCurrency = "usd";
+    }
+    else if(addMoneyCurrency.value=="Naira"){
+      theCurrency = "ngn";
+    }
   }
+//to ensure amounts and currencies are valid
+   paymentPayloadCheck(){
+     formatCurrency();
+     if(theCurrency=="ngn"&&addMoneyAmount<100){
+      errorText.value = "Minimum Naira deposit is 100 NGN";
+     }
+     else if(theCurrency=="usd"&&addMoneyAmount<10){
+       errorText.value = "Minimum Naira deposit is 10 USD";
+     }
+     else{
+       errorText.value = "";
+       Get.to(()=>const Paymentmethod());
+        }
+   }
 
+  initiatePaymentMethod() {
+    Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/payment/initialize", body:
+    {
+      "amount": addMoneyAmount,
+      "type": "checkout",
+      "currency": theCurrency,
+      "provider": "squadco"
+    }).then((p){
+      if(statusCode.value==0){
+       // print(p["data"]['paymentLink']);
+        final url = p["data"]['paymentLink'];
+        isLoading.value=false;
+      Get.to(()=>Paymentwebview(checkoutUrl: "$url", callbackUrl: "$url"));
+      }
+      else{
+        isLoading.value=false;
+      }
+    });
+  }
 
 
 

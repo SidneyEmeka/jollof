@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:jollof/homes/home/notifications/allnotifications.dart';
 import 'package:jollof/homes/home/tipsandtricks/alltipsandtricks.dart';
 import 'package:jollof/homes/home/userdetails/userdetails.dart';
+import 'package:jollof/paymentwebview.dart';
+import 'package:jollof/questionaire/addmoney.dart';
 import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/reusables/cryptorank.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -152,8 +154,8 @@ class _HomescreenState extends State<Homescreen> {
                   //add money
                   GestureDetector(
                     onTap: (){
-                      Get.find<Jollofx>().initiatePaymentMethod();
-                    },
+                     Get.to(()=>const Addmoney());
+                      },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -192,7 +194,7 @@ class _HomescreenState extends State<Homescreen> {
                       )
                     ],
                   ),
-                  //add money
+                  //discover
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -211,21 +213,21 @@ class _HomescreenState extends State<Homescreen> {
                       )
                     ],
                   ),
-                  //add money
+                  //convert
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Icon(
-                        FluentIcons.more_horizontal_48_filled,
-                        size: 20,
+                        Icons.currency_exchange_rounded,
+                        size: 19,
                         color: Colors.black,
                       ),
                       const SizedBox(
                         height: 1,
                       ),
                       Text(
-                        "More",
+                        "Convert",
                         style: Stylings.subTitles.copyWith(fontSize: 10),
                       )
                     ],

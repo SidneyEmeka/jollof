@@ -45,15 +45,16 @@ class Paymentmethod extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             Text("Select how you would fund your wallet",style: Stylings.titles,),
-            const Expanded(child: SizedBox()),
+            const SizedBox(height: 15),
             Text("Experience the future of crypto investing with Jollof by funding your wallet and activating our AI-Managed Portfolio feature. Our advanced algorithms ensure smart decision-making, risk management, and 24/7 monitoring, allowing you to effortlessly optimise your crypto portfolio for maximum returns.",
               style: Stylings.subTitles,),
             const Expanded(child: SizedBox()),
             //methods
             Container(
               width: Get.width,
-              height: Get.height*0.52,
+              height: Get.height*0.32,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade200)
@@ -64,36 +65,38 @@ class Paymentmethod extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   //apple
-                  Container(
-                    width: Get.width,
-                    height: Get.height*0.1,
-                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
-                        )
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.apple_sharp,size: 20,color: Colors.black,),
-                        const SizedBox(width: 15),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Apple pay",style: Stylings.titles.copyWith(fontSize: 12),),
-                            const SizedBox(height: 5),
-                            Text("Pay with Apple pay",style: Stylings.titles.copyWith(fontSize: 10,
-                                color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
-                    ),
-                  ),
+                  //apple
+                  // Container(
+                  //   width: Get.width,
+                  //   height: Get.height*0.1,
+                  //   padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                  //   decoration: BoxDecoration(
+                  //       border: Border(
+                  //           bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                  //       )
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     children: [
+                  //       const Icon(Icons.apple_sharp,size: 20,color: Colors.black,),
+                  //       const SizedBox(width: 15),
+                  //       Column(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           Text("Apple pay",style: Stylings.titles.copyWith(fontSize: 12),),
+                  //           const SizedBox(height: 5),
+                  //           Text("Pay with Apple pay",style: Stylings.titles.copyWith(fontSize: 10,
+                  //               color: Colors.grey.shade400),),
+                  //         ],
+                  //       ),
+                  //       const Expanded(flex:2,child: SizedBox()),
+                  //       Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                  //     ],
+                  //   ),
+                  // ),
+                  //paypal
                   //paypal
                   Container(
                     width: Get.width,
@@ -128,7 +131,10 @@ class Paymentmethod extends StatelessWidget {
                   //bank
                   GestureDetector(
                     onTap: (){
-                   Get.to(()=>const Paymentpreview());
+                 //print(Get.find<Jollofx>().addMoneyAmount);
+                 //print(Get.find<Jollofx>().theCurrency);
+                 Get.find<Jollofx>().isLoading.value=true;
+                 Get.find<Jollofx>().initiatePaymentMethod();
                     },
                     child: Container(
                       width: Get.width,
@@ -149,7 +155,7 @@ class Paymentmethod extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Pay with Bank Transfer",style: Stylings.titles.copyWith(fontSize: 12),),
+                              Text("Deposit ${Get.find<Jollofx>().addMoneyCurrency}",style: Stylings.titles.copyWith(fontSize: 12),),
                               const SizedBox(height: 5),
                               Text("Funds will arrive within an hour",style: Stylings.titles.copyWith(fontSize: 10,
                                   color: Colors.grey.shade400),),
@@ -161,37 +167,38 @@ class Paymentmethod extends StatelessWidget {
                       ),
                     ),
                   ),
+                  //card
                   //Card
-                  Container(
-                    width: Get.width,
-                    height: Get.height*0.1,
-                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
-                        )
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.credit_card_outlined,size: 20,color: Colors.black,),
-                        const SizedBox(width: 15),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Debit Card",style: Stylings.titles.copyWith(fontSize: 12),),
-                            const SizedBox(height: 5),
-                            Text("Pay with your debit card",style: Stylings.titles.copyWith(fontSize: 10,
-                                color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   width: Get.width,
+                  //   height: Get.height*0.1,
+                  //   padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                  //   decoration: BoxDecoration(
+                  //       border: Border(
+                  //           bottom: BorderSide(color: Colors.grey.shade200,width: 0.0)
+                  //       )
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     children: [
+                  //       const Icon(Icons.credit_card_outlined,size: 20,color: Colors.black,),
+                  //       const SizedBox(width: 15),
+                  //       Column(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           Text("Debit Card",style: Stylings.titles.copyWith(fontSize: 12),),
+                  //           const SizedBox(height: 5),
+                  //           Text("Pay with your debit card",style: Stylings.titles.copyWith(fontSize: 10,
+                  //               color: Colors.grey.shade400),),
+                  //         ],
+                  //       ),
+                  //       const Expanded(flex:2,child: SizedBox()),
+                  //       Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                  //     ],
+                  //   ),
+                  // ),
                   //apple
                   Container(
                     width: Get.width,
@@ -207,9 +214,9 @@ class Paymentmethod extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Deposit crypto",style: Stylings.titles.copyWith(fontSize: 12),),
+                            Text("Deposit Crypto",style: Stylings.titles.copyWith(fontSize: 12),),
                             const SizedBox(height: 5),
-                            Text("Fund wallet with fiat or crypto currency",style: Stylings.titles.copyWith(fontSize: 10,
+                            Text("Fund wallet with crypto currency",style: Stylings.titles.copyWith(fontSize: 10,
                                 color: Colors.grey.shade400),),
                           ],
                         ),
@@ -221,7 +228,7 @@ class Paymentmethod extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(child: SizedBox()),
+            const SizedBox(height: 10,),
             //toggle
             SwitchListTile(
                 value: Get.find<Jollofx>().savePaymentMethod.value, 
@@ -240,7 +247,8 @@ class Paymentmethod extends StatelessWidget {
                 return Colors.white; // Use the default color.
               }),
               title: Text("Default this for future deposit",style: Stylings.subTitles,),
-           )
+           ),
+            const Expanded(flex:2,child: SizedBox()),
           ],
         ),
       ),)
