@@ -53,7 +53,8 @@ class _ConvertwalletState extends State<Convertwallet> {
           children: [
             Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
             Align(
-                alignment: Alignment.center,child: Text("Exchange rate \$1 - ₦${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().dollarToNaira!)}",style: Stylings.titles.copyWith(fontSize: 12),)),
+                alignment: Alignment.center,child:
+            Text("Exchange rate \$1 - ₦${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().dollarToNaira!)}",style: Stylings.titles.copyWith(fontSize: 12),)),
             const Expanded(child: SizedBox()),
             //from
             Text("You are converting",style: Stylings.titles.copyWith(fontSize: 12),),

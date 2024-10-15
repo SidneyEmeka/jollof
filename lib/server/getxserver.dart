@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jollof/homes/home/more/convert/convertsuccesspage.dart';
 import 'package:jollof/homes/home/more/convert/reviewconversiondetails.dart';
 import 'package:jollof/homes/home/tipsandtricks/atipfullread.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
@@ -315,6 +316,9 @@ class Jollofx extends GetxController{
   //   _timer?.cancel();
   //   super.onClose();
   // }
+
+
+  ///Auths///
   var isLoading = false.obs;
   var secondIsLoading = false.obs;
   var errorText = ''.obs;
@@ -544,6 +548,8 @@ updateUserProfile(Future<dynamic>? toWhere){
    });
 }
 
+
+///TipsandTricks///
 //TipsAndTricks
 var apiTips = [].obs;
  var isLiked = false.obs;
@@ -745,8 +751,8 @@ getAllNotifications(){
 
 
 
-  ///Conversion
-  dynamic dollarToNaira = 950.98;
+  ///Conversion///
+  dynamic dollarToNaira = 1050.98;
   var fromCurrency = 'ngn'.obs;
   dynamic convertedResult = 0.0.obs;
 //get exchangeRate
@@ -773,7 +779,7 @@ chcekIfBalanceCovers(num toConvert){
   }
   else{
     errorText.value = '';
-    Get.to(()=>const Reviewconversiondetails());
+    Get.off(()=>Reviewconversiondetails(from: toConvert,));
   }
 }
 
@@ -781,6 +787,28 @@ chcekIfBalanceCovers(num toConvert){
 doConversion(String amount){
   num toConvert = num.parse(amount);
   fromCurrency.value=='ngn'?convertedResult.value=(toConvert/dollarToNaira):convertedResult.value=(dollarToNaira*toConvert);
+}
+
+var convertWalletPayload = {
+  "amount": 0,
+  "sourceAccount": "usd",
+  "destinationAccount": "usd"
+};
+
+//converthewallet Api
+convertIntoWallet(){
+  Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/wallet/conversion", body: convertWalletPayload).then((c){
+    if(statusCode.value==0){
+      isLoading.value=false;
+      dynamic requestedAmount = c['data']['requestedAmount'];
+      final transferredAmount = c['data']['transferredAmount'];
+      final destinationAccount = c['data']['destinationAccount'];
+      Get.off(()=>Convertsuccesspage(from: requestedAmount, transferredAmount: transferredAmount, destinationAccount: destinationAccount,));
+    }
+    else{
+      isLoading.value=false;
+    }
+  });
 }
 
 
