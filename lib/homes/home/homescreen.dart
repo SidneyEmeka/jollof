@@ -11,6 +11,7 @@ import 'package:jollof/paymentwebview.dart';
 import 'package:jollof/questionaire/addmoney.dart';
 import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/reusables/cryptorank.dart';
+import 'package:jollof/utils/reusables/investmenttile.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../server/getxserver.dart';
@@ -398,6 +399,30 @@ class _HomescreenState extends State<Homescreen> {
                     "Portfolio builder",
                     style: Stylings.titles.copyWith(fontSize: 10),
                   ),
+                ],
+              ),
+            ),
+            SizedBox(height: Get.height * 0.02),
+            //investments
+            Get.find<Jollofx>().userInvestments.isEmpty?const SizedBox():Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+              width: Get.width,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade100),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Stylings.bgColor),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ...Get.find<Jollofx>().userInvestments.map((inv){
+                    final invRate = inv['interest_rate'];
+                    final duration = inv['duration'];
+                    final amount = inv['amount_invested'];
+                    return Investmenttile(invRate: invRate, duration: duration, amount: amount);
+                  })
                 ],
               ),
             ),

@@ -619,6 +619,7 @@ likeATip(String id){
   //Feed home page
   feedHome(){
   getWalletDetails();
+  getUserInvestments();
   Future.delayed(const Duration(seconds: 1),(){
     feedCrypto();
   });
@@ -855,7 +856,31 @@ var allStatements = [];
 
 
 
-
+///Investments
+  var userInvestments = [];
+  //To check the package used
+  checkPackage(num amount){
+    if(amount>=700){
+    return "VIP";
+    }
+    else if(amount>=499 && amount < 700){
+    return 'Premium';
+    }
+    else if(amount<499){
+      return "Standard";
+    }
+  }
+//getInvestments
+getUserInvestments(){
+    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/investment/filter?sortBy=createdAt&orderBy=desc&page=1&limit=20&isOptedOut=false").then((i){
+     if(statusCode.value==0){
+       userInvestments = i['data'];
+     }
+     else{
+       print(i);
+     }
+    });
+}
 }
 
 
