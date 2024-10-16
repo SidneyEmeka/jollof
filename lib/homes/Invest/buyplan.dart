@@ -129,18 +129,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.25,
+                              percent: 0.20,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.orange,
-                              center: Text("25%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("20%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("25% profit for 6 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 25% profit in 6 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("20% profit for 6 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 20% profit in 6 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -157,18 +157,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.55,
+                              percent: 0.30,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.pink,
-                              center: Text("55%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("30%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("55% profit for 12 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 55% profit in 12 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("30% profit for 12 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 30% profit in 12 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -185,18 +185,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.80,
+                              percent: 0.75,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.purple,
-                              center: Text("80%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("75%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("80% capital reimbursement",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("80% capital reimbursement for \$50 only",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("75% capital reimbursement",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("75% capital reimbursement for \$50 only",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -223,18 +223,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.15,
+                              percent: 0.25,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.blue,
-                              center: Text("15%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("25%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("15% profit for 3 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 15% profit in 3 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("25% profit for 6 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 25% profit in 6 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -251,18 +251,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.35,
+                              percent: 0.50,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.orange,
-                              center: Text("35%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("50%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("35% profit for 6 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 35% profit in 6 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("50% profit for 12 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 50% profit in 12 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -279,18 +279,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.65,
+                              percent: 0.75,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.pink,
-                              center: Text("65%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("75%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("65% profit for 12 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 65% profit in 12 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("75% profit for 18 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 75% profit in 18 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -307,18 +307,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.90,
+                              percent: 0.75,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.purple,
-                              center: Text("90%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("75%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("90% capital reimbursement",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("90% capital reimbursement for \$100 only",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("75% capital reimbursement",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("75% capital reimbursement for \$100 only",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -345,18 +345,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.20,
+                              percent: 0.50,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.blue,
-                              center: Text("20%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("50%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("20% profit for 3 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 20% profit in 3 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("50% profit for 12 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 50% profit in 12 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -373,18 +373,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.40,
+                              percent: 0.85,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.orange,
-                              center: Text("40%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("85%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("40% profit for 6 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 40% profit in 6 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("85% profit for 24 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 85% profit in 24 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -401,18 +401,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.70,
+                              percent: 0.98,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.pink,
-                              center: Text("70%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("98%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("70% profit for 12 months",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("Earns you 70% profit in 12 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("98% profit for 36 months",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("Earns you 98% profit in 36 months",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),
@@ -429,18 +429,18 @@ class Buyplan extends StatelessWidget {
                           children: [
                             CircularPercentIndicator(
                               radius: 22,
-                              percent: 0.95,
+                              percent: 0.75,
                               backgroundColor: Colors.grey.shade300,
                               circularStrokeCap: CircularStrokeCap.round,
                               progressColor: Colors.purple,
-                              center: Text("95%",style: Stylings.titles.copyWith(fontSize: 10),),),
+                              center: Text("75%",style: Stylings.titles.copyWith(fontSize: 10),),),
                             const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("95% capital reimbursement",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Text("95% capital reimbursement for \$150 only",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                                Text("75% capital reimbursement",style: Stylings.titles.copyWith(fontSize: 12),),
+                                Text("75% capital reimbursement for \$150 only",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                               ],
                             ),
                             const Expanded(child: SizedBox()),

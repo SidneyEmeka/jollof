@@ -17,6 +17,7 @@ import '../../server/getxserver.dart';
 import '../../utils/reusables/balancecards.dart';
 import '../../utils/reusables/layoutcalc.dart';
 import '../../utils/stylings.dart';
+import 'more/statement/choosestatemmentperiod.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -219,12 +220,12 @@ class _HomescreenState extends State<Homescreen> {
                       )
                     ],
                   ),
-                  //convert
+                  //more
                   GestureDetector(
                     onTap: (){
                       showModalBottomSheet(context: context,
                           isScrollControlled: true,
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.grey.shade100,
                           enableDrag: true,
                           builder: (_){
                             return Container(
@@ -262,6 +263,7 @@ class _HomescreenState extends State<Homescreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
+                                          //convert
                                           Expanded(
                                             child: GestureDetector(
                                               onTap: (){
@@ -273,31 +275,32 @@ class _HomescreenState extends State<Homescreen> {
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                 Icon(FluentIcons.convert_range_24_regular,size: 17,color: Colors.black,),
+                                                 const Icon(FluentIcons.convert_range_24_regular,size: 17,color: Colors.black,),
                                                   const SizedBox(width: 10),
                                                   Text("Convert",style: Stylings.titles.copyWith(fontSize: 12),),
                                                   const Expanded(child: SizedBox()),
-                                                  Icon(FluentIcons.ios_chevron_right_20_regular,size: 17,color: Colors.black,),
+                                                  const Icon(FluentIcons.ios_chevron_right_20_regular,size: 17,color: Colors.black,),
                                                 ],
                                               ),
                                             ),
                                           ),
                                           Expanded(child: Divider(color: Colors.grey.shade100,thickness: 1,)),
+                                          //statment
                                           Expanded(
                                             child: GestureDetector(
                                               onTap: (){
-                                                Get.find<Jollofx>().addMoneyCurrency.value = "Dollar";
                                                 Get.back();
+                                                Get.to(()=>const Choosestatemmentperiod());
                                               },
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  Icon(FluentIcons.list_28_regular,size: 17,color: Colors.black,),
+                                                  const Icon(FluentIcons.list_28_regular,size: 17,color: Colors.black,),
                                                   const SizedBox(width: 10),
                                                   Text("Statement",style: Stylings.titles.copyWith(fontSize: 12),),
                                                   const Expanded(child: SizedBox()),
-                                                  Icon(FluentIcons.ios_chevron_right_20_regular,size: 17,color: Colors.black,),
+                                                  const Icon(FluentIcons.ios_chevron_right_20_regular,size: 17,color: Colors.black,),
                                                 ],
                                               ),
                                             ),
@@ -313,11 +316,11 @@ class _HomescreenState extends State<Homescreen> {
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  Icon(FluentIcons.person_support_32_regular,size: 17,color: Colors.black,),
+                                                  const Icon(FluentIcons.person_support_32_regular,size: 17,color: Colors.black,),
                                                   const SizedBox(width: 10),
                                                   Text("Feedback",style: Stylings.titles.copyWith(fontSize: 12),),
                                                   const Expanded(child: SizedBox()),
-                                                  Icon(FluentIcons.ios_chevron_right_20_regular,size: 17,color: Colors.black,),
+                                                  const Icon(FluentIcons.ios_chevron_right_20_regular,size: 17,color: Colors.black,),
                                                 ],
                                               ),
                                             ),

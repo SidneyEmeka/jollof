@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:jollof/homepage.dart';
 import 'package:jollof/homes/home/more/convert/convertsuccesspage.dart';
 import 'package:jollof/homes/home/more/convert/reviewconversiondetails.dart';
+import 'package:jollof/homes/home/more/statement/allstatements.dart';
 import 'package:jollof/homes/home/tipsandtricks/atipfullread.dart';
 import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import 'package:jollof/questionaire/paymentpreview.dart';
@@ -148,13 +149,13 @@ class Jollofx extends GetxController{
   var plans = [
     {"title":"Standard plan",
     "amount":"299",
-    "desc": "Earn 10% profit for 3 months, 25% for 6 months or 55% profit for 12 months. Trades only Bitcoin and Etherum"},
+    "desc": "Earn 10% profit for 3 months, 20% for 6 months or 30% profit for 12 months. Trades only Bitcoin and Etherum"},
     {"title":"Premium plan",
       "amount":"499",
-      "desc": "Earn 15% profit for 3 months, 35% for 6 months or 65% profit for 12 months. Trades only Bitcoin and Etherum"},
+      "desc": "Earn 25% profit for 6 months, 50% for 12 months or 75% profit for 18 months. Trades only Bitcoin and Etherum"},
     {"title":"VIP plan",
       "amount":"700",
-      "desc": "Earn 20% profit for 3 months, 40% for 6 months or 70% profit for 12 months. Trades only Bitcoin and Etherum"},
+      "desc": "Earn 50% profit for 6 months, 85% for 12 months or 98% profit for 18 months. Trades only Bitcoin and Etherum"},
   ];
   var currentPlanPage = 0.obs;
   var planAt3 = 10.obs;
@@ -814,6 +815,42 @@ convertIntoWallet(){
     }
   });
 }
+
+
+///Wallet Statement
+var fromDate = 'Select a date'.obs;
+var toDate = 'Select a date'.obs;
+//to make sure the dates range are valid
+checkRange(DateTime from, DateTime to){
+  if(from.isAfter(to)){
+    errorText.value = "The start date must be earlier than the end date";
+    isLoading.value=false;
+  }
+  else if(from.isAtSameMomentAs(to)){
+    errorText.value = "The start date should not be the same as the end date";
+    isLoading.value=false;
+  }
+  else{
+    errorText.value="";
+    //make the call
+    getWalletStatements();
+  }
+}
+
+var allStatements = [];
+//wallet statement call
+  getWalletStatements(){
+    Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/wallet/statements?fromDate=${fromDate.value}&toDate=${toDate.value}").then((s){
+      if(statusCode.value==0){
+        allStatements = s['data'];
+        isLoading.value=false;
+        Get.to(()=>Allstatements());
+      }
+      else {
+        isLoading.value=false;
+      }
+    });
+  }
 
 
 

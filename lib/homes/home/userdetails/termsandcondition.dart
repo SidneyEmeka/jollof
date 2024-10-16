@@ -5,6 +5,7 @@ import 'package:jollof/homepage.dart';
 import 'package:jollof/server/getxserver.dart';
 
 import '../../../utils/stylings.dart';
+import '../notifications/allnotifications.dart';
 
 class Termsandcondition extends StatelessWidget {
   const Termsandcondition({super.key});
@@ -27,26 +28,26 @@ class Termsandcondition extends StatelessWidget {
           "Terms and Conditions",
           style: Stylings.titles,
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.card_giftcard_outlined,
-                  size: 17,
-                  color: Colors.black,
-                ),
-                SizedBox(width: 10),
-                Icon(
-                  Icons.notifications_none_outlined,
-                  size: 17,
-                  color: Colors.black,
-                )
-              ],
-            ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Icon(
+              //   Icons.card_giftcard_outlined,
+              //   size: 17,
+              //   color: Colors.black,
+              // ),
+              const SizedBox(width: 10),
+              IconButton(alignment: Alignment.centerRight,onPressed: (){
+                Get.find<Jollofx>().isLoading.value=true;
+                Get.to(()=>const Allnotifications());
+              }, icon: const Icon(
+                Icons.notifications_none_outlined,
+                size: 19,
+                color: Colors.black,
+              ))
+            ],
           ),
         ],
         centerTitle: true,

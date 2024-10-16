@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:jollof/server/getxserver.dart';
 
 import '../../utils/stylings.dart';
@@ -52,7 +53,7 @@ class Buyplanthrough extends StatelessWidget {
             SizedBox(height: Get.height*0.05,),
             Text("I want to pay from",style: Stylings.titles),
             SizedBox(height: Get.height*0.01,),
-            Text("Please select how you would wish to fund your investment. You can chose from your wallet or from an external wallet."
+            Text("Please select how you would wish to fund your investment. You can chose from your USD wallet or from an external wallet."
               ,style: Stylings.subTitles, textAlign: TextAlign.center,),
           ],),
         ),
@@ -96,15 +97,11 @@ class Buyplanthrough extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Wallet",style: Stylings.titles.copyWith(fontSize:12),),
-                              Text("Your balance is",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+                              Text("Your USD balance is",style: Stylings.subTitles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
                             ],
                           ),
                           const Expanded(child: SizedBox()),
-                          RichText(text: TextSpan(children: [
-                            Get.find<Jollofx>().addMoneyCurrency.value=="Naira"?TextSpan(text:"₦${Get.find<Jollofx>().addMoneyAmount.toInt()}",style: Stylings.titles.copyWith(fontSize: 15)):TextSpan(text:"\$${Get.find<Jollofx>().addMoneyAmount.toInt()}",style: Stylings.titles.copyWith(fontSize: 15)),
-                            TextSpan(text:".00",style: Stylings.titles.copyWith(fontSize: 8)),
-                          ]
-                          )),
+                         Text("\$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().usdBalance)}",style: Stylings.titles,),
                           const SizedBox(width: 8),
                           Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
                         ],
