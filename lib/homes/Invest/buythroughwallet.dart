@@ -56,12 +56,13 @@ class _BuythroughwalletState extends State<Buythroughwallet> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Expanded(flex:2,child: SizedBox()),
             Text(
               "Enter amount",
-              style: Stylings.titles.copyWith(fontSize: 12),
+              style: Stylings.titles.copyWith(fontSize: 20),
             ),
-            Text("Plan Start price : \$${Get.find<Jollofx>().plans[Get.find<Jollofx>().currentPlanPage.value]["amount"]}",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.grey.shade400),),
-            const SizedBox(height: 30),
+            Text("Plan Start price : \$${Get.find<Jollofx>().plans[Get.find<Jollofx>().currentPlanPage.value]["amount"]}",style: Stylings.titles.copyWith(fontSize: 10,color: Colors.grey.shade400),),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,8 +88,9 @@ class _BuythroughwalletState extends State<Buythroughwallet> {
                 const Expanded(child: SizedBox()),
               ],
             ),
-            const SizedBox(height: 15),
-            Text("Balance : \$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().usdBalance)}",style: Stylings.titles.copyWith(fontSize: 12),),
+            const SizedBox(height: 20),
+            Text("Balance : \$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().usdBalance)}",style: Stylings.titles.copyWith(fontSize: 10),),
+            const SizedBox(height: 30),
             Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

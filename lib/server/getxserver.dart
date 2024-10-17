@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:jollof/homepage.dart';
+import 'package:jollof/homes/Invest/investmentprevgraph.dart';
 import 'package:jollof/homes/home/more/convert/convertsuccesspage.dart';
 import 'package:jollof/homes/home/more/convert/reviewconversiondetails.dart';
 import 'package:jollof/homes/home/more/statement/allstatements.dart';
@@ -794,7 +795,7 @@ var allStatements = [];
       if(statusCode.value==0){
         allStatements = s['data'];
         isLoading.value=false;
-        Get.to(()=>Allstatements());
+        Get.to(()=>const Allstatements());
       }
       else {
         isLoading.value=false;
@@ -838,6 +839,25 @@ var allStatements = [];
     }
   }
 
+  var investmentDetailsReturned ={};
+//make invest api call
+  buyInvestment(){
+    Apiclientserver().makePostRequest(url: "https://jollof.tatspace.com/api/v1/investment/initialize", body: {
+      "amount": investmentAmount,
+      "duration": investmentDuration,
+      "paymentSource": "wallet"
+    }).then((b){
+      if(statusCode.value==0){
+        investmentDetailsReturned = b['data'];
+        Get.to(()=>const Investmentprevgraph());
+        isLoading.value=false;
+      }
+      else{
+        isLoading.value=false;
+      }
+    });
+  }
+  
 
 
   ///for homepage display of plans

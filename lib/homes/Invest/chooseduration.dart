@@ -71,6 +71,77 @@ class Chooseduration extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                //the ones with returns i formed
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.find<Jollofx>().investmentDurationAt.value=0;
+                //     Get.find<Jollofx>().investmentDuration=3;
+                //   },
+                //   child: Container(
+                //       margin: const EdgeInsets.only(bottom: 10),
+                //       width: Get.width,
+                //       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                //       decoration: BoxDecoration(
+                //           borderRadius:BorderRadius.circular(7),
+                //           border: Border.all(color: Colors.grey.shade300,width: 0.0)
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Text("3 months at 10%",style: Stylings.titles.copyWith(fontSize: 12),),
+                //           Get.find<Jollofx>().investmentDurationAt.value==0?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
+                //         ],
+                //       )
+                //   ),
+                // ),
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.find<Jollofx>().investmentDurationAt.value=1;
+                //     Get.find<Jollofx>().investmentDuration=6;
+                //   },
+                //   child: Container(
+                //       margin: const EdgeInsets.only(bottom: 10),
+                //       width: Get.width,
+                //       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                //       decoration: BoxDecoration(
+                //           borderRadius:BorderRadius.circular(7),
+                //           border: Border.all(color: Colors.grey.shade300,width: 0.0)
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Text("6 months at 20%",style: Stylings.titles.copyWith(fontSize: 12),),
+                //           Get.find<Jollofx>().investmentDurationAt.value==1?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
+                //         ],
+                //       )
+                //   ),
+                // ),
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.find<Jollofx>().investmentDurationAt.value=2;
+                //     Get.find<Jollofx>().investmentDuration=12;
+                //   },
+                //   child: Container(
+                //       margin: const EdgeInsets.only(bottom: 10),
+                //       width: Get.width,
+                //       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                //       decoration: BoxDecoration(
+                //           borderRadius:BorderRadius.circular(7),
+                //           border: Border.all(color: Colors.grey.shade300,width: 0.0)
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Text("12 months at 30%",style: Stylings.titles.copyWith(fontSize: 12),),
+                //           Get.find<Jollofx>().investmentDurationAt.value==2?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
+                //         ],
+                //       )
+                //   ),
+                // ),
+                //the one with api supported values
                 GestureDetector(
                   onTap: (){
                     Get.find<Jollofx>().investmentDurationAt.value=0;
@@ -111,7 +182,7 @@ class Chooseduration extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("6 months at 20%",style: Stylings.titles.copyWith(fontSize: 12),),
+                          Text("6 months at 25%",style: Stylings.titles.copyWith(fontSize: 12),),
                           Get.find<Jollofx>().investmentDurationAt.value==1?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
                         ],
                       )
@@ -134,12 +205,13 @@ class Chooseduration extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("12 months at 30%",style: Stylings.titles.copyWith(fontSize: 12),),
+                          Text("12 months at 50%",style: Stylings.titles.copyWith(fontSize: 12),),
                           Get.find<Jollofx>().investmentDurationAt.value==2?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
                         ],
                       )
                   ),
                 ),
+
               ],
             ):
             Get.find<Jollofx>().currentPlanPage.value==1?Column(
@@ -221,6 +293,77 @@ class Chooseduration extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                //the ones with the values i formed
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.find<Jollofx>().investmentDurationAt.value=0;
+                //     Get.find<Jollofx>().investmentDuration=3;
+                //   },
+                //   child: Container(
+                //       margin: const EdgeInsets.only(bottom: 10),
+                //       width: Get.width,
+                //       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                //       decoration: BoxDecoration(
+                //           borderRadius:BorderRadius.circular(7),
+                //           border: Border.all(color: Colors.grey.shade300,width: 0.0)
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Text("3 months at 50%",style: Stylings.titles.copyWith(fontSize: 12),),
+                //           Get.find<Jollofx>().investmentDurationAt.value==0?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
+                //         ],
+                //       )
+                //   ),
+                // ),
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.find<Jollofx>().investmentDurationAt.value=1;
+                //     Get.find<Jollofx>().investmentDuration=6;
+                //   },
+                //   child: Container(
+                //       margin: const EdgeInsets.only(bottom: 10),
+                //       width: Get.width,
+                //       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                //       decoration: BoxDecoration(
+                //           borderRadius:BorderRadius.circular(7),
+                //           border: Border.all(color: Colors.grey.shade300,width: 0.0)
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Text("6 months at 85%",style: Stylings.titles.copyWith(fontSize: 12),),
+                //           Get.find<Jollofx>().investmentDurationAt.value==1?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
+                //         ],
+                //       )
+                //   ),
+                // ),
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.find<Jollofx>().investmentDurationAt.value=2;
+                //     Get.find<Jollofx>().investmentDuration=12;
+                //   },
+                //   child: Container(
+                //       margin: const EdgeInsets.only(bottom: 10),
+                //       width: Get.width,
+                //       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                //       decoration: BoxDecoration(
+                //           borderRadius:BorderRadius.circular(7),
+                //           border: Border.all(color: Colors.grey.shade300,width: 0.0)
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Text("12 months at 98%",style: Stylings.titles.copyWith(fontSize: 12),),
+                //           Get.find<Jollofx>().investmentDurationAt.value==2?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
+                //         ],
+                //       )
+                //   ),
+                // ),
+                //the ones with the api supported values
                 GestureDetector(
                   onTap: (){
                     Get.find<Jollofx>().investmentDurationAt.value=0;
@@ -238,7 +381,7 @@ class Chooseduration extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("3 months at 50%",style: Stylings.titles.copyWith(fontSize: 12),),
+                          Text("3 months at 10%",style: Stylings.titles.copyWith(fontSize: 12),),
                           Get.find<Jollofx>().investmentDurationAt.value==0?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
                         ],
                       )
@@ -261,7 +404,7 @@ class Chooseduration extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("6 months at 85%",style: Stylings.titles.copyWith(fontSize: 12),),
+                          Text("6 months at 25%",style: Stylings.titles.copyWith(fontSize: 12),),
                           Get.find<Jollofx>().investmentDurationAt.value==1?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
                         ],
                       )
@@ -284,7 +427,7 @@ class Chooseduration extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("12 months at 98%",style: Stylings.titles.copyWith(fontSize: 12),),
+                          Text("12 months at 50%",style: Stylings.titles.copyWith(fontSize: 12),),
                           Get.find<Jollofx>().investmentDurationAt.value==2?const Icon(Icons.check,color: Colors.green,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,),
                         ],
                       )
@@ -295,7 +438,7 @@ class Chooseduration extends StatelessWidget {
             const Expanded(flex:2,child: SizedBox()),
             GestureDetector(
               onTap: (){
-              //  Get.to(()=>const Investmentpreview());
+              Get.to(()=>const Investmentpreview());
               },
               child: Container(
                 height: Get.height*0.055,
