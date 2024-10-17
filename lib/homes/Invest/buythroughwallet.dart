@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../../server/getxserver.dart';
 import '../../utils/stylings.dart';
 import 'chooseduration.dart';
 
-class Buythroughwallet extends StatelessWidget {
-  const Buythroughwallet({super.key});
+class Buythroughwallet extends StatefulWidget {
+   const Buythroughwallet({super.key});
+
+  @override
+  State<Buythroughwallet> createState() => _BuythroughwalletState();
+}
+
+class _BuythroughwalletState extends State<Buythroughwallet> {
+  final _invAmount = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,7 @@ class Buythroughwallet extends StatelessWidget {
         ],
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
-      body: Container(
+      body: Obx(()=>Container(
         padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 30),
         width: Get.width,
         height: Get.height,
@@ -51,53 +60,50 @@ class Buythroughwallet extends StatelessWidget {
               "Enter amount",
               style: Stylings.titles.copyWith(fontSize: 12),
             ),
-            Text(
-              "\$1 - NGN1665",
-              style: Stylings.titles.copyWith(fontSize: 11,color: Colors.grey.shade400),
-            ),
+            Text("Plan Start price : \$${Get.find<Jollofx>().plans[Get.find<Jollofx>().currentPlanPage.value]["amount"]}",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.grey.shade400),),
             const SizedBox(height: 30),
-            SizedBox(
-              width: Get.width * 0.4,
-              child: TextField(
-                onChanged: (value) {
-                  double val = double.parse(value);
-                  Get.find<Jollofx>().investmentAmount.value = val;
-                },
-                textAlign: TextAlign.center,
-                style: Stylings.titles.copyWith(fontSize: Get.width * 0.1),
-                cursorColor: Colors.grey.shade300,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                    hintText:
-                        Get.find<Jollofx>().addMoneyCurrency.value == "USDT"
-                            ? "\$0.00"
-                            : "₦0.00",
-                    hintStyle: Stylings.titles.copyWith(
-                        fontSize: Get.width * 0.1, color: Colors.grey.shade300),
-                    //suffix: Get.find<Jollofx>().addMoneyCurrency.value=="USDT"?Text("USDT",style: Stylings.subTitles,):Text("Naira",style: Stylings.subTitles,),
-                    border: InputBorder.none),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Expanded(child: SizedBox()),
+                Text("\$",style:Stylings.titles.copyWith(
+                    fontSize: Get.width * 0.1, color: Colors.grey.shade300),),
+                Expanded(
+                  child: TextField(
+                    controller: _invAmount,
+                    textAlign: TextAlign.start,
+                    style: Stylings.titles.copyWith(fontSize: Get.width * 0.1),
+                    cursorColor: Colors.grey.shade300,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        hintText:"00.00",
+                        hintStyle: Stylings.titles.copyWith(
+                            fontSize: Get.width * 0.1, color: Colors.grey.shade300),
+                        border: InputBorder.none),
+                  ),
+                ),
+                const Expanded(child: SizedBox()),
+              ],
             ),
-           const SizedBox(height: 15),
-            RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                  text: "Balance : ",
-                  style: Stylings.titles.copyWith(fontSize: 12)),
-              Get.find<Jollofx>().addMoneyCurrency.value == "Naira"
-                  ? TextSpan(
-                      text: "₦${Get.find<Jollofx>().addMoneyAmount.toInt()}",
-                      style: Stylings.titles.copyWith(fontSize: 12))
-                  : TextSpan(
-                      text: "\$${Get.find<Jollofx>().addMoneyAmount.toInt()}",
-                      style: Stylings.titles.copyWith(fontSize: 12)),
-              TextSpan(
-                  text: ".00", style: Stylings.titles.copyWith(fontSize: 8)),
-            ])),
+            const SizedBox(height: 15),
+            Text("Balance : \$${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().usdBalance)}",style: Stylings.titles.copyWith(fontSize: 12),),
+            Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                const SizedBox(width: 5),
+                Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+              ],
+            ),
             const Expanded(flex:3,child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Chooseduration());
+                num val = num.parse(_invAmount.text);
+                Get.find<Jollofx>().investmentAmount = val;
+                Get.find<Jollofx>().checkIfInvestmentAmountCovers(Get.find<Jollofx>().plans[Get.find<Jollofx>().currentPlanPage.value]["amount"]!);
               },
               child: Container(
                 height: Get.height*0.055,
@@ -113,7 +119,7 @@ class Buythroughwallet extends StatelessWidget {
 
           ],
         ),
-      ),
+      ),)
     );
   }
 }

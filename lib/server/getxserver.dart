@@ -16,6 +16,7 @@ import 'package:jollof/homes/home/userdetails/idimagepreview.dart';
 import 'package:jollof/questionaire/paymentpreview.dart';
 import 'package:jollof/questionaire/questions.dart';
 
+import '../homes/Invest/chooseduration.dart';
 import '../homes/home/tipsandtricks/alltipsandtricks.dart';
 import '../homes/home/userdetails/termsandcondition.dart';
 import '../model/tipmodel.dart';
@@ -143,58 +144,6 @@ class Jollofx extends GetxController{
       explainer = explainer-3;
     }
   }
-
-
-
-  var plans = [
-    {"title":"Standard plan",
-    "amount":"299",
-    "desc": "Earn 10% profit for 3 months, 20% for 6 months or 30% profit for 12 months. Trades only Bitcoin and Etherum"},
-    {"title":"Premium plan",
-      "amount":"499",
-      "desc": "Earn 25% profit for 6 months, 50% for 12 months or 75% profit for 18 months. Trades only Bitcoin and Etherum"},
-    {"title":"VIP plan",
-      "amount":"700",
-      "desc": "Earn 50% profit for 6 months, 85% for 12 months or 98% profit for 18 months. Trades only Bitcoin and Etherum"},
-  ];
-  var currentPlanPage = 0.obs;
-  var planAt3 = 10.obs;
-  var planAt6 = 25.obs;
-  var planAt12 = 55.obs;
-  var planAt = [
-    10.obs,
-    25.obs,
-    55.obs,
-  ].obs;
-
-  planDetails(){
-    if(currentPlanPage.value==0){
-      planAt= [
-        10.obs,
-        25.obs,
-        55.obs,
-      ].obs;
-    }
-   else if(currentPlanPage.value==1){
-      planAt= [
-        15.obs,
-        35.obs,
-         65.obs,
-      ].obs;
-    }
-   else if(currentPlanPage.value==2){
-      planAt= [
-        20.obs,
-        40.obs,
-        70.obs,
-      ].obs;}
-
-}
-
-
-  var investmentDurationAt = 0.obs;
-  var investmentAmount = 0.0.obs;
-
 
 
 //user details
@@ -856,7 +805,42 @@ var allStatements = [];
 
 
 
-///Investments
+///Investments and Plan Buying
+  ///Buy Investment
+  var plans = [
+    {"title":"Standard plan",
+      "amount":"299",
+      "desc": "Earn 10% profit for 3 months, 20% for 6 months or 30% profit for 12 months. Trades only Bitcoin and Etherum"},
+    {"title":"Premium plan",
+      "amount":"499",
+      "desc": "Earn 25% profit for 3 months, 50% for 6 months or 75% profit for 12 months. Trades only Bitcoin and Etherum"},
+    {"title":"VIP plan",
+      "amount":"700",
+      "desc": "Earn 50% profit for 3 months, 85% for 6 months or 98% profit for 12 months. Trades only Bitcoin and Etherum"},
+  ];
+  var currentPlanPage = 0.obs;
+
+  var investmentDurationAt = 0.obs;//to control chheckamrks
+  var investmentDuration = 0;//actual investment duration Enum[3,6,12]
+  num investmentAmount = 0;
+
+  checkIfInvestmentAmountCovers(String planPrice){
+    num amount = num.parse(planPrice);
+    if(investmentAmount<amount){
+      errorText.value="Amount below start price";
+    }
+    else if(investmentAmount > usdBalance){
+      errorText.value="Amount exceeded balance";
+    }
+    else{
+      errorText.value='';
+      Get.to(()=>const Chooseduration());
+    }
+  }
+
+
+
+  ///for homepage display of plans
   var userInvestments = [];
   //To check the package used
   checkPackage(num amount){
@@ -882,5 +866,9 @@ getUserInvestments(){
     });
 }
 }
+
+
+
+
 
 

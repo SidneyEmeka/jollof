@@ -406,7 +406,7 @@ class _HomescreenState extends State<Homescreen> {
             //investments
             Get.find<Jollofx>().userInvestments.isEmpty?const SizedBox():Container(
               margin: const EdgeInsets.symmetric(horizontal: 15),
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
               width: Get.width,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade100),
