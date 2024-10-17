@@ -55,6 +55,8 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
+            const SizedBox(height: 5,),
             Container(
               width: Get.width,
               height: Get.height*0.15,
@@ -67,7 +69,6 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
                   Expanded(flex:2,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +109,7 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
             //details
             Container(
               width: Get.width,
-              height: Get.height*0.42,
+              //height: Get.height*0.42,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade200)
@@ -121,7 +122,7 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
                   //Insurance
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                    //height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -152,7 +153,7 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
                   //brief
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                 //   height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -183,7 +184,7 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
                   //Interest
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                    //height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -216,7 +217,7 @@ class _InvestmentpreviewState extends State<Investmentpreview> {
                   //Rate
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                //    height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.start,

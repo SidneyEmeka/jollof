@@ -132,26 +132,29 @@ class _RegemailState extends State<Regemail> {
         ),)
       ),
       bottomNavigationBar: BottomAppBar(
-        height: Get.height*0.15,
+        height: Get.height*0.2,
         color: Stylings.bgColor,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("Already have  an account ? Log in",style: Stylings.subTitles.copyWith(color: Stylings.yellow),),
-              RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(children: [
-                    TextSpan(text: "By continuing you agree to our  ",style: Stylings.subTitles),
-                    TextSpan(text: "Privacy Policy ",style: Stylings.subTitles.copyWith(color: Stylings.yellow)),
-                    TextSpan(text: "and ",style: Stylings.subTitles),
-                    TextSpan(text: "Terms and Conditions",style: Stylings.subTitles.copyWith(color: Stylings.yellow)),
-                  ])),
-            ],
+        child:  Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(child: Text("Already have  an account ? Log in",style: Stylings.subTitles.copyWith(color: Stylings.yellow),)),
+                Expanded(
+                  child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(children: [
+                        TextSpan(text: "By continuing you agree to our  ",style: Stylings.subTitles),
+                        TextSpan(text: "Privacy Policy ",style: Stylings.subTitles.copyWith(color: Stylings.yellow)),
+                        TextSpan(text: "and ",style: Stylings.subTitles),
+                        TextSpan(text: "Terms and Conditions",style: Stylings.subTitles.copyWith(color: Stylings.yellow)),
+                      ])),
+                ),
+              ],
+            ),
           ),
-        ),
       ),
     );
   }

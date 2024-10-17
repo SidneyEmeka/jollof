@@ -17,7 +17,6 @@ class Cryptorank extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      height: Get.height * 0.1,
       padding: const EdgeInsets.symmetric(
           horizontal: 10, vertical: 20),
       decoration: BoxDecoration(

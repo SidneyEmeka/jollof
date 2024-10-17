@@ -54,7 +54,7 @@ class Paymentmethod extends StatelessWidget {
             //methods
             Container(
               width: Get.width,
-              height: Get.height*0.32,
+              //height: Get.height*0.32,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade200)
@@ -108,7 +108,7 @@ class Paymentmethod extends StatelessWidget {
                     },
                     child: Container(
                       width: Get.width,
-                      height: Get.height*0.1,
+                      //height: Get.height*0.1,
                       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                       decoration: BoxDecoration(
                           border: Border(
@@ -147,7 +147,7 @@ class Paymentmethod extends StatelessWidget {
                     },
                     child: Container(
                       width: Get.width,
-                      height: Get.height*0.1,
+                      //height: Get.height*0.1,
                       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                       decoration: BoxDecoration(
                           border: Border(
@@ -211,7 +211,7 @@ class Paymentmethod extends StatelessWidget {
                   //apple
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                   // height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

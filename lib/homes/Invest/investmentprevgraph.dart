@@ -27,7 +27,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
         scrolledUnderElevation: 0,
         leading: IconButton(
             onPressed: () {
-              Get.to(()=>Homepage());
+              Get.to(()=>const Homepage());
             },
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -52,7 +52,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
         width: Get.width,
         height: Get.height,
         child: ListView(
@@ -75,7 +75,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Potential return",style: Stylings.titles.copyWith(fontSize: 11),),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text("${Get.find<Jollofx>().investmentDetailsReturned['interest_rate']}%",style: Stylings.titles.copyWith(fontSize: 11,color: Colors.green),),
                           ],
                         ),
@@ -93,7 +93,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
             //details
             Container(
               width: Get.width,
-              height: Get.height*0.42,
+           //   height: Get.height*0.42,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade200)
@@ -106,7 +106,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                   //Insurance
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+               //     height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -138,7 +138,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                   //brief
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                  //  height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -169,7 +169,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                   //Interest
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+             //       height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -200,7 +200,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                   //Rate
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+           //         height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -230,7 +230,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
           //opt out
             Container(
               width: Get.width,
-              height: Get.height*0.22,
+            //  height: Get.height*0.22,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade200)
@@ -243,7 +243,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                   //opt out
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+             //       height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -274,7 +274,7 @@ class _InvestmentprevgraphState extends State<Investmentprevgraph> {
                   //Get help
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+              //      height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(

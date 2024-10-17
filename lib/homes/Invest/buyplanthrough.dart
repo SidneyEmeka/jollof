@@ -61,7 +61,7 @@ class Buyplanthrough extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 15),
               width: Get.width,
-              height: Get.height*0.2,
+              //height: Get.height*0.2,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   //border: Border.all(color: Colors.grey.shade200),
@@ -79,7 +79,7 @@ class Buyplanthrough extends StatelessWidget {
                     },
                     child: Container(
                       width: Get.width,
-                      height: Get.height*0.1,
+                      //height: Get.height*0.1,
                       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                       decoration: BoxDecoration(
                           border: Border(
@@ -110,7 +110,7 @@ class Buyplanthrough extends StatelessWidget {
                   ),
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                    //height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -123,7 +123,7 @@ class Buyplanthrough extends StatelessWidget {
                       children: [
                         const Icon(Icons.add_card,color: Colors.black,size: 15,),
                         const SizedBox(width: 15,),
-                        Column(
+                       Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

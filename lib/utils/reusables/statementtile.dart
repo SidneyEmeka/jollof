@@ -25,13 +25,14 @@ class Statementtile extends StatelessWidget {
         color: Colors.grey.shade400,
       ),
       width: Get.width,
-      height: Get.height*0.15,
+      //height: Get.height*0.15,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(Get.find<Jollofx>().dateFormat(statTime),style: Stylings.subTitles),
-          const Expanded(child: SizedBox()),
+        SizedBox(height: 5,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,7 +74,7 @@ class Statementtile extends StatelessWidget {
             ),
           ],
         ),
-         const Expanded(child: SizedBox()),
+        SizedBox(height: 10,),
           Text("ID - $statId",style: Stylings.subTitles.copyWith(fontSize: 10),),
         ],
       ),

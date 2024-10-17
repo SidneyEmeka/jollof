@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:jollof/homes/home/more/convert/convertwallet.dart';
 import 'package:jollof/homes/home/notifications/allnotifications.dart';
+import 'package:jollof/homes/home/settings/allsettings.dart';
 import 'package:jollof/homes/home/tipsandtricks/alltipsandtricks.dart';
 import 'package:jollof/homes/home/userdetails/userdetails.dart';
 import 'package:jollof/paymentwebview.dart';
@@ -41,15 +42,20 @@ class _HomescreenState extends State<Homescreen> {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
-        leading: Container(
-            padding: const EdgeInsets.all(13),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            child: Image.network(
-              Get.find<Jollofx>().validatedUserAvatar.value,
-              fit: BoxFit.contain,
-            )),
+        leading: GestureDetector(
+          onTap: (){
+            Get.to(()=>const Allsettings());
+          },
+          child: Container(
+              padding: const EdgeInsets.all(13),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: Image.network(
+                Get.find<Jollofx>().validatedUserAvatar.value,
+                fit: BoxFit.contain,
+              )),
+        ),
         title: Text(
           "Hello ${Get.find<Jollofx>().validatedlastName}",
           style: Stylings.titles,
@@ -431,7 +437,7 @@ class _HomescreenState extends State<Homescreen> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 15),
               width: Get.width,
-              height: Get.height * 0.32,
+            //  height: Get.height * 0.32,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade100),
                   borderRadius: BorderRadius.circular(10),

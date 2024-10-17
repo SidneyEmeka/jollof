@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/onboarding/regemail.dart';
 import 'package:jollof/server/getxserver.dart';
 
 import '../utils/stylings.dart';
@@ -185,8 +186,8 @@ class _SigninmethodState extends State<Signinmethod> {
                     text: TextSpan(children: [
                       TextSpan(text: "Don't have an account ? ",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400)),
                       TextSpan(recognizer: TapGestureRecognizer()..onTap=(){
-                        Get.to(()=>const Signinmethod());
-                      },text: "Register",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.grey.shade400)),
+                        Get.to(()=>const Regemail());
+                      },text: "Register",style: Stylings.titles.copyWith(fontSize: 12,color: Colors.black)),
                     ])),),
               const Expanded(child: SizedBox()),
               Row(

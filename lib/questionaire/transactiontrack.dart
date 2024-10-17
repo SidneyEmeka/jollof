@@ -53,7 +53,7 @@ class Transactiontrack extends StatelessWidget {
                   //Acct
                   Container(
                     width: Get.width,
-                    height: Get.height*0.1,
+                  //  height: Get.height*0.1,
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     decoration: BoxDecoration(
                         border: Border(
@@ -126,7 +126,7 @@ class Transactiontrack extends StatelessWidget {
                                 const SizedBox(width: 10,),
                                 Text("Waiting to receive funds",style: Stylings.titles.copyWith(fontSize: 12),),
                                 const Expanded(child: SizedBox()),
-                                SizedBox(width: Get.width*0.3,child: Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles,overflow: TextOverflow.ellipsis,)),
+                                Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles,overflow: TextOverflow.ellipsis,),
                               ],
                             ),
                             const SizedBox(height: 5),

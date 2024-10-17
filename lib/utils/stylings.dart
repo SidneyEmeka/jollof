@@ -7,6 +7,7 @@ class Stylings {
   //Colors
   static Color yellow = const Color(0xFFFEC706);
   static Color bgColor =const Color(0xFFFBFBFB);
+  static Color black = Colors.black;
 
 //textStyles
   static TextStyle titles = TextStyle(
