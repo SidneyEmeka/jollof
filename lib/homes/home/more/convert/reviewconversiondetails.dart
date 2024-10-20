@@ -40,6 +40,7 @@ class Reviewconversiondetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
+           SizedBox(height: 5,),
             //details
             Container(
               width: Get.width,

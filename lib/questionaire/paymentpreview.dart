@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:intl/intl.dart';
 import 'package:jollof/questionaire/paymentmethod.dart';
 
 import '../server/getxserver.dart';
@@ -82,7 +83,7 @@ class Paymentpreview extends StatelessWidget {
                         children: [
                           Text("You are depositing",style: Stylings.titles.copyWith(fontSize: 11,color: Colors.grey.shade400),),
                           // SizedBox(height: 5,),
-                          Get.find<Jollofx>().addMoneyCurrency.value=='Dollar'?Text("${Get.find<Jollofx>().addMoneyAmount} USD",style: Stylings.titles,):Text("₦${Get.find<Jollofx>().addMoneyAmount}",style: Stylings.titles,)
+                          Get.find<Jollofx>().addMoneyCurrency.value=='Dollar'?Text("${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().addMoneyAmount)} USD",style: Stylings.titles,):Text("₦${NumberFormat.decimalPattern('en').format(Get.find<Jollofx>().addMoneyAmount)}",style: Stylings.titles,)
                         ],
                       ),
                     ),

@@ -279,6 +279,7 @@ class Jollofx extends GetxController{
   var validatedUserEmail = ''.obs;
   var validatedUserAvatar = ''.obs;
   var validatedlastName = ''.obs;
+  var validatedfirstName = ''.obs;
   var userTokens = {}.obs;
   var statusCode = 0.obs;
 
@@ -432,10 +433,13 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
          final mainKey = l['data'];
          //print(mainKey);
          final imgUrl = mainKey['user']["avatarImage"];
+         final firstName = mainKey['user']["firstname"];
          final lastName = mainKey['user']["lastname"];
          final email = mainKey['user']["email"];
+         final promoCode = mainKey['user']["promoCode"];
          //print(a?["data"]["avatarImageUrl"]);
          validatedUserAvatar.value = imgUrl;
+         validatedfirstName.value = firstName;
          validatedlastName.value = lastName;
          validatedUserEmail.value = email;
          userTokens.value = {
@@ -650,7 +654,7 @@ getAllNotifications(){
       errorText.value = "Minimum Naira deposit is 100 NGN";
      }
      else if(theCurrency=="usd"&&addMoneyAmount<10){
-       errorText.value = "Minimum Naira deposit is 10 USD";
+       errorText.value = "Minimum Dollar deposit is 10 USD";
      }
      else{
        errorText.value = "";
@@ -851,6 +855,7 @@ var allStatements = [];
         investmentDetailsReturned = b['data'];
         Get.to(()=>const Investmentprevgraph());
         isLoading.value=false;
+        feedHome();
       }
       else{
         isLoading.value=false;
@@ -878,6 +883,7 @@ var allStatements = [];
 getUserInvestments(){
     Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/investment/filter?sortBy=createdAt&orderBy=desc&page=1&limit=20&isOptedOut=false").then((i){
      if(statusCode.value==0){
+     //  print(i['data']);
        userInvestments = i['data'];
      }
      else{

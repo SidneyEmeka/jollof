@@ -7,19 +7,9 @@ import 'package:jollof/homepage.dart';
 import '../../server/getxserver.dart';
 import '../../utils/stylings.dart';
 
-class Investmentprevgraph extends StatefulWidget {
+class Investmentprevgraph extends StatelessWidget {
   const Investmentprevgraph({super.key});
 
-  @override
-  State<Investmentprevgraph> createState() => _InvestmentprevgraphState();
-}
-
-class _InvestmentprevgraphState extends State<Investmentprevgraph> {
-  @override
-  void initState() {
-    Get.find<Jollofx>().getUserInvestments();
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
