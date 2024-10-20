@@ -17,7 +17,7 @@ class Balancecards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(()=>Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22,vertical: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 22,vertical: 20),
         width: Get.width*0.85,
         height: Get.height*0.25,
         decoration: BoxDecoration(
@@ -35,16 +35,11 @@ class Balancecards extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("$type balance",style: Stylings.titles,),
-                const SizedBox(width: 8),
-                GestureDetector(
-                    onTap: (){
-                      Get.find<Jollofx>().obscure.value?Get.find<Jollofx>().obscure.value=false: Get.find<Jollofx>().obscure.value=true;
-                    },child: Get.find<Jollofx>().obscure.value==false?const Icon(FluentIcons.eye_48_regular,color: Colors.black,size: 15,):const Icon(FluentIcons.eye_off_32_regular,color: Colors.black,size: 15,)),
+                Get.find<Jollofx>().obscure.value==false?IconButton(onPressed: (){  Get.find<Jollofx>().obscure.value?Get.find<Jollofx>().obscure.value=false: Get.find<Jollofx>().obscure.value=true;}, icon: const Icon(FluentIcons.eye_48_regular,color: Colors.black,size: 15,)):IconButton(onPressed: (){  Get.find<Jollofx>().obscure.value?Get.find<Jollofx>().obscure.value=false: Get.find<Jollofx>().obscure.value=true;}, icon: const Icon(FluentIcons.eye_off_32_regular,color: Colors.black,size: 15,)),
                 const Expanded(child: SizedBox()),
                 Text("Card Details",style: Stylings.titles.copyWith(fontSize: 10),),
               ],
             ),
-            const SizedBox(height: 10),
             //balance
             Get.find<Jollofx>().obscure.value==false? RichText(text: TextSpan(
               children: [

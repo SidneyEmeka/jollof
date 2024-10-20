@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/onboarding/awaitverification.dart';
 import 'package:jollof/onboarding/regpin.dart';
+import 'package:jollof/onboarding/signinmethod.dart';
 import 'package:jollof/server/apiclient.dart';
 import 'package:jollof/utils/stylings.dart';
 
@@ -65,16 +66,6 @@ class _RegemailState extends State<Regemail> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text("Email address.",style: Stylings.titles.copyWith(fontSize: 12),),
                   ),
-                 Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.error_outline,size: 11,color: Colors.red,),
-                      const SizedBox(width: 5),
-                      Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
-                    ],
-                  ),
-                  const SizedBox(height: 5,),
                   TextFormField(
                     style: Stylings.subTitles.copyWith(fontSize: 11),
                     controller: _emailController,
@@ -108,7 +99,17 @@ class _RegemailState extends State<Regemail> {
                     ),
 
                   ),
-                  ],
+                  const SizedBox(height: 5,),
+                  Get.find<Jollofx>().errorText.value==""?const SizedBox(): Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline,size: 11,color: Colors.red,),
+                      const SizedBox(width: 5),
+                      Text(Get.find<Jollofx>().errorText.value,style: Stylings.subTitles.copyWith(color: Colors.red),),
+                    ],
+                  ),
+                ],
               ),
               const Expanded(flex:2,child: SizedBox()),
               GestureDetector(
@@ -141,7 +142,9 @@ class _RegemailState extends State<Regemail> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(child: Text("Already have  an account ? Log in",style: Stylings.subTitles.copyWith(color: Stylings.yellow),)),
+                Expanded(child: GestureDetector(onTap: (){
+                  Get.to(()=>Signinmethod());
+                },child: Text("Already have  an account ? Log in",style: Stylings.subTitles.copyWith(color: Stylings.yellow),))),
                 Expanded(
                   child: RichText(
                       textAlign: TextAlign.center,

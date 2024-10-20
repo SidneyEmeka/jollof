@@ -679,7 +679,7 @@ getAllNotifications(){
         idOfTopUp = id;
         isLoading.value=false;
         //print(timeOfTopUP);
-       Get.to(()=>const Paymentonway());
+       Get.off(()=>const Paymentonway());
       }
       else{
         isLoading.value=false;

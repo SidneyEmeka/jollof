@@ -159,6 +159,7 @@ class Account extends StatelessWidget {
                         duration: duration,
                         amount: amount);
                   }),
+                  SizedBox(height: 10,),
                   //earnings
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,7 +193,7 @@ class Account extends StatelessWidget {
                           Text("\$0.00",style: Stylings.titles.copyWith(color: Colors.green,fontSize: 12),)
                         ],
                       ),
-                      SizedBox(height: 15,),
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,

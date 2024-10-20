@@ -23,8 +23,8 @@ class _UserdetailsState extends State<Userdetails> {
   Future<void> userdob() async{
     DateTime? dob = await showDatePicker(context: context,
       firstDate: DateTime(1940),
-      initialDate: DateTime(1940),
-      lastDate: DateTime(2006),
+      initialDate: DateTime(2006),
+      lastDate: DateTime(2007),
     );
     Get.find<Jollofx>().userInfo["dob"] = dob.toString().split(" ")[0];
     setState(() {});

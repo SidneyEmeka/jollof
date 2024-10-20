@@ -29,12 +29,6 @@ class Paymentmethod extends StatelessWidget {
           style: Stylings.titles,
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: Text("Skip",style: Stylings.titles.copyWith(color: Stylings.yellow),),
-          )
-        ],
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Obx(()=>Container(
@@ -119,15 +113,15 @@ class Paymentmethod extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Icon(Icons.paypal_outlined,size: 20,color: Colors.blueAccent,),
+                          const Icon(Icons.view_carousel_sharp,size: 20,color: Colors.blueAccent,),
                           const SizedBox(width: 15),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("PayPal",style: Stylings.titles.copyWith(fontSize: 12),),
+                              Text("Manual Top-up",style: Stylings.titles.copyWith(fontSize: 12),),
                               const SizedBox(height: 5),
-                              Text("Pay with PayPal",style: Stylings.titles.copyWith(fontSize: 10,
+                              Text("For test purposes only",style: Stylings.titles.copyWith(fontSize: 10,
                                   color: Colors.grey.shade400),),
                             ],
                           ),
@@ -209,29 +203,34 @@ class Paymentmethod extends StatelessWidget {
                   //   ),
                   // ),
                   //apple
-                  Container(
-                    width: Get.width,
-                   // height: Get.height*0.1,
-                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.currency_bitcoin,size: 20,color: Stylings.yellow,),
-                        const SizedBox(width: 15),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Deposit Crypto",style: Stylings.titles.copyWith(fontSize: 12),),
-                            const SizedBox(height: 5),
-                            Text("Fund wallet with crypto currency",style: Stylings.titles.copyWith(fontSize: 10,
-                                color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.snackbar("Coming soon", "Feature currently not available");
+                    },
+                    child: Container(
+                      width: Get.width,
+                     // height: Get.height*0.1,
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.currency_bitcoin,size: 20,color: Stylings.yellow,),
+                          const SizedBox(width: 15),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Deposit Crypto",style: Stylings.titles.copyWith(fontSize: 12),),
+                              const SizedBox(height: 5),
+                              Text("Fund wallet with crypto currency",style: Stylings.titles.copyWith(fontSize: 10,
+                                  color: Colors.grey.shade400),),
+                            ],
+                          ),
+                          const Expanded(flex:2,child: SizedBox()),
+                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                 ],

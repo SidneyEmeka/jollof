@@ -64,46 +64,56 @@ class Welcome extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.list_alt_outlined,size: 20,color: Colors.black,),
-                        const SizedBox(width: 10),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Build my portfolio",style: Stylings.titles.copyWith(fontSize: 11),),
-                           // SizedBox(height: 5,),
-                            Text("Let Ai trade for you while you sleep",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
+                    child: GestureDetector(
+                      onTap: (){
+                        Get.snackbar("Coming soon", "Feature currently not available");
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.list_alt_outlined,size: 20,color: Colors.black,),
+                          const SizedBox(width: 10),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Build my portfolio",style: Stylings.titles.copyWith(fontSize: 11),),
+                             // SizedBox(height: 5,),
+                              Text("Let Ai trade for you while you sleep",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
+                            ],
+                          ),
+                          const Expanded(flex:2,child: SizedBox()),
+                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(child: Divider(color: Colors.grey.shade200,thickness: 0.0,)),
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.wallet_travel,size: 20,color: Colors.black,),
-                       const SizedBox(width: 10),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Invest in mutual fund",style: Stylings.titles.copyWith(fontSize: 11),),
-                            // SizedBox(height: 5,),
-                            Text("Earn upto 55% fixed return",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
-                          ],
-                        ),
-                        const Expanded(flex:2,child: SizedBox()),
-                        Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
-                      ],
+                    child: GestureDetector(
+                      onTap: (){
+                        Get.snackbar("Coming soon", "Feature currently not available");
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.wallet_travel,size: 20,color: Colors.black,),
+                         const SizedBox(width: 10),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Invest in mutual fund",style: Stylings.titles.copyWith(fontSize: 11),),
+                              // SizedBox(height: 5,),
+                              Text("Earn upto 55% fixed return",style: Stylings.subTitles.copyWith(color: Colors.grey.shade400),),
+                            ],
+                          ),
+                          const Expanded(flex:2,child: SizedBox()),
+                          Icon(Icons.arrow_forward_ios,color: Colors.grey.shade400,size: 15,)
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(child: Divider(color: Colors.grey.shade200,thickness: 0.0,)),

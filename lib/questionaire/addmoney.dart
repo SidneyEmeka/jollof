@@ -52,7 +52,9 @@ class _AddmoneyState extends State<Addmoney> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("Your money is safe",style: Stylings.titles.copyWith(fontSize: 12),),
-                Text("Schedule",style: Stylings.titles.copyWith(fontSize: 12,color: Stylings.yellow),),
+                GestureDetector(onTap: (){
+                  Get.snackbar("Coming soon", "Feature currently not available");
+                },child: Text("Schedule",style: Stylings.titles.copyWith(fontSize: 12,color: Stylings.yellow),)),
               ],
             ),
             const SizedBox(height: 20,),

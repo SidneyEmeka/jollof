@@ -49,7 +49,7 @@ class Paymentonway extends StatelessWidget {
             const SizedBox(height: 15,),
             GestureDetector(
               onTap: () {
-                Get.to(()=>const Homepage());
+                Get.offAll(()=>const Homepage());
               },
               child: Container(
                 height: Get.height*0.055,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/homepage.dart';
 import 'package:jollof/questionaire/explainer.dart';
+import 'package:jollof/questionaire/welcome.dart';
 import 'package:jollof/server/getxserver.dart';
 import 'package:jollof/utils/reusables/radiolist.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -41,7 +42,7 @@ class _QuestionsState extends State<Questions> {
             padding: const EdgeInsets.only(right: 10.0),
             child: GestureDetector(
               onTap: (){
-                Get.to(()=>const Homepage());
+                Get.to(()=>const Welcome());
               },
               child: Text(
                 "Skip",
