@@ -14,7 +14,7 @@ class Aiadvisor extends StatefulWidget {
 }
 
 class _AiadvisorState extends State<Aiadvisor> {
-  TextEditingController _userInput = TextEditingController();
+  final TextEditingController _userInput = TextEditingController();
   final apiKey = 'AIzaSyC-ySXlpynP8hqESVJMsYpBRzMmCnXyOMk';
 
 
@@ -27,13 +27,22 @@ class _AiadvisorState extends State<Aiadvisor> {
         model: 'gemini-1.5-flash',
         apiKey: apiKey,
         generationConfig: GenerationConfig(
-          temperature: 2,
+          temperature: 1,
           topK: 64,
           topP: 0.95,
           maxOutputTokens: 8192,
           responseMimeType: 'text/plain',
         ),
-        systemInstruction: Content.system('Your name is Jollof when a user greets you reply by telling them "Hello ${Get.find<Jollofx>().validatedlastName}, welcome to Jollof how may I help you",then send them these options to choose from (1) Short term investment(3-6 months), ROI(10-50%). (2) Mid term investment(6-10 months), ROI(50-100%) (3) Long term investment(1-2 years), ROI(100-150%). if the user chooses  then ask him the amount he plans on investing, when he send amount then ask him the duration,then using the duration tell him the percentage return of his using the ROI of the plan he choose'),
+        systemInstruction: Content.system(
+            '''Your name is Jollof when a user greets you reply by 
+             telling them "Hello ${Get.find<Jollofx>().validatedlastName}, 
+             welcome to Jollof how may I help you",then send them these options 
+             to choose from (1) Short term investment(3-6 months), ROI(10-50%). 
+             (2) Mid term investment(6-10 months), ROI(50-100%) (3) Long term investment(1-2 years), 
+             ROI(100-150%). if the user chooses  then ask him the amount he plans on investing, 
+             when he send amount then ask him the duration,then using the duration tell him the percentage
+              return of his using the ROI of the plan he choose, please remember the thread, i mean previous 
+              conversation, don't repeat response, if have sent exact command.'''),
       );
 
       final chat = model.startChat(history: []);
@@ -91,7 +100,7 @@ class _AiadvisorState extends State<Aiadvisor> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-                child: ListView.builder(itemCount:_messages.length,itemBuilder: (context,index){
+                child: ListView.builder(physics: const BouncingScrollPhysics(),itemCount:_messages.length,itemBuilder: (context,index){
                   final message = _messages[index];
                   return Messages(isUser: message.isUser, message: message.message, date: DateFormat('h:mm a').format(message.date));
                 })
