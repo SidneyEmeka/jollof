@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/homes/home/settings/account.dart';
+import 'package:jollof/homes/home/settings/preferences.dart';
 import 'package:jollof/onboarding/signinmethod.dart';
 
 import '../../../server/getxserver.dart';
@@ -95,7 +96,7 @@ class Allsettings extends StatelessWidget {
                    SizedBox(height: Get.height*0.035),
                    GestureDetector(
                      onTap: (){
-                       Get.to(()=>Account());
+                       Get.to(()=>const Account());
                      },
                      child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -137,7 +138,7 @@ class Allsettings extends StatelessWidget {
                 ],
               ),
             ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
             Text("Information",style: Stylings.subTitles.copyWith(fontSize: 13),),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -151,16 +152,21 @@ class Allsettings extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(FluentIcons.toggle_multiple_24_regular,size: 20,color: Stylings.black,),
-                      SizedBox(width: Get.width*0.05),
-                      Text("Preference",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Preferences());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(FluentIcons.toggle_multiple_24_regular,size: 20,color: Stylings.black,),
+                        SizedBox(width: Get.width*0.05),
+                        Text("Preference",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
                   SizedBox(height: Get.height*0.035),
                   Row(
@@ -240,7 +246,7 @@ class Allsettings extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){
-                Get.offAll(()=>Signinmethod());
+                Get.offAll(()=>const Signinmethod());
               },
               child: Container(
                 height: Get.height*0.055,

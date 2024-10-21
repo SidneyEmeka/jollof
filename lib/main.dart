@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFEC706)),
-        scaffoldBackgroundColor: Stylings.bgColor,
-        useMaterial3: true,
-        appBarTheme: AppBarTheme(
-          color: Stylings.bgColor,
-          toolbarHeight: MediaQuery.of(context).size.height*0.07
-        )
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFEC706)),
+          scaffoldBackgroundColor: Stylings.bgColor,
+          useMaterial3: true,
+          appBarTheme: AppBarTheme(
+              color: Stylings.bgColor,
+              toolbarHeight: MediaQuery.of(context).size.height*0.07
+          )
       ),
       home: const Splashscreen(),
     );

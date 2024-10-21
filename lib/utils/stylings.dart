@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 class Stylings {
   //Colors
   static Color yellow = const Color(0xFFFEC706);
-  static Color bgColor =const Color(0xFFFBFBFB);
+  static Color bgColor = Get.isDarkMode?Color(0x000000): Color(0xFFFBFBFB);
   static Color black = Colors.black;
 
 //textStyles

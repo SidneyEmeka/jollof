@@ -133,7 +133,7 @@ class Account extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(height: 20,),
             //investments
             Get.find<Jollofx>().userInvestments.isEmpty
                 ? const SizedBox()
