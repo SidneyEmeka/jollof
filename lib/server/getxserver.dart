@@ -797,6 +797,7 @@ var allStatements = [];
   getWalletStatements(){
     Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/wallet/statements?fromDate=${fromDate.value}&toDate=${toDate.value}").then((s){
       if(statusCode.value==0){
+        print(s['data']);
         allStatements = s['data'];
         isLoading.value=false;
         Get.to(()=>const Allstatements());

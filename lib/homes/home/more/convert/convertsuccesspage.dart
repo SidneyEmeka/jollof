@@ -37,7 +37,7 @@ class Convertsuccesspage extends StatelessWidget {
             destinationAccount=='ngn'?TextSpan(text: " \$${NumberFormat.decimalPattern('en').format(from)}",style: Stylings.titles.copyWith(fontSize: 12)):TextSpan(text: " ₦${NumberFormat.decimalPattern('en').format(from)}",style: Stylings.titles.copyWith(fontSize: 12)),
               TextSpan(text: " to",style: Stylings.subTitles),
             destinationAccount=='ngn'?TextSpan(text: " ₦${NumberFormat.decimalPattern('en').format(transferredAmount)}",style: Stylings.titles.copyWith(fontSize: 12)):TextSpan(text: " \$${NumberFormat.decimalPattern('en').format(transferredAmount)}",style: Stylings.titles.copyWith(fontSize: 12)),
-            destinationAccount=='ngn'?  TextSpan(text: " has been sent to your Naira wallet",style: Stylings.subTitles): TextSpan(text: "has been sent to your Dollar wallet",style: Stylings.subTitles),
+            destinationAccount=='ngn'?  TextSpan(text: " has been sent to your Naira wallet",style: Stylings.subTitles): TextSpan(text: " has been sent to your Dollar wallet",style: Stylings.subTitles),
             ])),
             const Expanded(flex:2,child: SizedBox()),
             GestureDetector(

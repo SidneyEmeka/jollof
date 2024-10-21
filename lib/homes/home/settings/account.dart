@@ -63,13 +63,13 @@ class Account extends StatelessWidget {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
         width: Get.width,
         height: Get.height,
         child: ListView(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
               width: Get.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -89,20 +89,20 @@ class Account extends StatelessWidget {
                         Get.find<Jollofx>().validatedUserAvatar.value,
                         fit: BoxFit.contain,
                       )),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("${Get.find<Jollofx>().validatedfirstName} ${Get.find<Jollofx>().validatedlastName}",style: Stylings.titles.copyWith(fontSize: 10),),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(Get.find<Jollofx>().validatedUserEmail.value,style: Stylings.subTitles.copyWith(fontSize: 10),),
                     ],
                   )
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Container(
               width: Get.width,
               decoration: BoxDecoration(
@@ -128,12 +128,12 @@ class Account extends StatelessWidget {
                       style: Stylings.titles.copyWith(fontSize: 12),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),child: Text("""Risk is like a casual acquaintance – you're aware it's there, but you're not hanging out too much. You acknowledge that taking some investment risks can lead to rewards, but you prefer to mix it with more stable investments. Small changes in your portfolio are okay with you.""",
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),child: Text("""Risk is like a casual acquaintance – you're aware it's there, but you're not hanging out too much. You acknowledge that taking some investment risks can lead to rewards, but you prefer to mix it with more stable investments. Small changes in your portfolio are okay with you.""",
                     style: Stylings.subTitles,),)
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             //investments
             Get.find<Jollofx>().userInvestments.isEmpty
                 ? const SizedBox()
@@ -159,7 +159,7 @@ class Account extends StatelessWidget {
                         duration: duration,
                         amount: amount);
                   }),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   //earnings
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -173,27 +173,27 @@ class Account extends StatelessWidget {
                           Container(
                             width: Get.width*0.11,
                             height: Get.width*0.11,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.green
                             ),
-                            child: Icon(Icons.account_balance_wallet_outlined,size: 15,color: Colors.white,),
+                            child: const Icon(Icons.account_balance_wallet_outlined,size: 15,color: Colors.white,),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Interest you've earned",style: Stylings.titles.copyWith(fontSize: 12),),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                               Text("From ${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().userInvestments[0]['createdAt'])} until today",style: Stylings.subTitles.copyWith(fontSize: 10),),
                             ],
                           ),
-                          Expanded(child: SizedBox()),
+                          const Expanded(child: SizedBox()),
                           Text("\$0.00",style: Stylings.titles.copyWith(color: Colors.green,fontSize: 12),)
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -201,23 +201,23 @@ class Account extends StatelessWidget {
                           Container(
                             width: Get.width*0.11,
                             height: Get.width*0.11,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.blue
                             ),
-                            child: Icon(Icons.credit_card_outlined,size: 15,color: Colors.white,),
+                            child: const Icon(Icons.credit_card_outlined,size: 15,color: Colors.white,),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Total Interest paid",style: Stylings.titles.copyWith(fontSize: 12),),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                               Text("Total interest we've paid you",style: Stylings.subTitles.copyWith(fontSize: 10),),
                             ],
                           ),
-                          Expanded(child: SizedBox()),
+                          const Expanded(child: SizedBox()),
                           Text("\$0.00",style: Stylings.titles.copyWith(color: Colors.green,fontSize: 12),)
                         ],
                       ),
@@ -226,10 +226,10 @@ class Account extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>Questions());
+                Get.to(()=>const Questions());
               },
               child: Container(
                 height: Get.height*0.055,

@@ -137,7 +137,7 @@ class Allsettings extends StatelessWidget {
                 ],
               ),
             ),
-          const Expanded(child: SizedBox()),
+        SizedBox(height: 20),
             Text("Information",style: Stylings.subTitles.copyWith(fontSize: 13),),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
