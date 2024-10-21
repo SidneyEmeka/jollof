@@ -102,7 +102,7 @@ class Account extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(height: 20,),
             Container(
               width: Get.width,
               decoration: BoxDecoration(
@@ -159,7 +159,7 @@ class Account extends StatelessWidget {
                         duration: duration,
                         amount: amount);
                   }),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //earnings
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,24 +226,25 @@ class Account extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(child: SizedBox()),
-            GestureDetector(
-              onTap: (){
-                Get.to(()=>const Questions());
-              },
-              child: Container(
-                height: Get.height*0.055,
-                width: Get.width,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: Stylings.yellow
-                ),
-                child: Text("Retake Questionnaire",style: Stylings.titles.copyWith(fontSize: 12)),
-              ),
-            ),
-
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: Get.height*0.09,
+        color: Colors.white,
+        child:   GestureDetector(
+          onTap: (){
+            Get.to(()=>const Questions());
+          },
+          child: Container(
+            width: Get.width,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: Stylings.yellow
+            ),
+            child: Text("Retake Questionnaire",style: Stylings.titles.copyWith(fontSize: 12)),
+          ),
         ),
       ),
     );

@@ -37,8 +37,8 @@ class _ChoosestatemmentperiodState extends State<Choosestatemmentperiod> {
     DateTime? dob = await showDatePicker(
       context: context,
       firstDate: DateTime(2000),
-      initialDate: DateTime.now().add(Duration(days: 1)),
-      lastDate: DateTime.now().add(Duration(days: 365)),
+      initialDate: DateTime.now().add(const Duration(days: 1)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (dob != null) {
       Get.find<Jollofx>().toDate.value = dob.toString().split(" ")[0];

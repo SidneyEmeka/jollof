@@ -22,7 +22,7 @@ class Statementtile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.grey.shade400,
+        color: Colors.grey.shade200,
       ),
       width: Get.width,
       //height: Get.height*0.15,
