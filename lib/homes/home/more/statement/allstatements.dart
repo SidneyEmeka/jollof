@@ -57,7 +57,7 @@ class Allstatements extends StatelessWidget {
         height: Get.height,
         child: ListView(
           children: [
-            Align(alignment: Alignment.center,child: Text("${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().fromDate.value)} - ${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().toDate.value)}",style: Stylings.subTitles,)),
+            Align(alignment: Alignment.center,child: Text("${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().fromDate.value)} - ${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().toDate.value)}",style: Stylings.subTitles.copyWith(fontSize: 12,color: Colors.grey.shade400),)),
             const SizedBox(height: 10,),
             ...Get.find<Jollofx>().allStatements.reversed.map((aStat){
               final statId = aStat["_id"];

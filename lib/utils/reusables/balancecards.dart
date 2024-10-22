@@ -23,7 +23,7 @@ class Balancecards extends StatelessWidget {
         decoration: BoxDecoration(
           color:thecolor,
           borderRadius: BorderRadius.circular(15),
-            image: const DecorationImage(image: AssetImage("assets/images/carddflower.png"),fit: BoxFit.cover,opacity: 0.3,)
+            image: const DecorationImage(image: AssetImage("assets/images/carddflower.png"),fit: BoxFit.cover,opacity: 0.4,)
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

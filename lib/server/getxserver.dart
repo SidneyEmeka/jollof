@@ -280,6 +280,7 @@ class Jollofx extends GetxController{
   var validatedUserAvatar = ''.obs;
   var validatedlastName = ''.obs;
   var validatedfirstName = ''.obs;
+  var validatedPromoCode = ''.obs;
   var userTokens = {}.obs;
   var statusCode = 0.obs;
 
@@ -393,7 +394,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
           print(userInfo);
           isLoading.value = false;
         });
-       Get.to(()=>const Setavatar());
+       Get.off(()=>const Setavatar());
       });
 
     }
@@ -442,6 +443,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
          validatedfirstName.value = firstName;
          validatedlastName.value = lastName;
          validatedUserEmail.value = email;
+         validatedPromoCode.value = promoCode;
          userTokens.value = {
            'id':mainKey['user']["id"],
            'promoCode':mainKey['user']["promoCode"],
@@ -452,7 +454,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
          isLoading.value=false;
          errorText.value = "";
          //to avoid repeating questionaire.
-        validatedlastName.value==''? Get.to(()=>const Questions()):Get.to(()=>const Homepage());
+        validatedlastName.value==''? Get.offAll(()=>const Questions()):Get.to(()=>const Homepage());
        }
        else{
          isLoading.value=false;
@@ -892,6 +894,15 @@ getUserInvestments(){
      }
     });
 }
+
+
+
+///Settings///
+var languages = ['System','English','Espanol','Francais','Polski','Italiano'];
+  var currentLanguage = 'English'.obs;
+  var isDarkMode = false.obs;
+  var faceId = false.obs;
+  var allowNotify = false.obs;
 }
 
 

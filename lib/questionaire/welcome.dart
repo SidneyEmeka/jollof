@@ -150,7 +150,7 @@ class Welcome extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const Homepage());
+                Get.offAll(()=>const Homepage());
               },
               child: Container(
                 height: Get.height*0.055,

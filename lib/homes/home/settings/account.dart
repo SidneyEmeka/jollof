@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/onboarding/setavatar.dart';
 import 'package:jollof/questionaire/questions.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../server/getxserver.dart';
 import '../../../utils/reusables/investmenttile.dart';
@@ -20,8 +22,8 @@ class Account extends StatelessWidget {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         leading: GestureDetector(
-          onTap: (){
-            Get.to(()=>const Allsettings());
+          onTap: () {
+            Get.to(() => const Allsettings());
           },
           child: Container(
               padding: const EdgeInsets.all(13),
@@ -48,14 +50,17 @@ class Account extends StatelessWidget {
               //   color: Colors.black,
               // ),
               const SizedBox(width: 10),
-              IconButton(alignment: Alignment.centerRight,onPressed: (){
-                Get.find<Jollofx>().isLoading.value=true;
-                Get.to(()=>const Allnotifications());
-              }, icon: const Icon(
-                Icons.notifications_none_outlined,
-                size: 19,
-                color: Colors.black,
-              ))
+              IconButton(
+                  alignment: Alignment.centerRight,
+                  onPressed: () {
+                    Get.find<Jollofx>().isLoading.value = true;
+                    Get.to(() => const Allnotifications());
+                  },
+                  icon: const Icon(
+                    Icons.notifications_none_outlined,
+                    size: 19,
+                    color: Colors.black,
+                  ))
             ],
           ),
         ],
@@ -63,46 +68,106 @@ class Account extends StatelessWidget {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         width: Get.width,
         height: Get.height,
         child: ListView(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               width: Get.width,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(10)),
                 color: Stylings.bgColor,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: Get.width*0.15,
-                    height: Get.width*0.15,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: Get.width * 0.18,
+                        height: Get.width * 0.18,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          // color: Colors.red
+                        ),
                       ),
-                      child: Image.network(
-                        Get.find<Jollofx>().validatedUserAvatar.value,
-                        fit: BoxFit.contain,
-                      )),
-                  const SizedBox(width: 10),
+                      Container(
+                          width: Get.width * 0.15,
+                          height: Get.width * 0.15,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            Get.find<Jollofx>().validatedUserAvatar.value,
+                            fit: BoxFit.contain,
+                          )),
+                      Positioned(
+                          top: Get.width * 0.13,
+                          left: Get.width * 0.13,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.shade100),
+                              child: Icon(
+                                Icons.edit,
+                                color: Stylings.yellow,
+                                size: 13,
+                              )))
+                    ],
+                  ),
+                  const SizedBox(width: 5),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${Get.find<Jollofx>().validatedfirstName} ${Get.find<Jollofx>().validatedlastName}",style: Stylings.titles.copyWith(fontSize: 10),),
+                      Text(
+                        "${Get.find<Jollofx>().validatedfirstName} ${Get.find<Jollofx>().validatedlastName}",
+                        style: Stylings.titles.copyWith(fontSize: 10),
+                      ),
                       const SizedBox(height: 5),
-                      Text(Get.find<Jollofx>().validatedUserEmail.value,style: Stylings.subTitles.copyWith(fontSize: 10),),
+                      Text(
+                        Get.find<Jollofx>().validatedUserEmail.value,
+                        style: Stylings.subTitles.copyWith(fontSize: 10),
+                      ),
                     ],
-                  )
+                  ),
+                  const Expanded(child: SizedBox()),
+                  IconButton(
+                      onPressed: () async {
+                        await Share.share(
+                          "Promo Code - ${Get.find<Jollofx>().validatedPromoCode.value}",
+                        );
+                      },
+                      icon: Icon(
+                        Icons.ios_share_rounded,
+                        size: 20,
+                        color: Stylings.yellow,
+                      ))
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              width: Get.width,
+              decoration: BoxDecoration(
+                borderRadius:
+                    const BorderRadius.vertical(bottom: Radius.circular(10)),
+                color: Colors.grey.shade300,
+              ),
+              child: Text(
+                Get.find<Jollofx>().validatedPromoCode.value,
+                style: Stylings.titles.copyWith(fontSize: 12),
+              ),
+            ),
+            SizedBox(
+              height: Get.height * 0.05,
+            ),
             Container(
               width: Get.width,
               decoration: BoxDecoration(
@@ -119,8 +184,8 @@ class Account extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     width: Get.width,
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(10)),
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(10)),
                       color: Colors.grey.shade300,
                     ),
                     child: Text(
@@ -128,122 +193,165 @@ class Account extends StatelessWidget {
                       style: Stylings.titles.copyWith(fontSize: 12),
                     ),
                   ),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),child: Text("""Risk is like a casual acquaintance – you're aware it's there, but you're not hanging out too much. You acknowledge that taking some investment risks can lead to rewards, but you prefer to mix it with more stable investments. Small changes in your portfolio are okay with you.""",
-                    style: Stylings.subTitles,),)
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                    child: Text(
+                      """Risk is like a casual acquaintance – you're aware it's there, but you're not hanging out too much. You acknowledge that taking some investment risks can lead to rewards, but you prefer to mix it with more stable investments. Small changes in your portfolio are okay with you.""",
+                      style: Stylings.subTitles,
+                    ),
+                  )
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             //investments
             Get.find<Jollofx>().userInvestments.isEmpty
                 ? const SizedBox()
                 : Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 15),
-              width: Get.width,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade100),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Stylings.bgColor),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ...Get.find<Jollofx>().userInvestments.map((inv) {
-                    final invRate = inv['interest_rate'];
-                    final duration = inv['duration'];
-                    final amount = inv['amount_invested'];
-                    return Investmenttile(
-                        invRate: invRate,
-                        duration: duration,
-                        amount: amount);
-                  }),
-                  const SizedBox(height: 20,),
-                  //earnings
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: Get.width*0.11,
-                            height: Get.width*0.11,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.green
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 15),
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade100),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Stylings.bgColor),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...Get.find<Jollofx>().userInvestments.map((inv) {
+                          final invRate = inv['interest_rate'];
+                          final duration = inv['duration'];
+                          final amount = inv['amount_invested'];
+                          return Investmenttile(
+                              invRate: invRate,
+                              duration: duration,
+                              amount: amount);
+                        }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        //earnings
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: Get.width * 0.11,
+                                  height: Get.width * 0.11,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.green),
+                                  child: const Icon(
+                                    Icons.account_balance_wallet_outlined,
+                                    size: 15,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Interest you've earned",
+                                      style: Stylings.titles
+                                          .copyWith(fontSize: 12),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      "From ${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().userInvestments[0]['createdAt'])} until today",
+                                      style: Stylings.subTitles
+                                          .copyWith(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  "\$0.00",
+                                  style: Stylings.titles.copyWith(
+                                      color: Colors.green, fontSize: 12),
+                                )
+                              ],
                             ),
-                            child: const Icon(Icons.account_balance_wallet_outlined,size: 15,color: Colors.white,),
-                          ),
-                          const SizedBox(width: 10,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Interest you've earned",style: Stylings.titles.copyWith(fontSize: 12),),
-                              const SizedBox(height: 2),
-                              Text("From ${Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().userInvestments[0]['createdAt'])} until today",style: Stylings.subTitles.copyWith(fontSize: 10),),
-                            ],
-                          ),
-                          const Expanded(child: SizedBox()),
-                          Text("\$0.00",style: Stylings.titles.copyWith(color: Colors.green,fontSize: 12),)
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: Get.width*0.11,
-                            height: Get.width*0.11,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: Get.width * 0.11,
+                                  height: Get.width * 0.11,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.blue),
+                                  child: const Icon(
+                                    Icons.credit_card_outlined,
+                                    size: 15,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Total Interest paid",
+                                      style: Stylings.titles
+                                          .copyWith(fontSize: 12),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      "Total interest we've paid you",
+                                      style: Stylings.subTitles
+                                          .copyWith(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  "\$0.00",
+                                  style: Stylings.titles.copyWith(
+                                      color: Colors.green, fontSize: 12),
+                                )
+                              ],
                             ),
-                            child: const Icon(Icons.credit_card_outlined,size: 15,color: Colors.white,),
-                          ),
-                          const SizedBox(width: 10,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Total Interest paid",style: Stylings.titles.copyWith(fontSize: 12),),
-                              const SizedBox(height: 2),
-                              Text("Total interest we've paid you",style: Stylings.subTitles.copyWith(fontSize: 10),),
-                            ],
-                          ),
-                          const Expanded(child: SizedBox()),
-                          Text("\$0.00",style: Stylings.titles.copyWith(color: Colors.green,fontSize: 12),)
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        height: Get.height*0.09,
+        height: Get.height * 0.09,
         color: Colors.white,
-        child:   GestureDetector(
-          onTap: (){
-            Get.to(()=>const Questions());
+        child: GestureDetector(
+          onTap: () {
+            Get.to(() => const Questions());
           },
           child: Container(
             width: Get.width,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: Stylings.yellow
-            ),
-            child: Text("Retake Questionnaire",style: Stylings.titles.copyWith(fontSize: 12)),
+                borderRadius: BorderRadius.circular(7), color: Stylings.yellow),
+            child: Text("Retake Questionnaire",
+                style: Stylings.titles.copyWith(fontSize: 12)),
           ),
         ),
       ),

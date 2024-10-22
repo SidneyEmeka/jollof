@@ -41,7 +41,7 @@ class Emailverified extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: (){
-                Get.to(()=> const Chooseportfolio());
+                Get.off(()=> const Chooseportfolio());
               },
               child: Container(
                 height: Get.height*0.055,

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/server/getxserver.dart';
 
 class Stylings {
   //Colors
   static Color yellow = const Color(0xFFFEC706);
-  static Color bgColor = Get.isDarkMode?Color(0x000000): Color(0xFFFBFBFB);
+  static Color bgColor = Color(0xFFFBFBFB);
   static Color black = Colors.black;
 
 //textStyles

@@ -143,7 +143,7 @@ class _RegemailState extends State<Regemail> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(child: GestureDetector(onTap: (){
-                  Get.to(()=>Signinmethod());
+                  Get.to(()=>const Signinmethod());
                 },child: Text("Already have  an account ? Log in",style: Stylings.subTitles.copyWith(color: Stylings.yellow),))),
                 Expanded(
                   child: RichText(

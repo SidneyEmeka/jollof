@@ -93,7 +93,7 @@ class Paymentpreview extends StatelessWidget {
               const Expanded(child: SizedBox()),
               GestureDetector(
                 onTap: (){
-                  Get.to(()=>const Paymentmethod());
+                  Get.off(()=>const Paymentmethod());
                 },
                 child: Container(
                   height: Get.height*0.055,

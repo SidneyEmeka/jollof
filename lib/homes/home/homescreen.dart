@@ -47,9 +47,10 @@ class _HomescreenState extends State<Homescreen> {
               Get.to(() => const Allsettings());
             },
             child: Container(
-                padding: const EdgeInsets.all(13),
-                decoration: const BoxDecoration(
+               padding: const EdgeInsets.all(10),
+                decoration:  const BoxDecoration(
                   shape: BoxShape.circle,
+                 // border: Border.all(color: Colors.red),
                 ),
                 child: Image.network(
                   Get.find<Jollofx>().validatedUserAvatar.value,
@@ -217,7 +218,9 @@ class _HomescreenState extends State<Homescreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.snackbar("Coming soon", "Feature not currently available");
+                              },
                               icon: const Icon(
                                 FluentIcons.money_hand_24_regular,
                                 size: 20,
