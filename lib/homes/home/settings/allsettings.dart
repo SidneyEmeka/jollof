@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:jollof/homes/home/settings/account.dart';
+import 'package:jollof/homes/home/settings/disclaimers.dart';
 import 'package:jollof/homes/home/settings/preferences.dart';
+import 'package:jollof/homes/home/settings/referral.dart';
 import 'package:jollof/onboarding/signinmethod.dart';
 
 import '../../../server/getxserver.dart';
@@ -111,17 +113,22 @@ class Allsettings extends StatelessWidget {
                                        ),
                    ),
                    SizedBox(height: Get.height*0.035),
-                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(FluentIcons.bot_add_24_regular,size: 20,color: Stylings.black,),
-                      SizedBox(width: Get.width*0.05),
-                      Text("Referral Program",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
-                  ),
+                   GestureDetector(
+                     onTap: (){
+                       Get.to(()=>const Referral());
+                     },
+                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(FluentIcons.bot_add_24_regular,size: 20,color: Stylings.black,),
+                        SizedBox(width: Get.width*0.05),
+                        Text("Referral Program",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                                       ),
+                   ),
                    SizedBox(height: Get.height*0.035),
                    Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -229,16 +236,21 @@ class Allsettings extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: Get.height*0.035),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(FluentIcons.dismiss_circle_48_regular,size: 20,color: Stylings.black,),
-                      SizedBox(width: Get.width*0.05),
-                      Text("Disclaimers",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Disclaimers());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(FluentIcons.dismiss_circle_48_regular,size: 20,color: Stylings.black,),
+                        SizedBox(width: Get.width*0.05),
+                        Text("Disclaimers",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
 
                 ],
