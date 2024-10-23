@@ -238,7 +238,10 @@ class _HomescreenState extends State<Homescreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.find<Jollofx>().isLoading.value = true;
+                                Get.find<Jollofx>().getTipsandTricks();
+                              },
                               icon: const Icon(
                                 FluentIcons.compass_northwest_28_regular,
                                 size: 20,

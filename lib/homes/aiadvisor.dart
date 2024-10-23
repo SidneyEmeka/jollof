@@ -92,7 +92,7 @@ class _AiadvisorState extends State<Aiadvisor> {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
         width: Get.width,
         height: Get.height,
         child: Column(

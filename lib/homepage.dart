@@ -8,6 +8,7 @@ import 'package:jollof/utils/reusables/bnavmorph.dart';
 import 'package:jollof/utils/stylings.dart';
 
 import 'homes/aiadvisor.dart';
+import 'homes/Helps/help.dart';
 import 'homes/home/homescreen.dart';
 
 
@@ -29,7 +30,7 @@ class _UserTimelineState extends State<Homepage> {
       case 2:
         return const Aiadvisor();
       case 3:
-        return const Center();
+        return const Help();
       default:
         const Center(
           child: Text("Home"),

@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:jollof/homes/home/settings/terms.dart';
 
 import '../../../server/getxserver.dart';
 import '../../../utils/stylings.dart';
@@ -60,7 +61,7 @@ class Disclaimers extends StatelessWidget {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
         width: Get.width,
         height: Get.height,
         child: Column(
@@ -68,7 +69,7 @@ class Disclaimers extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Get to know what we stand for", style: Stylings.titles.copyWith(fontSize: 12),),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -81,63 +82,93 @@ class Disclaimers extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [Text("Advisory Agreement",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Terms(title: "Advisory Agreement"));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text("Advisory Agreement",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
                   SizedBox(height: Get.height*0.035),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Terms and conditions",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Terms(title: "Terms and conditions"));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Terms and conditions",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
                   SizedBox(height: Get.height*0.035),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Privacy Policy",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Terms(title: "Privacy Policy"));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Privacy Policy",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
                   SizedBox(height: Get.height*0.035),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Fee Schedule",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Terms(title: "Fee Schedule"));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Fee Schedule",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
                   SizedBox(height: Get.height*0.035),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Customer Agreement",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Terms(title: "Customer Agreement"));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Customer Agreement",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
                   SizedBox(height: Get.height*0.035),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Terms of use",style: Stylings.subTitles,),
-                      const Expanded(child: SizedBox()),
-                      Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>const Terms(title: "Terms of use"));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Terms of use",style: Stylings.subTitles,),
+                        const Expanded(child: SizedBox()),
+                        Icon(FluentIcons.ios_chevron_right_20_regular,size: 20,color: Stylings.black,),
+                      ],
+                    ),
                   ),
 
                 ],

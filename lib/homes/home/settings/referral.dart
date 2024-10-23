@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../server/getxserver.dart';
 import '../../../utils/stylings.dart';
@@ -101,7 +102,9 @@ class Referral extends StatelessWidget {
             ),
             const SizedBox(height: 20,),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+      Get.snackbar("Coming soon", "Feature not currently available");
+      },
               child: Container(
                 width: Get.width,
                 height: Get.height*0.055,
@@ -147,18 +150,25 @@ class Referral extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10,),
-            Container(
-              alignment: Alignment.center,
-              width: Get.width,
-              height: Get.height*0.055,
-              decoration: BoxDecoration(
-                borderRadius:
-                const BorderRadius.vertical(bottom: Radius.circular(10)),
-                color: Stylings.yellow,
-              ),
-              child: Text(
-                "Share my referral link",
-                style: Stylings.titles.copyWith(fontSize: 12),
+            GestureDetector(
+              onTap: ()async {
+                await Share.share(
+                  "Promo Code - ${Get.find<Jollofx>().validatedPromoCode.value}",
+                );
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: Get.width,
+                height: Get.height*0.055,
+                decoration: BoxDecoration(
+                  borderRadius:
+                  const BorderRadius.vertical(bottom: Radius.circular(10)),
+                  color: Stylings.yellow,
+                ),
+                child: Text(
+                  "Share my referral link",
+                  style: Stylings.titles.copyWith(fontSize: 12),
+                ),
               ),
             ),
             const Expanded(child: SizedBox()),
