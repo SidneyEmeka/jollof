@@ -59,7 +59,7 @@ class _SetavatarState extends State<Setavatar> {
                     onTap: (){
                       Get.find<Jollofx>().avatarIndex.value = index;
                       Get.find<Jollofx>().userInfo["avatar"] = imgAvatar;
-                      print(Get.find<Jollofx>().userInfo);
+                     // print(Get.find<Jollofx>().userInfo);
                     },
                     child: Container(
                       alignment: Alignment.bottomCenter,

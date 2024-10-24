@@ -105,7 +105,7 @@ class Transactiontrack extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 10,),
                                 Text("Processing",style: Stylings.titles.copyWith(fontSize: 12),),
-                                Expanded(child: SizedBox()),
+                                const Expanded(child: SizedBox()),
                                 Text(Get.find<Jollofx>().dateFormat(Get.find<Jollofx>().timeOfTopUP),style: Stylings.subTitles,overflow: TextOverflow.ellipsis,),
                               ],
                             ),

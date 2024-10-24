@@ -94,7 +94,7 @@ class _ExplainerState extends State<Explainer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: Get.width,
                     height: Get.height*0.25,
                     child: Image.asset("assets/images/e1.png",fit: BoxFit.contain,),
@@ -113,7 +113,7 @@ class _ExplainerState extends State<Explainer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: Get.width,
                     height: Get.height*0.25,
                     child: Image.asset("assets/images/e2.png",fit: BoxFit.contain,),
@@ -132,7 +132,7 @@ class _ExplainerState extends State<Explainer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: Get.width,
                     height: Get.height*0.25,
                     child: Image.asset("assets/images/e3.png",fit: BoxFit.contain,),
@@ -150,7 +150,7 @@ class _ExplainerState extends State<Explainer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: Get.width,
                     height: Get.height*0.25,
                     child: Image.asset("assets/images/e4.png",fit: BoxFit.contain,),

@@ -222,7 +222,8 @@ class Jollofx extends GetxController{
       });
     }
     else{processingIdCheck = 0.obs;
-    print(processingIdCheck);}
+    //print(processingIdCheck);
+    }
   }
 
   var anualIncome = "".obs;
@@ -232,43 +233,43 @@ class Jollofx extends GetxController{
 
   ///API MAINS////////////
 
-  ///TO-DO Refresh token
-  //how many refreshes
-  //Timer? _timer;
-  // void startTimer() {
-  // _timer = Timer.periodic(Duration(seconds: 3500), (timer) {
-  //     call refreshtoken api and
-  //https://jollof.tatspace.com/api/v1/auth/token/refresh POST and then use returned value
-  //{
-  //     "message": "[Success]: Access token refreshed successfully.",
-  //     "statusCode": 200,
-  //     "data": {
-  //         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGFiMTUzNjU4YjFjZWE5MTZjMTZlMiIsImVtYWlsIjoibUB5b3BtYWlsLmNvbSIsInJvbGVzIjpbInVzZXIiXSwicHJvbW9Db2RlIjoiSk9MTE9GLVJMUi05MjgiLCJpYXQiOjE3Mjg3NTQwOTMsImV4cCI6MTcyODc1NzY5MywiaXNzIjoiam9sbG9mLmNvbSJ9.c9bWBaid2VpLRltygteT16KCOuaQp2qQv8JqZwqP5BA",
-  //         "expiresIn": 3600
-  //     }
-
-  //     to set the new access token
-  //userToken["accessToken"] = thenvalue@accessTokens
-  //   });
-  // }
-  @override
-  void onInit() {
-    ///Implement worker that refreshes token every 3500 seconds cos tokens expires in 3600 seconds
-    //every time the token map stops being null or has data
-    // ever(userTokens, (_) {
-    // startTimer();
-    //   print('yes');
-    // });
-    // // Start the timer
-    super.onInit();
-  }
-
-  ///dispose timer to avoid mem leaks
+  // ///TO-DO Refresh token
+  // //how many refreshes
+  // //Timer? _timer;
+  // // void startTimer() {
+  // // _timer = Timer.periodic(Duration(seconds: 3500), (timer) {
+  // //     call refreshtoken api and
+  // //https://jollof.tatspace.com/api/v1/auth/token/refresh POST and then use returned value
+  // //{
+  // //     "message": "[Success]: Access token refreshed successfully.",
+  // //     "statusCode": 200,
+  // //     "data": {
+  // //         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGFiMTUzNjU4YjFjZWE5MTZjMTZlMiIsImVtYWlsIjoibUB5b3BtYWlsLmNvbSIsInJvbGVzIjpbInVzZXIiXSwicHJvbW9Db2RlIjoiSk9MTE9GLVJMUi05MjgiLCJpYXQiOjE3Mjg3NTQwOTMsImV4cCI6MTcyODc1NzY5MywiaXNzIjoiam9sbG9mLmNvbSJ9.c9bWBaid2VpLRltygteT16KCOuaQp2qQv8JqZwqP5BA",
+  // //         "expiresIn": 3600
+  // //     }
+  //
+  // //     to set the new access token
+  // //userToken["accessToken"] = thenvalue@accessTokens
+  // //   });
+  // // }
   // @override
-  // void onClose() {
-  //   _timer?.cancel();
-  //   super.onClose();
+  // void onInit() {
+  //   ///Implement worker that refreshes token every 3500 seconds cos tokens expires in 3600 seconds
+  //   //every time the token map stops being null or has data
+  //   // ever(userTokens, (_) {
+  //   // startTimer();
+  //   //   print('yes');
+  //   // });
+  //   // // Start the timer
+  //   super.onInit();
   // }
+  //
+  // ///dispose timer to avoid mem leaks
+  // // @override
+  // // void onClose() {
+  // //   _timer?.cancel();
+  // //   super.onClose();
+  // // }
 
 
   ///Auths///
@@ -297,7 +298,7 @@ class Jollofx extends GetxController{
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       devId = iosInfo.identifierForVendor!; // This will change if all the app's from the vendor are uninstalled
     }
-    print(devId);
+    //print(devId);
     return devId;
   }
 
@@ -391,7 +392,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
           "repeatPassword": userPin
         }).then((p){
           //print(p);
-          print(userInfo);
+         // print(userInfo);
           isLoading.value = false;
         });
        Get.off(()=>const Setavatar());
@@ -404,7 +405,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
   //getAvatars
  getAllAvatars(){
     Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/avatar/filter").then((a){
-      print(statusCode);
+    //  print(statusCode);
       if(statusCode.value==0){
         final avatarMapsList = a["data"];
         apiAvatars = avatarMapsList;
@@ -490,7 +491,7 @@ Apiclientserver().makePostRequest(url:"https://jollof.tatspace.com/api/v1/auth/s
 updateUserProfile(Future<dynamic>? toWhere){
    Apiclientserver().makePatchRequest("https://jollof.tatspace.com/api/v1/user/update", userInfo).then((a){
     if(statusCode.value==0){
-      print(a);
+      //print(a);
      // print(userTokens);
      // print(userInfo);
      final imgUrl = a["data"]["avatarImageUrl"];
@@ -553,7 +554,7 @@ likeATip(String id){
   Apiclientserver().makePutRequest("https://jollof.tatspace.com/api/v1/tips/like", id).then((l){
    // print(l['data']["post"]);
     if(statusCode.value==0){
-      print("liked");
+    //  print("liked");
       likedorUnlikedId.add(l['data']["post"]);
     }
   });
@@ -563,7 +564,7 @@ likeATip(String id){
   unlikeATip(String id){
     Apiclientserver().makePutRequest("https://jollof.tatspace.com/api/v1/tips/unlike", id).then((u){
       if(statusCode.value==0){
-        print("unliked");
+        //print("unliked");
         likedorUnlikedId.remove(u['data']["post"]);
       }
     });
@@ -590,7 +591,7 @@ getWalletDetails(){
       final data = w['data'];
       usdBalance = data['usdBalance'];
       ngnBalance = data['ngnBalance'];
-      print("wallet retrieved");
+     // print("wallet retrieved");
     }
   });
 }
@@ -612,7 +613,7 @@ getWalletDetails(){
       adaPercentChange.value = v['data'][2]["values"]["USD"]["percentChange24h"];
       ethPrice.value = v['data'][1]["values"]["USD"]["price"];
       ethPercentChange.value = v['data'][1]["values"]["USD"]["percentChange24h"];
-      print("Crypto fed");
+      //print("Crypto fed");
     });
     // Apiclientserver().pingTatspace();
   }
@@ -624,7 +625,7 @@ getWalletDetails(){
 getAllNotifications(){
     Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/notification/activities?page=1&limit=10").then((n){
       if(statusCode.value==0){
-        print(n['data']);
+        //print(n['data']);
         userNotifications.value=n['data'];
         isLoading.value=false;
       }
@@ -680,6 +681,7 @@ getAllNotifications(){
         timeOfTopUP = time;
         idOfTopUp = id;
         isLoading.value=false;
+        getWalletDetails();
         //print(timeOfTopUP);
        Get.off(()=>const Paymentonway());
       }
@@ -720,7 +722,7 @@ getAllNotifications(){
 getExchangeRate(){
     Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/exchange/rate").then((e){
       if(statusCode.value==0){
-        print(e['data']['targetCurrency']);
+       // print(e['data']['targetCurrency']);
         final rate = num.parse(e['data']['targetCurrency']);
         dollarToNaira = rate;
         isLoading.value=false;
@@ -799,7 +801,7 @@ var allStatements = [];
   getWalletStatements(){
     Apiclientserver().makeGetRequest("https://jollof.tatspace.com/api/v1/wallet/statements?fromDate=${fromDate.value}&toDate=${toDate.value}").then((s){
       if(statusCode.value==0){
-        print(s['data']);
+        //print(s['data']);
         allStatements = s['data'];
         isLoading.value=false;
         Get.to(()=>const Allstatements());
@@ -829,7 +831,7 @@ var allStatements = [];
   var currentPlanPage = 0.obs;
 
   var investmentDurationAt = 0.obs;//to control chheckamrks
-  var investmentDuration = 0;//actual investment duration Enum[3,6,12]
+  var investmentDuration = 3;//actual investment duration Enum[3,6,12]
   num investmentAmount = 0;
 
   checkIfInvestmentAmountCovers(String planPrice){
@@ -890,7 +892,7 @@ getUserInvestments(){
        userInvestments = i['data'];
      }
      else{
-       print(i);
+       //print(i);
      }
     });
 }

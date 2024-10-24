@@ -43,7 +43,7 @@ class Anotification extends StatelessWidget {
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 15),
         width: Get.width,
         height: Get.height,
         child: SingleChildScrollView(
@@ -58,11 +58,11 @@ class Anotification extends StatelessWidget {
                 child: Image.asset("assets/images/flog.png",fit: BoxFit.contain,),
               ),
               Text(title.toUpperCase(),style: Stylings.titles,),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(textAlign: TextAlign.justify,'Hello ${Get.find<Jollofx>().validatedlastName}, $desc',style: Stylings.titles.copyWith(fontSize: 12)),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Align(alignment: Alignment.centerRight,child: Text(Get.find<Jollofx>().getRelativeTime(time),style: Stylings.titles.copyWith(fontSize: 10),)),
-             SizedBox(height: 2,),
+             const SizedBox(height: 2,),
               Align(alignment: Alignment.centerRight,child: Text("ID-$id",style: Stylings.titles.copyWith(fontSize: 10),))
              ],
           ),

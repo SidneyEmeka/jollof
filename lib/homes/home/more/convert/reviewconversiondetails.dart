@@ -40,7 +40,7 @@ class Reviewconversiondetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Get.find<Jollofx>().isLoading.value==true? LinearProgressIndicator(color: Stylings.yellow,borderRadius: BorderRadius.circular(20),):const SizedBox(),
-           SizedBox(height: 5,),
+           const SizedBox(height: 5,),
             //details
             Container(
               width: Get.width,
@@ -198,7 +198,7 @@ class Reviewconversiondetails extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Get.find<Jollofx>().isLoading.value=true;
-                print(Get.find<Jollofx>().fromCurrency.value);
+               // print(Get.find<Jollofx>().fromCurrency.value);
                 Get.find<Jollofx>().fromCurrency.value=='ngn'? Get.find<Jollofx>().convertWalletPayload = {
                   "amount": from,
                   "sourceAccount": "ngn",
@@ -208,7 +208,7 @@ class Reviewconversiondetails extends StatelessWidget {
                   "sourceAccount": "usd",
                   "destinationAccount": "ngn"
                 };
-                print(Get.find<Jollofx>().convertWalletPayload);
+                //print(Get.find<Jollofx>().convertWalletPayload);
                 Future.delayed(const Duration(seconds: 1),(){
                   Get.find<Jollofx>().convertIntoWallet();
                 });

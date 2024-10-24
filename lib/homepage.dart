@@ -61,7 +61,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.home_48_regular,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("Home",style: Stylings.subTitles.copyWith(fontSize: 8,color: Colors.black),),
           ],
         ),
@@ -81,7 +81,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.home_48_filled,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("Home",style: Stylings.subTitles.copyWith(fontSize: 8,color: Stylings.yellow),),
 
           ],
@@ -101,7 +101,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.chart_multiple_24_regular,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("Invest",style: Stylings.subTitles.copyWith(fontSize: 8,color: Colors.black),),
           ],
         ),
@@ -121,7 +121,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.chart_multiple_24_filled,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("Invest",style: Stylings.subTitles.copyWith(fontSize: 8,color: Stylings.yellow),),
           ],
         ),
@@ -140,7 +140,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.arrow_trending_24_regular,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("AI Advisor",style: Stylings.subTitles.copyWith(fontSize: 8,color: Colors.black),),
           ],
         ),
@@ -160,7 +160,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.arrow_trending_24_filled,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("AI Advisor",style: Stylings.subTitles.copyWith(fontSize: 8,color: Stylings.yellow),),
           ],
         ),
@@ -179,7 +179,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.chat_48_regular,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("Help",style: Stylings.subTitles.copyWith(fontSize: 8,color: Colors.black),),
           ],
         ),
@@ -199,7 +199,7 @@ class _UserTimelineState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(FluentIcons.chat_48_filled,size: 20,),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text("Help",style: Stylings.subTitles.copyWith(fontSize: 8,color: Stylings.yellow),),
           ],
         ),

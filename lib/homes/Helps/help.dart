@@ -88,7 +88,7 @@ class Help extends StatelessWidget {
               TextFormField(
                 readOnly: true,
                 onTap: () {
-                  Get.to(()=> Searching(),
+                  Get.to(()=> const Searching(),
                       fullscreenDialog: true,
                       transition: Transition.rightToLeft,
                       duration: const Duration(milliseconds: 600));
@@ -134,7 +134,7 @@ class Help extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Get.to(()=>Aiadvisor());
+                        Get.to(()=>const Aiadvisor());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -206,7 +206,7 @@ class Help extends StatelessWidget {
               const SizedBox(height: 15),
               GestureDetector(
                 onTap: (){
-                  Get.to(()=>Readhelparticle());
+                  Get.to(()=>const Readhelparticle());
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),

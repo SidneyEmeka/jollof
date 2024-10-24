@@ -117,8 +117,8 @@ class Forgotpass extends StatelessWidget {
                               GestureDetector(
                                 onTap: (){
                                   Get.back();
-                                  Future.delayed(Duration(milliseconds: 500),(){
-                                    Get.to(()=>Forgetpassotp());
+                                  Future.delayed(const Duration(milliseconds: 500),(){
+                                    Get.to(()=>const Forgetpassotp());
                                   });
                                 },
                                 child: Container(

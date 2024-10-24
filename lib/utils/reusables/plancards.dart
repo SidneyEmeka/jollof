@@ -12,7 +12,7 @@ class Plancards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
       width: Get.width*0.80,
       height: Get.height*0.22,
       decoration: BoxDecoration(

@@ -15,8 +15,8 @@ class Notficationtile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.all(10),
       width: Get.width,
       height: Get.height*0.1,
       decoration: BoxDecoration(
@@ -31,7 +31,7 @@ class Notficationtile extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(image: AssetImage("assets/images/notify.png"),fit: BoxFit.cover,)
+              image: const DecorationImage(image: AssetImage("assets/images/notify.png"),fit: BoxFit.cover,)
             ),
             width: Get.width*0.15,
           ),
@@ -48,7 +48,7 @@ class Notficationtile extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(child: SizedBox()),
+          const Expanded(child: SizedBox()),
           IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios,size: 15,color: Colors.grey.shade400,))
         ],
       ),

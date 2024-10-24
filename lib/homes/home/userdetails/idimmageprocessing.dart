@@ -24,57 +24,57 @@ class _IdimmageprocessingState extends State<Idimmageprocessing> {
     return Scaffold(
       backgroundColor: Stylings.yellow,
       body: Obx(()=>Container(
-        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
         width: Get.width,
         height: Get.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(flex:2,child: SizedBox()),
+            const Expanded(flex:2,child: SizedBox()),
             SizedBox(
               width: Get.width*0.3,
               height: Get.width*0.3,
               child: Image.asset("assets/images/ai.png",fit: BoxFit.fill,),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Text("Please wait while we verify your Photo and ID Card..",style: Stylings.titles,),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Get.find<Jollofx>().processingIdCheck.value>1? Text("We are conducting a background check on you and anything we discover about you would be displayed on your profile. we aim to keep everyone safe.",style: Stylings.subTitles,): Text("This should take not less than a minute, we aim to keep everyone safe",style: Stylings.subTitles,),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(child: Text("Checking your Photo",style: Stylings.titles.copyWith(fontSize: 12),)),
-                Get.find<Jollofx>().processingIdCheck.value>=1?Icon(Icons.check,color: Colors.black,size: 15,):SizedBox(width: 15,height: 15,child: CircularProgressIndicator(strokeCap: StrokeCap.round,strokeWidth: 2,color: Colors.white,backgroundColor: Colors.white.withOpacity(0.5),),)
+                Get.find<Jollofx>().processingIdCheck.value>=1?const Icon(Icons.check,color: Colors.black,size: 15,):SizedBox(width: 15,height: 15,child: CircularProgressIndicator(strokeCap: StrokeCap.round,strokeWidth: 2,color: Colors.white,backgroundColor: Colors.white.withOpacity(0.5),),)
               ],
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(child: Text("Checking your ID",style: Stylings.titles.copyWith(fontSize: 12),)),
-                Get.find<Jollofx>().processingIdCheck.value>=2?Icon(Icons.check,color: Colors.black,size: 15,): SizedBox(width: 15,height: 15,child: CircularProgressIndicator(strokeCap: StrokeCap.round,strokeWidth: 2,color: Colors.white,backgroundColor: Colors.white.withOpacity(0.5),),)
+                Get.find<Jollofx>().processingIdCheck.value>=2?const Icon(Icons.check,color: Colors.black,size: 15,): SizedBox(width: 15,height: 15,child: CircularProgressIndicator(strokeCap: StrokeCap.round,strokeWidth: 2,color: Colors.white,backgroundColor: Colors.white.withOpacity(0.5),),)
               ],
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(child: Text("Finishing up...",style: Stylings.titles.copyWith(fontSize: 12),)),
-                Get.find<Jollofx>().processingIdCheck.value==3?Icon(Icons.check,color: Colors.black,size: 15,):SizedBox(width: 15,height: 15,child: CircularProgressIndicator(strokeCap: StrokeCap.round,strokeWidth: 2,color: Colors.white,backgroundColor: Colors.white.withOpacity(0.5),),)
+                Get.find<Jollofx>().processingIdCheck.value==3?const Icon(Icons.check,color: Colors.black,size: 15,):SizedBox(width: 15,height: 15,child: CircularProgressIndicator(strokeCap: StrokeCap.round,strokeWidth: 2,color: Colors.white,backgroundColor: Colors.white.withOpacity(0.5),),)
               ],
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Get.find<Jollofx>().processingIdCheck.value==3? GestureDetector(
               onTap: (){
                 Get.find<Jollofx>().userDetailsNextPage();
                 Get.find<Jollofx>().calcUserDetailsPercent(
                     Get.find<Jollofx>().userDetails.value);
-                Get.to(()=>Userdetails());
+                Get.to(()=>const Userdetails());
               },
               child: Container(
                 width: Get.width,
@@ -86,7 +86,7 @@ class _IdimmageprocessingState extends State<Idimmageprocessing> {
                 alignment: Alignment.center,
                 child: Text("Continue",style: Stylings.titles.copyWith(fontSize: 12),),
               ),
-            ):SizedBox()
+            ):const SizedBox()
           ],
         ),
       ),)

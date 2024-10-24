@@ -22,7 +22,7 @@ class Readhelparticle extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               width: Get.width*0.09,
               height: Get.width*0.1,
                 decoration: const BoxDecoration(

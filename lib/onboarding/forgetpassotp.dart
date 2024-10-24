@@ -29,7 +29,7 @@ class Forgetpassotp extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         height: Get.height,
-        child: Container(
+        child: SizedBox(
           height: Get.height*0.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

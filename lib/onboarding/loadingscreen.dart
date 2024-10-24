@@ -14,8 +14,8 @@ class Loadingscreen extends StatefulWidget {
 class _LoadingscreenState extends State<Loadingscreen> {
   @override
   void initState() {
-   Future.delayed(Duration(seconds: 2),(){
-     Get.to(()=>Newpass());
+   Future.delayed(const Duration(seconds: 2),(){
+     Get.to(()=>const Newpass());
    });
     super.initState();
   }

@@ -35,7 +35,7 @@ class _RadiolistState extends State<Radiolist> {
             child: Text(widget.title,
             style: Stylings.titles.copyWith(fontSize: 12),),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           widget.title==widget.state?Icon(FluentIcons.record_12_regular,color: Stylings.yellow,size: 15,):const Icon(Icons.circle_outlined,color: Colors.black,size: 15,)
         ],
       ),

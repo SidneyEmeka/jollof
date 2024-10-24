@@ -43,7 +43,7 @@ class Atipfullread extends StatelessWidget {
         ],
         shape: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
-      body: Obx(()=>Container(
+      body: Obx(()=>SizedBox(
         width: Get.width,
         height: Get.height,
         child: SingleChildScrollView(

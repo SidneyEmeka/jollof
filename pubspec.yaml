@@ -49,16 +49,17 @@ dependencies:
   intl: ^0.19.0
   device_info_plus: ^11.0.0
   flutter_squad_sdk: ^0.0.4
+  flutter_native_splash: ^2.4.1
+
+flutter_native_splash:
+    color: "#FEC706"
+    image: assets/images/flog.png
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  flutter_native_splash: ^2.4.1
 
-flutter_native_splash:
-  color: "#FEC706"
-  image: assets/images/flog.png
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

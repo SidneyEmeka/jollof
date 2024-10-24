@@ -28,7 +28,7 @@ class Apiclientserver {
         Uri.parse("https://jollof.tatspace.com/api/ping"),
       );
       final data = jsonDecode(response.body);
-      print(data);
+     // print(data);
       return data;
     } catch (e) {
       throw e.toString();
@@ -62,15 +62,15 @@ class Apiclientserver {
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map<String, dynamic> successReturnbody = jsonDecode(response.body);
         // Request successful
-        print('Request successful');
-        print('Response body: ${response.body}');
+        //print('Request successful');
+        //print('Response body: ${response.body}');
         Get.find<Jollofx>().statusCode.value = 0;
         return successReturnbody;
       } else {
         Map<String, dynamic> errorMessage = jsonDecode(response.body);
         // Request failed
-        print('Request failed with status code: ${response.statusCode}');
-        print('Response body: ${response.body}');
+       // print('Request failed with status code: ${response.statusCode}');
+       // print('Response body: ${response.body}');
         // print(errorMessage['message']);
         Get.find<Jollofx>().statusCode.value = response.statusCode;
         Get.find<Jollofx>().errorText.value = errorMessage['message'];
@@ -78,7 +78,7 @@ class Apiclientserver {
       }
     } catch (e) {
       Get.find<Jollofx>().statusCode.value = 2; //addedd these to the two
-      print('Error occurred: $e');
+      //print('Error occurred: $e');
       Get.find<Jollofx>().errorText.value = 'An error occurred';
       return {};
     }
@@ -95,15 +95,15 @@ class Apiclientserver {
       // Check the status code
       if (response.statusCode == 200) {
         // Request successful
-        print('Request successful');
+       // print('Request successful');
         // Parse the JSON response
         Map<String, dynamic> data = json.decode(response.body);
         Get.find<Jollofx>().statusCode.value = 0;
         return data;
       } else {
         // Request failed
-        print('Request failed with status code: ${response.statusCode}');
-        print('Response body: ${response.body}');
+        //print('Request failed with status code: ${response.statusCode}');
+       // print('Response body: ${response.body}');
         Get.find<Jollofx>().statusCode.value = 1;
         throw Exception('Failed to load data');
       }
@@ -111,7 +111,7 @@ class Apiclientserver {
       // Handle any errors
       Get.find<Jollofx>().statusCode.value = 2;
       Get.find<Jollofx>().errorText.value = 'An error occurred';
-      print('Error occurred: $e');
+     // print('Error occurred: $e');
       throw Exception('Failed to make request');
     }
   }
@@ -130,21 +130,21 @@ class Apiclientserver {
         body: jsonEncode(body),
         headers: headers,
       );
-     print(response.statusCode);
+     //print(response.statusCode);
 
       if (response.statusCode == 200) {
         Get.find<Jollofx>().statusCode.value = 0;
         Map<String,dynamic>  reply=jsonDecode(response.body);
-        print(reply);
+       // print(reply);
         return reply;
       } else {
-        print('Error making PATCH request: ${response.statusCode}');
+        //print('Error making PATCH request: ${response.statusCode}');
         Get.find<Jollofx>().statusCode.value = 1;
         return {"1":"@"};
       }
     } catch (e) {
       Get.find<Jollofx>().statusCode.value = 2;
-      print('Exception during PATCH request: $e');
+      //print('Exception during PATCH request: $e');
       return {"2":"@"};
     }
   }
@@ -163,18 +163,18 @@ class Apiclientserver {
       if (response.statusCode == 200) {
         Map<String, dynamic> returned = jsonDecode(response.body);
         Get.find<Jollofx>().statusCode.value = 0;
-        print('Resource updated successfully');
-        print('Response: ${response.body}');
+        //print('Resource updated successfully');
+        //print('Response: ${response.body}');
         return returned;
       } else {
         Get.find<Jollofx>().statusCode.value = 1;
-        print('Failed to update resource. Status code: ${response.statusCode}');
-        print('Response: ${response.body}');
+       // print('Failed to update resource. Status code: ${response.statusCode}');
+        //print('Response: ${response.body}');
         return {};
       }
     } catch (e) {
       Get.find<Jollofx>().statusCode.value = 2;
-      print('Error occurred: $e');
+     // print('Error occurred: $e');
       return {};
     }
   }

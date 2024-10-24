@@ -8,7 +8,6 @@ import 'package:jollof/homes/home/userdetails/termsandcondition.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../server/getxserver.dart';
-import '../../../server/getxserver.dart';
 import '../../../utils/reusables/radiolist.dart';
 import '../../../utils/stylings.dart';
 
